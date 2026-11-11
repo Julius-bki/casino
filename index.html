@@ -470,7 +470,7 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 @keyframes peck{30%{transform:rotate(-6deg) translateY(4px)}60%{transform:rotate(3deg)}}
 .bubble{position:absolute;left:0;top:-6px;max-width:min(240px,90%);padding:9px 12px;border-radius:12px 12px 12px 3px;background:var(--bone);color:var(--ink);font-weight:700;font-size:.9rem;line-height:1.3;box-shadow:0 6px 16px rgba(0,0,0,.4);animation:fsPop .3s cubic-bezier(.2,.9,.3,1.4) both}
 
-/* Glücksregler (Code JULIUS) */
+/* Glücksregler (Code COOLIUS) */
 .toprow{position:relative}
 .luckpill{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:4px 12px 4px 10px;border-radius:999px;background:var(--ink3);border:1px solid var(--line2);color:var(--mute);font:600 .82rem/1 var(--body);cursor:pointer;box-shadow:var(--hair)}
 .luckpill b{font:500 .95rem/1 var(--mono);color:var(--bone)}
@@ -478,6 +478,70 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 .luckpill:hover{border-color:var(--brass-lo);color:var(--brass-hi)}
 .luckpill.on{color:#1a1205;background:linear-gradient(180deg,var(--brass-hi),var(--brass));border-color:var(--brass-hi);box-shadow:0 0 0 3px rgba(230,183,82,.22),0 0 18px rgba(230,183,82,.4)}
 .luckpill.on b{color:#1a1205}
+
+/* Fortschritt: Level-Chip, Meldungen, Ausrüstung, Erfolge */
+.lvchip{position:relative;display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:4px 11px 6px 10px;border-radius:999px;background:var(--ink3);border:1px solid var(--line2);color:var(--mute);text-decoration:none;font:600 .82rem/1 var(--body);overflow:hidden;box-shadow:var(--hair)}
+.lvchip::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:var(--xp,0%);background:linear-gradient(90deg,var(--brass-lo),var(--brass-hi));transition:width .4s}
+.lvchip b{font:600 .95rem/1 var(--mono);color:var(--brass-hi)}
+.lvchip .tk{display:inline-flex;align-items:center;gap:5px;margin-left:2px;font:500 .9rem/1 var(--mono);color:var(--bone)}
+.lvchip .tk::before{content:"";width:9px;height:9px;transform:rotate(45deg);border-radius:2px;background:linear-gradient(135deg,#bff5ea,#2fb39a);box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.lvchip:hover{border-color:var(--brass-lo);color:var(--bone)}
+.lvchip.buy{border-color:var(--brass);box-shadow:0 0 0 3px rgba(230,183,82,.18)}
+.toasts{position:fixed;right:16px;bottom:16px;z-index:50;display:grid;gap:8px;justify-items:end;pointer-events:none;width:min(340px,calc(100vw - 32px))}
+.toast{pointer-events:auto;position:relative;display:grid;gap:3px;width:100%;padding:10px 14px 10px 46px;border-radius:10px;background:linear-gradient(160deg,#2a1d0a,#14100a);border:1px solid var(--brass);color:var(--bone);text-decoration:none;box-shadow:0 10px 28px rgba(0,0,0,.55);animation:toastIn .35s cubic-bezier(.2,.9,.3,1.3) both}
+.toast::before{content:"";position:absolute;left:14px;top:50%;width:20px;height:20px;margin-top:-10px;background:var(--brass-hi);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.toast.lv::before{clip-path:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c9,var(--brass) 60%,var(--brass-lo))}
+.toast.gear{border-color:#5fd3bd}
+.toast.gear::before{width:15px;height:15px;margin-top:-7.5px;left:17px;clip-path:none;border-radius:3px;transform:rotate(45deg);background:linear-gradient(135deg,#bff5ea,#2fb39a)}
+.toast b{font:700 1rem/1.2 var(--body);color:var(--brass-hi)}
+.toast span{font:500 .8rem/1.2 var(--mono);color:var(--mute)}
+.toast.out{animation:toastOut .4s ease-in both}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.96)}}
+@keyframes toastOut{to{opacity:0;transform:translateX(30px)}}
+.pg-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pg-big{display:flex;align-items:baseline;gap:12px}
+.pg-big span{font:500 .78rem var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.pg-big b{font:700 3.2rem/1 var(--disp);color:var(--brass)}
+.pg-tok .pg-big b{color:#9ff0e0}
+.pg-top .kv .num,.pg-top .kv span:last-child{white-space:nowrap}
+.xpline{height:10px;border-radius:999px;background:var(--ink);border:1px solid var(--line2);overflow:hidden}
+.xpline i{display:block;height:100%;background:linear-gradient(90deg,var(--brass-lo),var(--brass-hi))}
+.gear{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:14px}
+.gcard{display:grid;grid-template-columns:64px minmax(0,1fr);align-content:start;gap:12px 14px;padding:16px;border-radius:var(--r);background:linear-gradient(160deg,var(--ink3),var(--ink2));border:1px solid var(--line2);box-shadow:var(--hair)}
+.gcard.t3{border-color:rgba(240,193,78,.6);background:linear-gradient(160deg,#2a1d0a,#14100a)}
+.gicon{width:64px;height:64px;padding:11px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#24343e,#0f171d);box-shadow:0 0 0 3px var(--tc),0 6px 16px rgba(0,0,0,.4)}
+.gcard.t0 .gicon{filter:grayscale(1) brightness(.75)}
+.gicon svg{width:100%;height:100%;display:block}
+.gbody{min-width:0}
+.gbody h3{font-size:1.2rem;color:var(--bone)}
+.gbody p{color:var(--mute);font-size:.88rem;line-height:1.35;margin-top:3px}
+.gpips{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:8px;font:500 .74rem/1.2 var(--mono);color:var(--mute)}
+.gpips i{width:12px;height:12px;border-radius:50%;border:2px solid var(--pc);opacity:.4}
+.gpips i.on{background:var(--pc);opacity:1}
+.gpips span{margin-left:4px}
+.gcard .btn,.gmax{grid-column:1/-1}
+.gcard .btn{display:grid;gap:3px;justify-items:center}
+.gcard .btn small{font:500 .7rem/1.2 var(--mono);opacity:.8}
+.gmax{text-align:center;font-weight:600;color:var(--brass-hi);padding:12px 0 4px}
+.achs{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.acard{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px 14px;border-radius:var(--r);background:var(--ink2);border:1px solid var(--line)}
+.acard h3{font-size:1rem;color:var(--bone)}
+.acard p{color:var(--mute);font-size:.84rem;line-height:1.35;margin-top:2px}
+.aico{position:relative;width:34px;height:34px;border-radius:50%;background:var(--ink4);border:1px solid var(--line2)}
+.aico::after{content:"";position:absolute;inset:8px;background:var(--dim);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.acard.got{background:linear-gradient(160deg,#2a1d0a,#14100a);border-color:rgba(230,183,82,.45)}
+.acard.got .aico{background:radial-gradient(circle at 35% 30%,var(--brass-hi),var(--brass) 55%,var(--brass-lo));border-color:var(--brass-hi)}
+.acard.got .aico::after{background:#1a1205}
+.acard.got h3{color:var(--brass-hi)}
+.arew{font:500 .72rem/1.2 var(--mono);color:var(--mute);white-space:nowrap;padding-top:3px}
+.acard.got .arew{color:var(--brass-hi)}
+.abar{height:5px;margin-top:8px;border-radius:999px;background:var(--ink);overflow:hidden}
+.abar i{display:block;height:100%;background:var(--brass-lo)}
+.acard small{font:500 .7rem var(--mono);color:var(--dim)}
+.fact.gearfact{border-color:rgba(159,240,224,.45);color:#bff5ea}
+.fact.gearfact[hidden]{display:none}
+.promo-strip.gear-strip{background:linear-gradient(90deg,#0f3a34,#0d1a1a);border-color:rgba(159,240,224,.4)}
+.promo-strip.gear-strip b,.promo-strip.gear-strip .go{color:#bff5ea}
 .luckpop{position:absolute;right:16px;top:calc(100% - 2px);width:min(360px,calc(100vw - 32px));display:grid;gap:12px;padding:16px;border-radius:var(--r);background:var(--ink2);border:1px solid var(--line2);box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:20}
 .luckpop[hidden]{display:none}
 .lp-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -667,8 +731,11 @@ a.fact:hover{background:rgba(230,183,82,.12)}
   .ki-boxes button{min-height:88px;padding:6px 2px}
   .ki-boxes span{font-size:.8rem}
   .ki-boxes small{font-size:.58rem}
-  .purse .lbl,.luckpill .lw{display:none}
+  .purse .lbl,.purse .unit,.luckpill .lw,.lvchip .lw{display:none}
   .luckpill{padding-inline:9px}
+  .lvchip{padding-inline:9px;gap:6px}
+  .pg-top{grid-template-columns:minmax(0,1fr)}
+  .toasts{left:16px;right:16px;width:auto;justify-items:stretch}
   .chip{width:44px;height:44px}
   .bac{grid-template-columns:minmax(0,1fr);padding:18px 10px}
 }
@@ -692,6 +759,7 @@ a.fact:hover{background:rgba(230,183,82,.12)}
   <div class="wrap toprow">
     <a class="brand" href="#lobby">Zur Goldenen Elster</a>
     <div class="purse">
+      <a id="lvchip" class="lvchip" href="#fortschritt" title="Fortschritt"><span class="lw">Level</span><b id="lvn">1</b><span class="tk" id="tokn">0</span></a>
       <button id="luckbtn" class="luckpill" type="button" hidden aria-expanded="false" aria-controls="luckpop" title="Glücksregler"><span class="lw">Glück</span><b id="luckv">×1</b></button>
       <span class="chipbal"><span class="lbl">Börse</span><span id="bal">1.000</span><span class="unit">Taler</span></span>
       <button id="refill" type="button" hidden>1.000 nachfüllen</button>
@@ -738,16 +806,25 @@ function fit(cv) {
 /* ---------- Börse ---------- */
 const KEY = 'goldene-elster-v1';
 /* codes: eingelöste Aktionscodes, bonus: Summe daraus, promo: offene Gratis-Freispiele,
-   table: Stapel am Pokertisch (kommt beim nächsten Laden zurück in die Börse), luck: Stand des Glücksreglers */
-const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1 });
+   table: Stapel am Pokertisch (kommt beim nächsten Laden zurück in die Börse), luck: Stand des Glücksreglers,
+   prog: Level, Token, Ausrüstung und Erfolge */
+const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1, prog: progBlank() });
 let S = blank(), lastBal = null;
 function load(data) {
-  try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
-  if (data && data.S) S = Object.assign(blank(), data.S);
+  let had = false;
+  try { const raw = localStorage.getItem(KEY); if (raw) { const o = JSON.parse(raw); had = !!(o && o.prog); S = Object.assign(blank(), o); } } catch (e) {}
+  if (data && data.S) { had = !!data.S.prog; S = Object.assign(blank(), data.S); }
   if (!Array.isArray(S.codes)) S.codes = [];
+  /* Der Glücksregler-Code heißt jetzt COOLIUS. Wer ihn unter dem alten Namen eingelöst hat, behält den Regler. */
+  S.codes = S.codes.map(c => c === 'JULIUS' ? 'COOLIUS' : c);
   if (!S.promo || typeof S.promo !== 'object') S.promo = {};
   S.luck = Math.max(1, Math.min(LUCK_MAX, Math.round(+S.luck) || 1));
-  if (S.table) { S.bal = rnd2(S.bal + (+S.table.stack || 0)); S.table = null; save(); }
+  if (S.table) { S.bal = rnd2(S.bal + (+S.table.stack || 0)); S.table = null; }
+  /* Spielstände von vor dem Levelsystem: Die bisherigen Runden zählen mit */
+  S.prog = had && typeof S.prog === 'object' ? Object.assign(progBlank(), S.prog) : newProg();
+  ['gear', 'ach', 'flags'].forEach(k => { if (!S.prog[k] || typeof S.prog[k] !== 'object') S.prog[k] = {}; });
+  if (!Array.isArray(S.prog.seen)) S.prog.seen = [];
+  checkAch(); save();
 }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 function paint() {
@@ -759,13 +836,14 @@ function paint() {
   lastBal = S.bal;
   $('#refill').hidden = S.bal >= 1;
   const nb = $('#nbadge'); if (nb) { const n = openPromos(); nb.textContent = n; nb.hidden = !n; }
-  paintLuck();
+  paintProg(); paintLuck();
 }
 function take(a) { if (a > S.bal + 1e-9) return false; S.bal = rnd2(S.bal - a); paint(); return true; }
 function record(game, stake, ret) {
   const g = S.games[game] || (S.games[game] = { n: 0, staked: 0, ret: 0 });
   g.n++; g.staked = rnd2(g.staked + stake); g.ret = rnd2(g.ret + ret);
   if (luck() > 1) g.luck = (g.luck || 0) + 1;
+  progRound(game, stake, ret);
 }
 function settle(game, stake, ret) {
   S.bal = rnd2(S.bal + ret);
@@ -776,17 +854,143 @@ function settle(game, stake, ret) {
 function credit(a) { S.bal = rnd2(S.bal + a); S.bonus = rnd2((S.bonus || 0) + a); save(); paint(); }
 $('#refill').addEventListener('click', () => { S.bal = rnd2(S.bal + 1000); S.topups++; save(); paint(); });
 
-/* ---------- Glücksregler (Code JULIUS) ----------
+/* ---------- Fortschritt: Level, Token, Ausrüstung, Erfolge ----------
+   Jede abgerechnete Runde bringt XP: 5, mit dem Einsatz steigend bis 20. Jedes neue Level bringt 1 Token, jedes fünfte 2.
+   Token kaufen Ausrüstung. Glück +x % heißt: Jede Auslosung wird mit Wahrscheinlichkeit x ein zweites Mal gezogen, das Bessere zählt.
+   Ein zweiter Zug hebt die Quote je nach Spiel um 0,5 bis 0,95 Einsätze (nachgerechnet), volle Ausrüstung (+5 %) also um 2,5 bis 5 Punkte. */
+const XP_NEED = n => 80 + 20 * n;
+function lvOf(xp) { let n = 1; while (xp >= XP_NEED(n)) { xp -= XP_NEED(n); n++; } return { n, into: xp, need: XP_NEED(n) }; }
+const lvTok = n => n % 5 === 0 ? 2 : 1;
+const xpFor = stake => stake > 0 ? 5 + Math.min(15, Math.floor(Math.sqrt(stake))) : 2;
+const GEAR = [
+  { id: 'feder', n: 'Glücksfeder', t: 'Steckt am Hut und kitzelt das Glück.', s: 'feder' },
+  { id: 'ring', n: 'Elsterring', t: 'Ein Ring, den die Elster selbst gern hätte.', s: 'ring' },
+  { id: 'taler', n: 'Glückstaler', t: 'Wohnt in der Westentasche und wird nie ausgegeben.', s: 'muenze' },
+  { id: 'kompass', n: 'Kompass', t: 'Seine Nadel zeigt verdächtig oft zur Kasse.', s: 'kompass' },
+  { id: 'kristall', n: 'Kristall-Anhänger', t: 'Fängt das Licht und ab und zu einen zweiten Versuch.', s: 'amethyst' }
+];
+const TIERS = [{ n: 'Ohne', c: '#4a5a62', b: 0 }, { n: 'Bronze', c: '#c8814a', b: .0025, cost: 2 }, { n: 'Silber', c: '#cfd8db', b: .005, cost: 3 }, { n: 'Gold', c: '#f0c14e', b: .01, cost: 5 }];
+const GEAR_MAX = GEAR.length * TIERS[3].b;
+function progBlank() { return { xp: 0, tok: 0, gear: {}, ach: {}, flags: {}, rounds: 0, seen: [], best: 0, bestNet: 0, sW: 0, sL: 0, maxW: 0, maxL: 0, hiStake: 0 }; }
+function newProg() {
+  const p = progBlank(), g = Object.entries(S.games || {}).filter(([, x]) => x && x.n > 0);
+  g.forEach(([k, x]) => { p.seen.push(k); p.rounds += x.n; p.xp += x.n * xpFor(x.staked / x.n); });
+  for (let n = 2; n <= lvOf(p.xp).n; n++) p.tok += lvTok(n);
+  if ((S.codes || []).length) p.flags.code = 1;
+  return p;
+}
+const P = () => S.prog;
+const gearLuck = () => S.prog ? GEAR.reduce((a, g) => a + TIERS[S.prog.gear[g.id] || 0].b, 0) : 0;
+const luckPct = x => (x * 100).toLocaleString('de-DE', { maximumFractionDigits: 2 }) + ' %';
+const nextCost = id => { const k = P().gear[id] || 0; return k < 3 ? TIERS[k + 1].cost : 0; };
+const canBuy = () => GEAR.some(g => { const c = nextCost(g.id); return c && c <= P().tok; });
+const playedIn = list => list.filter(k => P().seen.includes(k)).length;
+const goalOf = a => typeof a.goal === 'function' ? a.goal() : a.goal;
+/* win: zählt nur in Runden ohne Glücksregler (die Ausrüstung zählt nicht als Glücksregler) */
+const ACH = [
+  { id: 'erste', n: 'Erste Runde', t: 'Spiel deine erste Runde.', tok: 1, goal: 1, v: p => p.rounds },
+  { id: 'r100', n: 'Stammgast', t: 'Spiel 100 Runden.', tok: 2, goal: 100, v: p => p.rounds },
+  { id: 'r1000', n: 'Teil der Einrichtung', t: 'Spiel 1.000 Runden.', tok: 4, goal: 1000, v: p => p.rounds },
+  { id: 'r10000', n: 'Die Elster kennt dich', t: 'Spiel 10.000 Runden.', tok: 6, goal: 10000, v: p => p.rounds },
+  { id: 'g10', n: 'Rundgang', t: 'Spiel 10 verschiedene Spiele.', tok: 2, goal: 10, v: () => playedIn(Object.keys(GAMES)) },
+  { id: 'gslot', n: 'Walzenkenner', t: 'Spiel jeden Automaten.', tok: 3, goal: () => SLOTS.length, v: () => playedIn(SLOTS) },
+  { id: 'gcard', n: 'Am grünen Tisch', t: 'Spiel alles unter Karten und Kessel.', tok: 2, goal: () => CARDS.length, v: () => playedIn(CARDS) },
+  { id: 'gquick', n: 'Schnell entschlossen', t: 'Spiel alle schnellen Runden.', tok: 2, goal: () => QUICK.length, v: () => playedIn(QUICK) },
+  { id: 'gall', n: 'Alles gesehen', t: 'Spiel jedes Spiel der Elster.', tok: 5, goal: () => Object.keys(GAMES).length, v: () => playedIn(Object.keys(GAMES)) },
+  { id: 'x10', n: 'Glückstreffer', t: 'Gewinne in einer Runde das 10-Fache deines Einsatzes.', tok: 1, win: true, goal: 1, v: p => +(p.best >= 10) },
+  { id: 'x100', n: 'Volltreffer', t: 'Gewinne in einer Runde das 100-Fache deines Einsatzes.', tok: 3, win: true, goal: 1, v: p => +(p.best >= 100) },
+  { id: 'x500', n: 'Elsterschatz', t: 'Gewinne in einer Runde das 500-Fache deines Einsatzes.', tok: 5, win: true, goal: 1, v: p => +(p.best >= 500) },
+  { id: 'netto', n: 'Goldader', t: 'Gewinne in einer Runde 1.000 Taler mehr, als du gesetzt hast.', tok: 2, win: true, goal: 1, v: p => +(p.bestNet >= 1000) },
+  { id: 'serie', n: 'Lauf', t: 'Gewinne 5 Runden hintereinander.', tok: 2, win: true, goal: 5, v: p => p.maxW },
+  { id: 'pech', n: 'Kopf hoch', t: 'Verliere 10 Runden hintereinander. Das Glück kommt wieder.', tok: 1, goal: 10, v: p => p.maxL },
+  { id: 'hoch', n: 'Großer Auftritt', t: 'Setze 1.000 Taler in einer einzigen Runde.', tok: 1, goal: 1, v: p => +(p.hiStake >= 1000) },
+  { id: 'fs', n: 'Freifahrt', t: 'Löse an einem Automaten Freispiele aus.', tok: 1, win: true, goal: 1, v: p => p.flags.fs || 0 },
+  { id: 'kiste', n: 'Sagenhaft!', t: 'Zieh einen sagenhaften Fund aus einer Beutekiste.', tok: 2, win: true, goal: 1, v: p => p.flags.kiste || 0 },
+  { id: 'bj', n: 'Einundzwanzig', t: 'Bekomm beim Blackjack einen Blackjack.', tok: 1, win: true, goal: 1, v: p => p.flags.bj || 0 },
+  { id: 'poker', n: 'Pokerface', t: 'Gewinn eine Hand im Texas Hold’em.', tok: 1, win: true, goal: 1, v: p => p.flags.poker || 0 },
+  { id: 'code', n: 'Codeknacker', t: 'Löse einen Aktionscode ein.', tok: 1, goal: 1, v: p => p.flags.code || 0 },
+  { id: 'lv5', n: 'Aufsteiger', t: 'Erreiche Level 5.', tok: 1, goal: 5, v: p => lvOf(p.xp).n },
+  { id: 'lv10', n: 'Gern gesehen', t: 'Erreiche Level 10.', tok: 2, goal: 10, v: p => lvOf(p.xp).n },
+  { id: 'lv25', n: 'Ehrengast', t: 'Erreiche Level 25.', tok: 4, goal: 25, v: p => lvOf(p.xp).n },
+  { id: 'lv50', n: 'Legende der Elster', t: 'Erreiche Level 50.', tok: 6, goal: 50, v: p => lvOf(p.xp).n },
+  { id: 'gear1', n: 'Ausgerüstet', t: 'Kauf dein erstes Stück Ausrüstung.', tok: 1, goal: 1, v: p => +GEAR.some(g => p.gear[g.id]) },
+  { id: 'gold', n: 'Goldschmied', t: 'Bring ein Stück Ausrüstung auf Gold.', tok: 1, goal: 1, v: p => +GEAR.some(g => p.gear[g.id] === 3) },
+  { id: 'voll', n: 'Glückspilz', t: 'Bring die ganze Ausrüstung auf Gold.', tok: 0, goal: () => GEAR.length, v: p => GEAR.filter(g => p.gear[g.id] === 3).length }
+];
+let toastBox = null;
+function toast(title, sub, cls = '') {
+  if (!toastBox) { toastBox = h('<div class="toasts" role="status" aria-live="polite"></div>'); document.body.append(toastBox); }
+  const el = h(`<a class="toast ${cls}" href="#fortschritt"><b></b><span></span></a>`);
+  $('b', el).textContent = title; $('span', el).textContent = sub;
+  toastBox.append(el);
+  while (toastBox.children.length > 4) toastBox.firstElementChild.remove();
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 400); }, 4500);
+}
+function checkAch() {
+  const p = P(); if (!p) return;
+  for (let again = true; again;) {
+    again = false;
+    for (const a of ACH) {
+      if (p.ach[a.id] || a.v(p) < goalOf(a)) continue;
+      p.ach[a.id] = Date.now(); p.tok += a.tok; again = true;
+      toast('Erfolg: ' + a.n, a.tok ? `+${a.tok} Token` : 'Nur Ruhm und Ehre', 'ach');
+    }
+  }
+}
+/* Nach jeder Runde (aus record): XP, Statistik für die Erfolge */
+function progRound(game, stake, ret) {
+  const p = P(); if (!p) return;
+  const clean = luck() <= 1;
+  p.rounds++;
+  if (!p.seen.includes(game)) p.seen.push(game);
+  p.hiStake = Math.max(p.hiStake, stake);
+  if (ret > stake + 1e-9) { p.sL = 0; if (clean) { p.sW++; p.maxW = Math.max(p.maxW, p.sW); } }
+  else if (ret < stake - 1e-9) { p.sW = 0; p.sL++; p.maxL = Math.max(p.maxL, p.sL); }
+  if (clean && stake > 0) { p.best = Math.max(p.best, ret / stake); p.bestNet = Math.max(p.bestNet, rnd2(ret - stake)); }
+  if (clean && game === 'holdem' && ret > stake) p.flags.poker = 1;
+  const before = lvOf(p.xp).n; p.xp += xpFor(stake);
+  const after = lvOf(p.xp).n;
+  for (let n = before + 1; n <= after; n++) { p.tok += lvTok(n); toast(`Level ${n}`, `+${lvTok(n)} Token`, 'lv'); }
+  checkAch();
+}
+/* Besondere Momente aus einzelnen Spielen. Bis auf den Aktionscode zählen sie nur ohne Glücksregler. */
+function flag(id) {
+  const p = P(); if (!p || p.flags[id] || (id !== 'code' && luck() > 1)) return;
+  p.flags[id] = 1; checkAch(); save(); paint();
+}
+function buyGear(id) {
+  const p = P(), c = nextCost(id);
+  if (!c || c > p.tok) return false;
+  p.tok -= c; p.gear[id] = (p.gear[id] || 0) + 1;
+  const g = GEAR.find(x => x.id === id);
+  if (location.hash !== '#fortschritt') toast(`${g.n}: ${TIERS[p.gear[id]].n}`, `Glück jetzt +${luckPct(gearLuck())}`, 'gear');
+  checkAch(); save(); paint();
+  return true;
+}
+function paintProg() {
+  const p = P(), ch = $('#lvchip'); if (!p || !ch) return;
+  const L = lvOf(p.xp), buy = canBuy();
+  $('#lvn').textContent = L.n; $('#tokn').textContent = p.tok;
+  ch.style.setProperty('--xp', (L.into / L.need * 100).toFixed(1) + '%');
+  ch.setAttribute('aria-label', `Level ${L.n}, ${L.into} von ${L.need} XP, ${p.tok} Token. Fortschritt ansehen`);
+  ch.title = `Level ${L.n} · ${L.into} / ${L.need} XP · ${p.tok} Token`;
+  ch.classList.toggle('buy', buy);
+  const fb = $('#fbadge'); if (fb) { fb.textContent = p.tok; fb.hidden = !buy; }
+}
+
+/* ---------- Glücksregler (Code COOLIUS) ----------
    Glück ×L heißt: Jede Runde wird im Hintergrund bis zu L-mal ausgelost, und es gilt die Variante, die für dich am besten ist.
    Pro Auslosung höchstens 120 ms Rechenzeit, damit nichts hängt. Über ×1 gelten die angegebenen Auszahlungsquoten nicht mehr. */
 const LUCK_MAX = 100000, LUCK_MS = 120, LUCK_PRE = [1, 10, 100, 1000, 10000, 100000];
 const LUCK = { tries: 0, want: 0, early: false };
-const hasLuck = () => S.codes.includes('JULIUS');
+const hasLuck = () => S.codes.includes('COOLIUS');
 const luck = () => hasLuck() ? Math.max(1, Math.min(LUCK_MAX, Math.round(+S.luck) || 1)) : 1;
 const luckTxt = L => '×' + L.toLocaleString('de-DE');
 /* gen: zieht eine Variante, score: wie gut sie für dich ist, top: besser geht es nicht (dann früher aufhören), seed: schon gezogene erste Variante */
+/* Ausrüstung: Mit Wahrscheinlichkeit gearLuck() gibt es eine Auslosung mehr */
 function lucky(gen, score, top = Infinity, seed) {
-  const L = luck(); let best = seed !== undefined ? seed : gen();
+  const R = luck(), g = gearLuck(), L = R + (g > 0 && rand() < g ? 1 : 0);
+  let best = seed !== undefined ? seed : gen();
   if (L <= 1) return best;
   let bs = score(best), i = 1; const t0 = performance.now();
   for (; i < L && bs < top; i++) {
@@ -794,9 +998,11 @@ function lucky(gen, score, top = Infinity, seed) {
     const c = gen(), s = score(c);
     if (s > bs) { best = c; bs = s; }
   }
-  LUCK.tries = i; LUCK.want = L; LUCK.early = bs >= top; luckInfo();
+  if (R > 1) { LUCK.tries = i; LUCK.want = L; LUCK.early = bs >= top; luckInfo(); }
   return best;
 }
+/* Lohnt sich überhaupt ein lucky()-Aufruf? (Spiele, die ihn sonst überspringen) */
+const luckOn = () => luck() > 1 || gearLuck() > 0;
 const pop = $('#luckpop'), luckBtn = $('#luckbtn');
 pop.innerHTML = `<div class="lp-head"><h2 id="lp-t">Glücksregler</h2><button class="lp-x" type="button" aria-label="Glücksregler schließen">×</button></div>
   <p class="lp-big" id="lp-v" aria-live="polite">×1</p>
@@ -816,6 +1022,8 @@ function paintLuck() {
   $('#luckv').textContent = luckTxt(L);
   luckBtn.setAttribute('aria-label', `Glücksregler, ${on ? 'aktiv mit ' + luckTxt(L) : 'aus'}`);
   $$('.luckfact').forEach(x => { x.hidden = !on; x.textContent = `Glücksregler ${luckTxt(L)} aktiv · Quote gilt nicht`; });
+  const gl = gearLuck();
+  $$('.gearfact').forEach(x => { x.hidden = on || !gl; x.textContent = `Ausrüstung: Glück +${luckPct(gl)}`; });
   if (!hasLuck()) { closeLuck(); return; }
   $('#lp-v').textContent = luckTxt(L);
   if (document.activeElement !== lpR) lpR.value = Math.round(100 * Math.log10(L));
@@ -1194,7 +1402,7 @@ const bjBank = cs => c => { const n = [...cs, c], t = total(n).t; return t > 21 
 const bjDraw = (score, top) => {
   if (!BJ.shoe.length) BJ.shoe = freshShoe();
   const sh = BJ.shoe, last = sh.length - 1;
-  if (score && luck() > 1) { const j = lucky(() => int(sh.length), k => score(sh[k]), top); [sh[j], sh[last]] = [sh[last], sh[j]]; }
+  if (score && luckOn()) { const j = lucky(() => int(sh.length), k => score(sh[k]), top); [sh[j], sh[last]] = [sh[last], sh[j]]; }
   return { ...sh.pop(), id: ++BJ.uid };
 };
 const faceHTML = (c, cls = '') => `<div class="card ${c.su === '♥' || c.su === '♦' ? 'red' : ''} ${cls}" role="img" aria-label="${c.r} ${c.su}"><span class="ci">${c.r}<br>${c.su}&#xFE0E;</span><span class="cs">${c.su}&#xFE0E;</span></div>`;
@@ -1255,7 +1463,7 @@ function bjFinish() {
     let r = 0, res = 'Verloren';
     if (p > 21) res = 'Überkauft';
     else if (nat && dNat) { r = x.bet; res = 'Unentschieden'; }
-    else if (nat) { r = x.bet * 2.5; res = 'Blackjack!'; }
+    else if (nat) { r = x.bet * 2.5; res = 'Blackjack!'; flag('bj'); }
     else if (dNat) res = 'Bank hat Blackjack';
     else if (d > 21 || p > d) { r = x.bet * 2; res = 'Gewonnen'; }
     else if (p === d) { r = x.bet; res = 'Unentschieden'; }
@@ -2195,6 +2403,7 @@ function mountNacht(body) {
     const r = R; R = null; clearTimeout(timer);
     NFS.grid = r.spins[r.spins.length - 1].g;
     settle('nachtfalter', r.stake, r.total);
+    if (!r.bought && r.spins.some(s => s.free)) flag('fs');
     cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove());
     btn.disabled = false; bet.lock(false); buy.lock(false);
     const free = r.spins.filter(s => s.free).length;
@@ -2360,6 +2569,7 @@ function mountBook(body) {
     const r = R; R = null; clearTimeout(timer);
     BKS.grid = r.spins[r.spins.length - 1].g;
     if (r.bonus && !r.paid) credit(r.total); else settle('alchemie', r.stake, r.total);
+    if (!r.bonus && !r.paid && r.spins.some(s => s.free)) flag('fs');
     cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove());
     btn.disabled = false; bet.lock(false); buy.lock(false); giftShow();
     const free = r.spins.filter(s => s.free).length;
@@ -2656,7 +2866,7 @@ function mountMines(body) {
     const t = e.target.closest('.mt'); if (!t || !MN.on) return;
     const i = +t.dataset.i; if (MN.open.has(i)) return;
     /* Mit Glück: Die Katzen werden neu verteilt, so wie sie nach den bisher sicheren Feldern liegen könnten, bis eine Verteilung dieses Feld frei lässt */
-    if (MN.cats.has(i) && luck() > 1) MN.cats = lucky(() => { const s = new Set(); while (s.size < MN.n) { const j = int(25); if (!MN.open.has(j)) s.add(j); } return s; }, s => s.has(i) ? 0 : 1, 1, MN.cats);
+    if (MN.cats.has(i) && luckOn()) MN.cats = lucky(() => { const s = new Set(); while (s.size < MN.n) { const j = int(25); if (!MN.open.has(j)) s.add(j); } return s; }, s => s.has(i) ? 0 : 1, 1, MN.cats);
     if (MN.cats.has(i)) {
       settle('nestraub', MN.bet, 0);
       Object.assign(MN, { on: false, boom: i, reveal: true, msg: `Eine Katze! ${fmt(MN.bet)} Taler sind weg.`, cls: 'bad' });
@@ -3052,6 +3262,7 @@ function mountKisten(body) {
     r.items.forEach((_, i) => land(i));
     fx.forEach(clearTimeout); fx = []; run = null;
     settle('kisten', r.stake, r.ret);
+    if (r.items.some(it => it.t === KI_TIER.length - 1)) flag('kiste');
     KI.hist.unshift(...r.items.map(it => ({ m: it.m, t: it.t })).reverse()); KI.hist.length = Math.min(KI.hist.length, 24);
     paintHist(); paintSel();
     const best = r.items.reduce((a, it) => it.m > a.m ? it : a), net = rnd2(r.ret - r.stake);
@@ -3199,6 +3410,7 @@ function mountGS(c) {
       const last = r.spins[r.spins.length - 1];
       GSS[c.id] = last.x && last.x.myst != null ? last.g : last.g0;
       settle(c.id, r.stake, r.total);
+      if (r.spins.some(s => s.free)) flag('fs');
       cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove()); unstick();
       btn.disabled = false; bet.lock(false);
       const free = r.spins.filter(s => s.free).length, re = r.spins.filter(s => s.respin).length;
@@ -3462,7 +3674,7 @@ function mountPoker(body) {
     VP.fresh = [];
     /* Mit Glück: Ersatzkarten probeweise aus dem Rest des Decks ziehen, die besten kommen oben auf den Stapel */
     const gaps = [0, 1, 2, 3, 4].filter(i => !VP.held[i]);
-    if (gaps.length && luck() > 1) {
+    if (gaps.length && luckOn()) {
       const dk = VP.deck, fill = idx => { const hd = VP.hand.slice(); gaps.forEach((g, k) => hd[g] = dk[idx[k]]); return hd; };
       const idx = lucky(() => { const x = []; while (x.length < gaps.length) { const j = int(dk.length); if (!x.includes(j)) x.push(j); } return x; }, x => vpWin(fill(x)), VP_PAY[0][1]);
       VP.deck = dk.filter((_, j) => !idx.includes(j)).concat(idx.map(j => dk[j]).reverse());
@@ -4141,8 +4353,8 @@ const GROUPS = {
 };
 const groupOf = k => Object.keys(GROUPS).find(g => GROUPS[g].list.includes(k));
 
-$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
-  .map(([k, n]) => `<a href="#${k}" data-r="${k}">${n}${k === 'aktionen' ? ' <span class="nbadge" id="nbadge" hidden></span>' : ''}</a>`).join('');
+$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['fortschritt', 'Fortschritt'], ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
+  .map(([k, n]) => `<a href="#${k}" data-r="${k}">${n}${k === 'aktionen' ? ' <span class="nbadge" id="nbadge" hidden></span>' : k === 'fortschritt' ? ' <span class="nbadge" id="fbadge" hidden></span>' : ''}</a>`).join('');
 
 function tileHTML(k, feature) {
   const g = GAMES[k];
@@ -4158,7 +4370,7 @@ const PROMOS = [
   { code: 'WILLKOMMEN', title: 'Willkommensgeschenk', text: '500 Taler extra für deinen ersten Abend in der Elster.', give: () => { credit(500); return '500 Taler liegen jetzt in deiner Börse.'; } },
   { code: 'ALCHEMIE', title: 'Zehn Freispiele', text: 'Zehn Gratis-Freispiele im Alchemistenbuch mit 1 Taler je Linie, Sonderzeichen inklusive.', link: 'alchemie', give: () => { S.promo.alchemie = (S.promo.alchemie || 0) + 10; save(); return 'Zehn Gratis-Freispiele warten im Alchemistenbuch.'; } },
   { code: 'POKERFACE', title: 'Startgeld für den Pokertisch', text: '250 Taler, damit du bei Konrad, Dora und Rudi Platz nehmen kannst.', link: 'holdem', give: () => { credit(250); return '250 Taler für den Pokertisch liegen in deiner Börse.'; } },
-  { code: 'JULIUS', hidden: true, title: 'Der Glücksregler', text: 'Ein Regler neben deiner Börse: Glück von ×1 bis ×100.000. Jede Runde wird so oft ausgelost, wie der Regler zeigt, und die beste Variante für dich zählt.', give: () => { S.luck = 1; save(); return 'Der Glücksregler sitzt jetzt oben neben deiner Börse. Dreh ihn auf, so weit du willst.'; } },
+  { code: 'COOLIUS', hidden: true, title: 'Der Glücksregler', text: 'Ein Regler neben deiner Börse: Glück von ×1 bis ×100.000. Jede Runde wird so oft ausgelost, wie der Regler zeigt, und die beste Variante für dich zählt.', give: () => { S.luck = 1; save(); return 'Der Glücksregler sitzt jetzt oben neben deiner Börse. Dreh ihn auf, so weit du willst.'; } },
   { code: 'ELSTERGOLD', secret: true, title: 'Das Gold der Elster', text: 'Die Elster hat 1.000 Taler versteckt. Wer sie im Empfang anstupst, erfährt vielleicht den Code.', give: () => { credit(1000); return 'Die Elster rückt ihr Gold heraus: 1.000 Taler.'; } }
 ];
 const normCode = s => String(s || '').trim().toUpperCase().replace(/Ä/g, 'AE').replace(/Ö/g, 'OE').replace(/Ü/g, 'UE').replace(/ß/g, 'SS').replace(/[^A-Z0-9]/g, '');
@@ -4170,13 +4382,13 @@ function redeem(raw) {
   if (!p) return { ok: false, text: `Den Code „${c}“ kennt die Elster nicht.` };
   if (S.codes.includes(c)) return { ok: false, text: 'Diesen Code hast du schon eingelöst. Jeder Code gilt einmal pro Börse.' };
   S.codes.push(c);
-  const text = p.give(); save(); paint();
+  const text = p.give(); save(); paint(); flag('code');
   return { ok: true, text };
 }
 function promos(root, note) {
   const card = p => {
     const used = S.codes.includes(p.code), hide = p.secret && !used;
-    const play = p.code === 'ALCHEMIE' && S.promo.alchemie ? `<a class="btn" href="#alchemie">${S.promo.alchemie} Freispiele spielen</a>` : p.link && used ? `<a class="btn" href="#${p.link}">Zu ${GAMES[p.link].name}</a>` : p.code === 'JULIUS' && used ? `<button class="btn" type="button" data-luck>Regler öffnen · ${luckTxt(luck())}</button>` : '';
+    const play = p.code === 'ALCHEMIE' && S.promo.alchemie ? `<a class="btn" href="#alchemie">${S.promo.alchemie} Freispiele spielen</a>` : p.link && used ? `<a class="btn" href="#${p.link}">Zu ${GAMES[p.link].name}</a>` : p.code === 'COOLIUS' && used ? `<button class="btn" type="button" data-luck>Regler öffnen · ${luckTxt(luck())}</button>` : '';
     return `<article class="pcard${used ? ' used' : ''}${p.secret ? ' secret' : ''}">
       <span class="pcode">${hide ? '? ? ? ? ? ? ? ? ? ?' : p.code}</span>
       <h3>${p.title}</h3><p>${p.text}</p>
@@ -4195,7 +4407,7 @@ function promos(root, note) {
   if (note) say(m, note.text, note.cls);
   const go = raw => {
     const r = redeem(raw);
-    if (r.ok) { promos(root, { text: r.text, cls: 'good' }); if (normCode(raw) === 'JULIUS') openLuck(); }
+    if (r.ok) { promos(root, { text: r.text, cls: 'good' }); if (normCode(raw) === 'COOLIUS') openLuck(); }
     else { say(m, r.text, 'bad'); inp.focus(); }
   };
   $('#pr-form', root).addEventListener('submit', e => { e.preventDefault(); go(inp.value); });
@@ -4212,11 +4424,12 @@ function hall(root, g) {
 function lobby(root) {
   const n = Object.keys(GAMES).length;
   const open = openPromos(), fs = S.promo.alchemie || 0;
+  const gearStrip = canBuy() ? `<a class="promo-strip gear-strip" href="#fortschritt"><b>Ausrüstung</b><span>Du hast ${P().tok} Token. Damit kannst du deine Ausrüstung aufwerten und dein Glück heben.</span><span class="go">Ansehen →</span></a>` : '';
   const strip = open || fs ? `<a class="promo-strip" href="#${open ? 'aktionen' : 'alchemie'}"><b>Aktionen</b><span>${open ? (open === 1 ? 'Ein Aktionscode wartet noch auf dich.' : `${open} Aktionscodes warten auf dich: Extra-Taler und Freispiele.`) : ''}${fs ? ` ${fs} Gratis-Freispiele im Alchemistenbuch sind noch offen.` : ''}</span><span class="go">${open ? 'Einlösen' : 'Spielen'} →</span></a>` : '';
   root.innerHTML = `<section class="felt hero"><div><h1>Zur Goldenen Elster</h1><p>${n} Spiele, tausend Taler zum Start und nirgends echtes Geld.</p>
-    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
+    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><a class="fact" href="#fortschritt">Level ${lvOf(P().xp).n}</a><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
     <div class="mag"><button class="magpie" id="magpie" type="button" aria-label="Die Elster anstupsen">${MAGPIE}</button><p class="bubble" id="bubble" role="status" hidden></p></div></section>
-  ${strip}
+  ${strip}${gearStrip}
   ${Object.keys(GROUPS).map(g => `<section><div class="sect-row"><h2 class="sect"><a href="#${g}" style="text-decoration:none">${GROUPS[g].name}</a></h2><span>${GROUPS[g].aside}</span></div><div class="tiles ${GROUPS[g].cls}">${groupTiles(g)}</div></section>`).join('')}`;
   let poke = 0;
   const mag = $('#magpie', root), bub = $('#bubble', root);
@@ -4239,7 +4452,8 @@ function ledger(root) {
     <tbody>${rows}</tbody><tfoot><tr><td>Gesamt</td><td>${fmt(all.n)}</td><td>${fmt(rnd2(all.staked))}</td><td>${fmt(rnd2(all.ret))}</td><td>${signed(net)}</td><td>${all.staked ? pct(all.ret / all.staked) : '–'}</td><td></td></tr></tfoot></table></div>
     <div class="ledfoot"><span>Nachgefüllt: <span class="num">${S.topups}</span>-mal 1.000 Taler · Aus Aktionen: <span class="num">${fmt(S.bonus || 0)}</span> Taler</span><button class="btn" id="reset" type="button">Von vorn anfangen</button></div>
     <p class="note">Beim Hold’em zählt als Einsatz, was du in den Pot gelegt hast, und als Rückfluss, was du gewonnen hast. Einen Hausvorteil gibt es dort nicht, deshalb steht keine Theorie dabei.</p>
-    ${lucky_n ? `<p class="note">★ zählt die Runden, die mit dem Glücksregler über ×1 liefen, insgesamt ${fmt(lucky_n)}. Für diese Runden gilt die Theorie-Spalte nicht, deine Quote ist deshalb höher.</p>` : ''}</div></section>`;
+    ${lucky_n ? `<p class="note">★ zählt die Runden, die mit dem Glücksregler über ×1 liefen, insgesamt ${fmt(lucky_n)}. Für diese Runden gilt die Theorie-Spalte nicht, deine Quote ist deshalb höher.</p>` : ''}
+    ${gearLuck() ? `<p class="note">Deine Ausrüstung gibt dir Glück +${luckPct(gearLuck())}. Deine Quote liegt deshalb etwas über der Theorie.</p>` : ''}</div></section>`;
   let armed = false;
   $('#reset', root).onclick = e => {
     if (!armed) { armed = true; e.target.textContent = 'Wirklich alles löschen?'; return; }
@@ -4256,13 +4470,58 @@ function ledger(root) {
   };
 }
 
+/* ---------- Fortschritt-Seite: Level, Ausrüstung kaufen, Erfolge ---------- */
+function progress(root, note) {
+  const p = P(), L = lvOf(p.xp), gl = gearLuck(), got = ACH.filter(a => p.ach[a.id]).length;
+  const gearCard = g => {
+    const k = p.gear[g.id] || 0, T = TIERS[k], c = nextCost(g.id), nx = TIERS[k + 1];
+    return `<article class="gcard t${k}" style="--tc:${T.c}">
+      <div class="gicon">${SYM[g.s]}</div>
+      <div class="gbody"><h3>${g.n}</h3><p>${g.t}</p>
+        <div class="gpips">${[1, 2, 3].map(j => `<i class="${j <= k ? 'on' : ''}" style="--pc:${TIERS[j].c}"></i>`).join('')}<span>${k ? `${T.n} · Glück +${luckPct(T.b)}` : 'Noch nicht gekauft'}</span></div></div>
+      ${c ? `<button class="btn${c <= p.tok ? ' go' : ''}" type="button" data-gear="${g.id}"${c > p.tok ? ' disabled' : ''}>${k ? 'Auf ' + nx.n : 'Kaufen'} · ${c} Token<small>Glück +${luckPct(nx.b - T.b)}${c > p.tok ? ` · dir fehlen ${c - p.tok} Token` : ''}</small></button>` : '<p class="gmax">Gold. Mehr geht nicht.</p>'}
+    </article>`;
+  };
+  const achCard = a => {
+    const done = !!p.ach[a.id], goal = goalOf(a), v = Math.min(goal, a.v(p));
+    return `<li class="acard${done ? ' got' : ''}"><span class="aico" aria-hidden="true"></span>
+      <div><h3>${a.n}</h3><p>${a.t}</p>${!done && goal > 1 ? `<div class="abar"><i style="width:${(v / goal * 100).toFixed(1)}%"></i></div><small>${fmt(v)} / ${fmt(goal)}</small>` : ''}</div>
+      <span class="arew">${done ? 'Geschafft' : a.tok ? '+' + a.tok + ' Token' : 'Ruhm'}</span></li>`;
+  };
+  root.innerHTML = `<section><header class="ghead"><h1>Fortschritt</h1><p>Jede Runde bringt Erfahrung, jedes Level bringt Token. Für Token gibt es Ausrüstung, die dein Glück ein wenig hebt. Erfolge bringen weitere Token.</p></header>
+    <div class="pg-top">
+      <div class="side pg-lv"><div class="pg-big"><span>Level</span><b>${L.n}</b></div>
+        <div class="xpline" role="progressbar" aria-label="Erfahrung bis Level ${L.n + 1}" aria-valuemin="0" aria-valuemax="${L.need}" aria-valuenow="${L.into}"><i style="width:${(L.into / L.need * 100).toFixed(1)}%"></i></div>
+        <div class="kv"><span class="num">${fmt(L.into)} / ${fmt(L.need)} XP</span><span>Level ${L.n + 1} bringt ${lvTok(L.n + 1)} Token</span></div>
+        <p class="note">Jede Runde bringt 5 XP, mit höherem Einsatz bis zu 20. Jedes fünfte Level bringt 2 Token statt einem. Bisher ${fmt(p.rounds)} Runden.</p></div>
+      <div class="side pg-tok"><div class="pg-big"><span>Token</span><b>${p.tok}</b></div>
+        <div class="kv"><span>Glück durch Ausrüstung</span><span class="num">+${luckPct(gl)} von ${luckPct(GEAR_MAX)}</span></div>
+        <div class="xpline" role="progressbar" aria-label="Glück durch Ausrüstung" aria-valuemin="0" aria-valuemax="${GEAR_MAX * 100}" aria-valuenow="${rnd2(gl * 100)}"><i style="width:${(gl / GEAR_MAX * 100).toFixed(1)}%"></i></div>
+        <p class="note">Glück +1 % heißt: Bei einer von hundert Auslosungen zieht die Elster ein zweites Mal, und das Bessere für dich zählt. Volle Ausrüstung bringt +5 %. Das hebt die Quote je nach Spiel um etwa 2,5 bis 5 Prozentpunkte, an den Automaten um rund 4.</p></div>
+    </div>
+    <div class="sect-row"><h2 class="sect">Ausrüstung</h2><span>${GEAR.filter(g => p.gear[g.id]).length} von ${GEAR.length} Stücken</span></div>
+    <p class="msg" id="pg-msg" aria-live="polite"></p>
+    <div class="gear">${GEAR.map(gearCard).join('')}</div>
+    <div class="sect-row"><h2 class="sect">Erfolge</h2><span>${got} von ${ACH.length}</span></div>
+    <ul class="achs">${ACH.map(achCard).join('')}</ul>
+    ${hasLuck() ? '<p class="note" style="margin-top:12px">Erfolge rund ums Gewinnen zählen nur in Runden ohne Glücksregler. Die Ausrüstung zählt dabei nicht als Glücksregler.</p>' : ''}</section>`;
+  if (note) say($('#pg-msg', root), note.text, note.cls);
+  $$('[data-gear]', root).forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.gear, g = GEAR.find(x => x.id === id), y = scrollY;
+    if (!buyGear(id)) return;
+    progress(root, { text: `${g.n} ist jetzt ${TIERS[P().gear[id]].n}. Dein Glück: +${luckPct(gearLuck())}.`, cls: 'good' });
+    scrollTo(0, y);
+    const nb = $(`[data-gear="${id}"]`, root); if (nb && !nb.disabled) nb.focus();
+  }));
+}
+
 /* ---------- Wege ---------- */
 let cleanup = null;
 function route() {
   flush();
   if (cleanup) { cleanup(); cleanup = null; }
   let id = location.hash.slice(1) || 'lobby';
-  if (id !== 'kassenbuch' && id !== 'aktionen' && !GROUPS[id] && !GAMES[id]) id = 'lobby';
+  if (id !== 'kassenbuch' && id !== 'aktionen' && id !== 'fortschritt' && !GROUPS[id] && !GAMES[id]) id = 'lobby';
   const root = $('#view'); root.innerHTML = '';
   const navId = GAMES[id] ? groupOf(id) : id;
   $$('#nav a').forEach(a => a.dataset.r === navId ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
@@ -4270,12 +4529,13 @@ function route() {
   if (id === 'lobby') lobby(root);
   else if (id === 'kassenbuch') ledger(root);
   else if (id === 'aktionen') promos(root);
+  else if (id === 'fortschritt') progress(root);
   else if (GROUPS[id]) hall(root, id);
   else {
     const g = GAMES[id];
     const sub = `<nav class="machines" aria-label="${GROUPS[navId].name}">${GROUPS[navId].list.map(k => `<a href="#${k}"${k === id ? ' aria-current="page"' : ''}>${GAMES[k].name}</a>`).join('')}</nav>`;
     root.innerHTML = `<section><header class="ghead"><h1>${g.name}</h1><p>${g.rule}</p>
-      <div class="facts"><span class="fact">${g.rtp == null ? g.rtpLabel : 'Auszahlungsquote ' + rtpTxt(g)}</span><span class="fact luckfact" hidden></span><span class="fact keyfact">Leertaste: Hauptknopf</span></div>
+      <div class="facts"><span class="fact">${g.rtp == null ? g.rtpLabel : 'Auszahlungsquote ' + rtpTxt(g)}</span><span class="fact luckfact" hidden></span><span class="fact gearfact" hidden></span><span class="fact keyfact">Leertaste: Hauptknopf</span></div>
       <p class="keyhint" id="keyhint" hidden>Klick einmal irgendwo ins Spiel, dann reagiert die Leertaste.</p></header>${sub}<div id="stage"></div></section>`;
     cleanup = g.mount($('#stage', root)) || null;
     keyHint(); paintLuck();
