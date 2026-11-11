@@ -518,7 +518,10 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 .gpips{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:8px;font:500 .74rem/1.2 var(--mono);color:var(--mute)}
 .gpips i{width:12px;height:12px;border-radius:50%;border:2px solid var(--pc);opacity:.4}
 .gpips i.on{background:var(--pc);opacity:1}
-.gpips span{margin-left:4px}
+.gpips span{margin-left:0}
+.eqbar{height:6px;margin-top:8px;border-radius:999px;background:var(--ink);border:1px solid var(--line2);overflow:hidden}
+.eqbar i{display:block;height:100%;background:linear-gradient(90deg,var(--tc),#fff3c9)}
+.pg-how{margin-top:10px;max-width:72ch}
 .gcard .btn,.gmax{grid-column:1/-1}
 .gcard .btn{display:grid;gap:3px;justify-items:center}
 .gcard .btn small{font:500 .7rem/1.2 var(--mono);opacity:.8}
@@ -603,6 +606,39 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 .stk.gone{opacity:0;transform:translateX(-45%)}
 @keyframes stkIn{from{transform:scale(.4);opacity:0}}
 .xpand.gsx{background:linear-gradient(var(--x1),var(--x2));box-shadow:inset 0 0 0 2px var(--h1),0 0 22px var(--x1)}
+.xpand.wm{box-shadow:inset 0 0 0 3px #f7d98f,0 0 30px rgba(247,217,143,.75)}
+.xpand.wm .wmx{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);padding:3px 12px;border-radius:999px;background:linear-gradient(#ffe9a8,#e0a93a);color:#2a1606;font:700 1.25rem/1.1 var(--disp);box-shadow:0 0 0 2px #2a1606,0 0 16px rgba(247,217,143,.8);animation:gsmx .5s .25s cubic-bezier(.2,.9,.3,1.4) both}
+.gs-multi{position:absolute;top:10px;right:12px;z-index:5;display:grid;justify-items:center;padding:8px 14px 7px;border-radius:16px;background:radial-gradient(circle at 30% 25%,#fff5cf,#f0c14e 48%,#a8701c);color:#2a1606;box-shadow:0 0 0 2px #2a1606,0 0 28px rgba(247,217,143,.85);pointer-events:none;animation:gsm .6s cubic-bezier(.2,.9,.3,1.4) both}
+.gs-multi b{font:800 2rem/1 var(--disp)}
+.gs-multi small{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+@keyframes gsm{from{transform:scale(.2) rotate(-18deg);opacity:0}}
+.gs-buys{display:grid;gap:8px}
+.gs-buys:empty{display:none}
+.gs-vouch{display:grid;gap:8px;padding:12px;border-radius:12px;background:rgba(240,193,78,.07);border:1px dashed rgba(240,193,78,.45)}
+.gs-vouch[hidden]{display:none}
+.gs-vouch .flabel{margin:0}
+.gs-vouch .btn{display:grid;gap:2px;justify-items:center;min-height:48px}
+.gs-vouch .btn small{font:500 .7rem/1.2 var(--mono);opacity:.8}
+.gs-vouch .btn.on{border-color:var(--brass-hi);color:var(--brass-hi);box-shadow:0 0 0 1px var(--brass-hi)}
+.fact.turbofact{cursor:pointer}
+.fact.turbofact[hidden]{display:none}
+.fact.turbofact.on{background:linear-gradient(180deg,#bff5ea,#5fd3bb);color:#062019;border-color:#bff5ea;font-weight:600}
+.sh-conf{margin-top:14px}
+.sh-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.sh-pick .field label{margin-bottom:6px}
+.sh-pick select{width:100%;min-height:44px;padding:6px 10px;border-radius:8px;border:1px solid var(--line2);background:var(--ink)}
+.sh-offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.sh-inv{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.sh-v{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:10px 14px;border-radius:12px;background:var(--ink2);border:1px solid var(--line)}
+.sh-v b{color:var(--brass-hi)}
+.sh-v span{flex:1;min-width:160px;color:var(--mute);font-size:.92rem}
+.sh-v .btn{min-height:40px;padding:6px 14px}
+.sh-tip{margin-top:10px}
+#sh-msg:empty{display:none}
+#sh-msg{margin-top:12px}
+.msg a{color:var(--brass-hi);font-weight:600}
+@media (max-width:560px){.gs-multi{top:-24px;right:-6px;padding:4px 10px 3px;border-radius:12px}.gs-multi b{font-size:1.35rem}.gs-multi small{font-size:.55rem}.xpand.wm .wmx{font-size:.95rem;padding:2px 7px;bottom:6px}}
+@keyframes gsmx{from{transform:translateX(-50%) scale(.2);opacity:0}}
 .sc.flip{animation:flip .45s ease-out both}
 @keyframes flip{from{transform:rotateY(90deg);filter:brightness(1.8)}}
 .pay.gen .payrow:not(.head){background:var(--pb);color:var(--pf)}
@@ -808,7 +844,9 @@ const KEY = 'goldene-elster-v1';
 /* codes: eingelöste Aktionscodes, bonus: Summe daraus, promo: offene Gratis-Freispiele,
    table: Stapel am Pokertisch (kommt beim nächsten Laden zurück in die Börse), luck: Stand des Glücksreglers,
    prog: Level, Token, Ausrüstung und Erfolge */
-const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1, prog: progBlank() });
+/* inv: Gutscheine aus dem Bonusladen, own: dort Gekauftes für immer (Turbo), buff: Runden mit Trank oder Glückskeks,
+   shop: Taler, die netto in Turbo, Tränke, Glückskekse und Wundertüten flossen (Gutscheine zählen beim Einlösen als Einsatz) */
+const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1, spent: 0, prog: progBlank(), inv: [], own: {}, buff: {}, shop: 0, turbo: false });
 let S = blank(), lastBal = null;
 function load(data) {
   let had = false;
@@ -822,8 +860,15 @@ function load(data) {
   if (S.table) { S.bal = rnd2(S.bal + (+S.table.stack || 0)); S.table = null; }
   /* Spielstände von vor dem Levelsystem: Die bisherigen Runden zählen mit */
   S.prog = had && typeof S.prog === 'object' ? Object.assign(progBlank(), S.prog) : newProg();
-  ['gear', 'ach', 'flags'].forEach(k => { if (!S.prog[k] || typeof S.prog[k] !== 'object') S.prog[k] = {}; });
+  ['gear', 'eq', 'ach', 'flags'].forEach(k => { if (!S.prog[k] || typeof S.prog[k] !== 'object') S.prog[k] = {}; });
   if (!Array.isArray(S.prog.seen)) S.prog.seen = [];
+  if (!Array.isArray(S.inv)) S.inv = [];
+  S.inv = S.inv.filter(e => e && GS.some(c => c.id === e.g) && e.n > 0);
+  ['own', 'buff'].forEach(k => { if (!S[k] || typeof S[k] !== 'object') S[k] = {}; });
+  S.shop = +S.shop || 0; S.turbo = !!S.turbo;
+  /* Ausrüstung aus der ersten Fassung (Bronze/Silber/Gold für Token): Die Token gibt es zurück, gekauft wird neu */
+  const back = Object.values(S.prog.gear).reduce((a, k) => a + ([0, 2, 5, 10][k] || 0), 0);
+  if (Object.keys(S.prog.gear).length) { S.prog.tok += back; S.prog.gear = {}; if (back) setTimeout(() => toast('Ausrüstung neu geordnet', `${back} Token zurück`, 'gear'), 600); }
   checkAch(); save();
 }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
@@ -862,16 +907,22 @@ const XP_NEED = n => 80 + 20 * n;
 function lvOf(xp) { let n = 1; while (xp >= XP_NEED(n)) { xp -= XP_NEED(n); n++; } return { n, into: xp, need: XP_NEED(n) }; }
 const lvTok = n => n % 5 === 0 ? 2 : 1;
 const xpFor = stake => stake > 0 ? 5 + Math.min(15, Math.floor(Math.sqrt(stake))) : 2;
+/* Ausrüstung: Kauf mit Token (je mehr Grundglück b, desto teurer), danach Stufen 1 bis 10 mit Talern.
+   Jede Stufe hebt das Glück um 15 % des Grundwerts (Stufe 10 = 2,5-fach) und kostet doppelt so viel wie die vorige: c0 · 2^Stufe.
+   Alles auf Stufe 10: +5 % Glück, zusammen 40 Token und 1.534.500 Taler. */
 const GEAR = [
-  { id: 'feder', n: 'Glücksfeder', t: 'Steckt am Hut und kitzelt das Glück.', s: 'feder' },
-  { id: 'ring', n: 'Elsterring', t: 'Ein Ring, den die Elster selbst gern hätte.', s: 'ring' },
-  { id: 'taler', n: 'Glückstaler', t: 'Wohnt in der Westentasche und wird nie ausgegeben.', s: 'muenze' },
-  { id: 'kompass', n: 'Kompass', t: 'Seine Nadel zeigt verdächtig oft zur Kasse.', s: 'kompass' },
-  { id: 'kristall', n: 'Kristall-Anhänger', t: 'Fängt das Licht und ab und zu einen zweiten Versuch.', s: 'amethyst' }
+  { id: 'feder', n: 'Glücksfeder', t: 'Steckt am Hut und kitzelt das Glück.', s: 'feder', b: .002, tok: 4, c0: 100 },
+  { id: 'ring', n: 'Elsterring', t: 'Ein Ring, den die Elster selbst gern hätte.', s: 'ring', b: .003, tok: 6, c0: 150 },
+  { id: 'taler', n: 'Glückstaler', t: 'Wohnt in der Westentasche und wird nie ausgegeben.', s: 'muenze', b: .004, tok: 8, c0: 250 },
+  { id: 'kompass', n: 'Kompass', t: 'Seine Nadel zeigt verdächtig oft zur Kasse.', s: 'kompass', b: .005, tok: 10, c0: 400 },
+  { id: 'kristall', n: 'Kristall-Anhänger', t: 'Fängt das Licht und ab und zu einen zweiten Versuch.', s: 'amethyst', b: .006, tok: 12, c0: 600 }
 ];
-const TIERS = [{ n: 'Ohne', c: '#4a5a62', b: 0 }, { n: 'Bronze', c: '#c8814a', b: .0025, cost: 2 }, { n: 'Silber', c: '#cfd8db', b: .005, cost: 3 }, { n: 'Gold', c: '#f0c14e', b: .01, cost: 5 }];
-const GEAR_MAX = GEAR.length * TIERS[3].b;
-function progBlank() { return { xp: 0, tok: 0, gear: {}, ach: {}, flags: {}, rounds: 0, seen: [], best: 0, bestNet: 0, sW: 0, sL: 0, maxW: 0, maxL: 0, hiStake: 0 }; }
+const EQ_MAX = 10, EQ_STEP = .15;
+const eqLuck = (g, L) => L < 0 ? 0 : g.b * (1 + EQ_STEP * L);
+const upCost = (g, L) => g.c0 * 2 ** L;
+const eqCol = L => L >= 7 ? '#f0c14e' : L >= 4 ? '#cfd8db' : L >= 0 ? '#c8814a' : '#4a5a62';
+const GEAR_MAX = GEAR.reduce((a, g) => a + eqLuck(g, EQ_MAX), 0);
+function progBlank() { return { xp: 0, tok: 0, gear: {}, eq: {}, ach: {}, flags: {}, rounds: 0, seen: [], best: 0, bestNet: 0, sW: 0, sL: 0, maxW: 0, maxL: 0, hiStake: 0 }; }
 function newProg() {
   const p = progBlank(), g = Object.entries(S.games || {}).filter(([, x]) => x && x.n > 0);
   g.forEach(([k, x]) => { p.seen.push(k); p.rounds += x.n; p.xp += x.n * xpFor(x.staked / x.n); });
@@ -880,10 +931,12 @@ function newProg() {
   return p;
 }
 const P = () => S.prog;
-const gearLuck = () => S.prog ? GEAR.reduce((a, g) => a + TIERS[S.prog.gear[g.id] || 0].b, 0) : 0;
+/* Stufe eines Stücks: -1 heißt nicht gekauft */
+const eqLv = id => { const L = S.prog && S.prog.eq[id]; return L == null ? -1 : L; };
+const gearLuck = () => S.prog ? GEAR.reduce((a, g) => a + eqLuck(g, eqLv(g.id)), 0) : 0;
 const luckPct = x => (x * 100).toLocaleString('de-DE', { maximumFractionDigits: 2 }) + ' %';
-const nextCost = id => { const k = P().gear[id] || 0; return k < 3 ? TIERS[k + 1].cost : 0; };
-const canBuy = () => GEAR.some(g => { const c = nextCost(g.id); return c && c <= P().tok; });
+const canBuy = () => GEAR.some(g => eqLv(g.id) < 0 && g.tok <= P().tok);
+const topLv = p => Math.max(0, ...GEAR.map(g => p.eq[g.id] == null ? 0 : p.eq[g.id]));
 const playedIn = list => list.filter(k => P().seen.includes(k)).length;
 const goalOf = a => typeof a.goal === 'function' ? a.goal() : a.goal;
 /* win: zählt nur in Runden ohne Glücksregler (die Ausrüstung zählt nicht als Glücksregler) */
@@ -913,9 +966,13 @@ const ACH = [
   { id: 'lv10', n: 'Gern gesehen', t: 'Erreiche Level 10.', tok: 2, goal: 10, v: p => lvOf(p.xp).n },
   { id: 'lv25', n: 'Ehrengast', t: 'Erreiche Level 25.', tok: 4, goal: 25, v: p => lvOf(p.xp).n },
   { id: 'lv50', n: 'Legende der Elster', t: 'Erreiche Level 50.', tok: 6, goal: 50, v: p => lvOf(p.xp).n },
-  { id: 'gear1', n: 'Ausgerüstet', t: 'Kauf dein erstes Stück Ausrüstung.', tok: 1, goal: 1, v: p => +GEAR.some(g => p.gear[g.id]) },
-  { id: 'gold', n: 'Goldschmied', t: 'Bring ein Stück Ausrüstung auf Gold.', tok: 1, goal: 1, v: p => +GEAR.some(g => p.gear[g.id] === 3) },
-  { id: 'voll', n: 'Glückspilz', t: 'Bring die ganze Ausrüstung auf Gold.', tok: 0, goal: () => GEAR.length, v: p => GEAR.filter(g => p.gear[g.id] === 3).length }
+  { id: 'gear1', n: 'Ausgerüstet', t: 'Kauf dein erstes Stück Ausrüstung.', tok: 1, goal: 1, v: p => +GEAR.some(g => p.eq[g.id] != null) },
+  { id: 'alle5', n: 'Gut sortiert', t: 'Besitze alle fünf Stücke Ausrüstung.', tok: 2, goal: () => GEAR.length, v: p => GEAR.filter(g => p.eq[g.id] != null).length },
+  { id: 'st5', n: 'Feinschliff', t: 'Werte ein Stück auf Stufe 5 auf.', tok: 2, goal: 5, v: topLv },
+  { id: 'st10', n: 'Meisterstück', t: 'Werte ein Stück auf Stufe 10 auf.', tok: 3, goal: 10, v: topLv },
+  { id: 'voll', n: 'Glückspilz', t: 'Werte alle fünf Stücke auf Stufe 10 auf.', tok: 0, goal: () => GEAR.length, v: p => GEAR.filter(g => p.eq[g.id] === EQ_MAX).length },
+  { id: 'laden', n: 'Kundschaft', t: 'Kauf etwas im Bonusladen.', tok: 1, goal: 1, v: p => Math.min(1, p.buys || 0) },
+  { id: 'laden25', n: 'Bester Kunde', t: 'Kauf 25-mal im Bonusladen.', tok: 2, goal: 25, v: p => p.buys || 0 }
 ];
 let toastBox = null;
 function toast(title, sub, cls = '') {
@@ -948,7 +1005,11 @@ function progRound(game, stake, ret) {
   else if (ret < stake - 1e-9) { p.sW = 0; p.sL++; p.maxL = Math.max(p.maxL, p.sL); }
   if (clean && stake > 0) { p.best = Math.max(p.best, ret / stake); p.bestNet = Math.max(p.bestNet, rnd2(ret - stake)); }
   if (clean && game === 'holdem' && ret > stake) p.flags.poker = 1;
-  const before = lvOf(p.xp).n; p.xp += xpFor(stake);
+  /* Erfahrungstrank: doppelte XP. Trank und Glückskeks zählen ihre Runden hier herunter. */
+  const b = S.buff || {};
+  const before = lvOf(p.xp).n; p.xp += xpFor(stake) * (b.xp > 0 ? 2 : 1);
+  if (b.xp > 0 && !--b.xp) toast('Erfahrungstrank leer', 'XP wieder normal');
+  if (b.lk > 0 && !--b.lk) toast('Glückskeks aufgegessen', 'Glück wieder wie vorher');
   const after = lvOf(p.xp).n;
   for (let n = before + 1; n <= after; n++) { p.tok += lvTok(n); toast(`Level ${n}`, `+${lvTok(n)} Token`, 'lv'); }
   checkAch();
@@ -958,12 +1019,21 @@ function flag(id) {
   const p = P(); if (!p || p.flags[id] || (id !== 'code' && luck() > 1)) return;
   p.flags[id] = 1; checkAch(); save(); paint();
 }
+/* Neues Stück mit Token kaufen (Stufe 0) */
 function buyGear(id) {
-  const p = P(), c = nextCost(id);
-  if (!c || c > p.tok) return false;
-  p.tok -= c; p.gear[id] = (p.gear[id] || 0) + 1;
-  const g = GEAR.find(x => x.id === id);
-  if (location.hash !== '#fortschritt') toast(`${g.n}: ${TIERS[p.gear[id]].n}`, `Glück jetzt +${luckPct(gearLuck())}`, 'gear');
+  const p = P(), g = GEAR.find(x => x.id === id);
+  if (!g || eqLv(id) >= 0 || g.tok > p.tok) return false;
+  p.tok -= g.tok; p.eq[id] = 0;
+  checkAch(); save(); paint();
+  return true;
+}
+/* Eine Stufe höher, bezahlt mit Talern aus der Börse */
+function upGear(id) {
+  const p = P(), g = GEAR.find(x => x.id === id), L = eqLv(id);
+  if (!g || L < 0 || L >= EQ_MAX) return false;
+  const c = upCost(g, L);
+  if (!take(c)) return false;
+  S.spent = rnd2((S.spent || 0) + c); p.eq[id] = L + 1;
   checkAch(); save(); paint();
   return true;
 }
@@ -989,7 +1059,7 @@ const luckTxt = L => '×' + L.toLocaleString('de-DE');
 /* gen: zieht eine Variante, score: wie gut sie für dich ist, top: besser geht es nicht (dann früher aufhören), seed: schon gezogene erste Variante */
 /* Ausrüstung: Mit Wahrscheinlichkeit gearLuck() gibt es eine Auslosung mehr */
 function lucky(gen, score, top = Infinity, seed) {
-  const R = luck(), g = gearLuck(), L = R + (g > 0 && rand() < g ? 1 : 0);
+  const R = luck(), g = extraLuck(), L = R + (g > 0 && rand() < g ? 1 : 0);
   let best = seed !== undefined ? seed : gen();
   if (L <= 1) return best;
   let bs = score(best), i = 1; const t0 = performance.now();
@@ -1002,7 +1072,7 @@ function lucky(gen, score, top = Infinity, seed) {
   return best;
 }
 /* Lohnt sich überhaupt ein lucky()-Aufruf? (Spiele, die ihn sonst überspringen) */
-const luckOn = () => luck() > 1 || gearLuck() > 0;
+const luckOn = () => luck() > 1 || extraLuck() > 0;
 const pop = $('#luckpop'), luckBtn = $('#luckbtn');
 pop.innerHTML = `<div class="lp-head"><h2 id="lp-t">Glücksregler</h2><button class="lp-x" type="button" aria-label="Glücksregler schließen">×</button></div>
   <p class="lp-big" id="lp-v" aria-live="polite">×1</p>
@@ -1022,8 +1092,8 @@ function paintLuck() {
   $('#luckv').textContent = luckTxt(L);
   luckBtn.setAttribute('aria-label', `Glücksregler, ${on ? 'aktiv mit ' + luckTxt(L) : 'aus'}`);
   $$('.luckfact').forEach(x => { x.hidden = !on; x.textContent = `Glücksregler ${luckTxt(L)} aktiv · Quote gilt nicht`; });
-  const gl = gearLuck();
-  $$('.gearfact').forEach(x => { x.hidden = on || !gl; x.textContent = `Ausrüstung: Glück +${luckPct(gl)}`; });
+  const gl = extraLuck(), ck = charm();
+  $$('.gearfact').forEach(x => { x.hidden = on || !gl; x.textContent = `${ck && gearLuck() ? 'Ausrüstung und Glückskeks' : ck ? 'Glückskeks' : 'Ausrüstung'}: Glück +${luckPct(gl)}`; });
   if (!hasLuck()) { closeLuck(); return; }
   $('#lp-v').textContent = luckTxt(L);
   if (document.activeElement !== lpR) lpR.value = Math.round(100 * Math.log10(L));
@@ -1867,78 +1937,96 @@ const agRTP = () => agLines() + AG_FEAT_RTP;
 const GS_L = [[1,1,1,1,1],[0,0,0,0,0],[2,2,2,2,2],[0,1,2,1,0],[2,1,0,1,2],[0,0,1,2,2],[2,2,1,0,0],[1,0,0,0,1],[1,2,2,2,1],[1,0,1,2,1],
   [1,2,1,0,1],[0,1,0,1,0],[2,1,2,1,2],[0,1,1,1,0],[2,1,1,1,2],[1,1,0,1,1],[1,1,2,1,1],[0,0,2,0,0],[2,2,0,2,2],[0,2,0,2,0]];
 const GS_LOW = [['A', 'Ass'], ['K', 'König'], ['D', 'Dame'], ['B', 'Bube']];
+/* Glücksdrehungen, nur in bezahlten Drehungen (nicht in Freispielen oder Nachdrehungen). Wahrscheinlichkeiten je 1000 Drehungen.
+   Multi: alle Gewinne der Drehung ×m. Wilde Walze: Walze 2 oder 3 wird komplett Joker, alle Liniengewinne ×m.
+   Jede Gewinnlinie läuft über Walze 2 und 3 (bei Gewinnen von beiden Seiten nur sicher über Walze 3), darum trifft der Faktor immer alle Liniengewinne. */
+/* Preise im Bonusladen und am Automaten, in Gesamteinsätzen, mit der tatsächlichen Quote: [Preis, Quote].
+   fs: Freispiele kaufen, lk: Glücksdrehung. Je 300.000 simulierte Runden mit der Engine unten, Preis = Erwartung / 0,96 auf 0,1 gerundet. */
+const GS_PRICE = {
+  bienenstock: { lk: [7.6, 0.962] },
+  sternwarte: { fs: [49.3, 0.961], lk: [4.3, 0.953] },
+  goldrausch: { fs: [24, 0.961], lk: [4.6, 0.955] },
+  drachenhoehle: { lk: [3, 0.955] },
+  zauberzirkus: { lk: [5.1, 0.953] },
+  eispalast: { fs: [14.2, 0.958], lk: [5.2, 0.969] },
+  piratenbucht: { lk: [5.8, 0.964] },
+  hexenkueche: { fs: [35.2, 0.96], lk: [4.5, 0.956] },
+  wichtelwald: { lk: [4.4, 0.953] },
+  donnergipfel: { fs: [36, 0.96], lk: [4.5, 0.96] }
+};
+const GS_BOOST = { pm: 30, mv: [2, 3, 5, 10], mw: [50, 30, 15, 5], pw: 20, wv: [2, 3, 5], ww: [55, 30, 15] };
 const GS = [
-  { id: 'bienenstock', name: 'Bienenstock', kind: '5 Walzen · 10 Linien · Joker ×2', lines: 10, rtp: 96.33, art: ['blume', 'biene', 'honig'], artBg: '#7a4a0c',
+  { id: 'bienenstock', name: 'Bienenstock', kind: '5 Walzen · 10 Linien · Joker ×2', lines: 10, rtp: 96.09, art: ['blume', 'biene', 'honig'], artBg: '#7a4a0c',
     blurb: 'Die Biene ersetzt jedes Symbol und verdoppelt die Linie. Zwei Bienen: vierfach.',
     rule: 'Fünf Walzen, zehn Linien. Die Biene landet auf den Walzen 2 bis 4, ersetzt jedes Symbol und verdoppelt jeden Linien-Gewinn, an dem sie beteiligt ist. Zwei Bienen in einer Linie zählen vierfach, drei achtfach.',
     base: 'Jede Biene in einer Gewinnlinie verdoppelt sie.',
     note: 'Die Biene liegt nur auf den Walzen 2 bis 4 und ersetzt jedes Symbol. Jede Biene in einer Gewinnlinie verdoppelt deren Gewinn: ×2, ×4 oder ×8. Die Tabelle zeigt Vielfache des Einsatzes je Linie.',
     hi: [['honig', 'Honigtopf', 300, [25, 125, 750]], ['blume', 'Sonnenblume', 450, [15, 60, 300]], ['wabe', 'Wabe', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#b23a1a', '#8a5a2b', '#3a7b2a', '#2a5ca8'] },
-    wild: ['biene', 'Biene', 373, [1, 2, 3]], feat: { t: 'wx', x: 2 },
+    wild: ['biene', 'Biene', 228, [1, 2, 3]], feat: { t: 'wx', x: 2 },
     css: '--g1:#e0a020;--g2:#7a4a0c;--g3:#2f1a05;--f1:#e0a020;--f2:#7a4a0c;--rim:rgba(246,194,28,.6);--r1:#fffaf0;--r2:#f3e2b8;--h1:#fff1b8;--h2:#f6c21c;--pb:#3a2208;--pf:#fff3d6;--x1:#f6c21c;--x2:#7a4a0c' },
-  { id: 'sternwarte', name: 'Sternwarte', kind: '5 Walzen · 10 Linien · Klebende Kometen', lines: 10, rtp: 96.04, approx: true, art: ['planet', 'komet', 'teleskop'], artBg: '#141a46',
+  { id: 'sternwarte', name: 'Sternwarte', kind: '5 Walzen · 10 Linien · Klebende Kometen', lines: 10, rtp: 95.96, approx: true, art: ['planet', 'komet', 'teleskop'], artBg: '#141a46',
     blurb: 'Drei Teleskope öffnen zehn Freispiele. Jeder Komet bleibt dann bis zum Schluss liegen.',
     rule: 'Fünf Walzen, zehn Linien unter dem Nachthimmel. Der Komet ersetzt jedes Symbol außer dem Teleskop. Drei Teleskope öffnen zehn Freispiele, in denen jeder gelandete Komet bis zum Ende liegen bleibt.',
     base: 'Drei Teleskope öffnen zehn Freispiele.', scatPl: 'Teleskope', fsSub: 'Jeder Komet bleibt bis zum Schluss liegen',
     note: 'Der Komet liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol außer dem Teleskop. Teleskope zählen überall: 3, 4 oder 5 zahlen das 2-, 10- oder 50-fache des Gesamteinsatzes und öffnen zehn Freispiele. Dort bleibt jeder Komet bis zum Schluss liegen.',
     hi: [['planet', 'Ringplanet', 300, [25, 125, 750]], ['mond', 'Mond', 450, [15, 60, 300]], ['stern', 'Stern', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#ffd23f', '#ff8fb1', '#7bdcff', '#a0e426'] },
-    wild: ['komet', 'Komet', 658, [1, 2, 3]], scat: ['teleskop', 'Teleskop', 150, [2, 10, 50]], feat: { t: 'fs', n: 10, sticky: true }, dark: true,
+    wild: ['komet', 'Komet', 527, [1, 2, 3]], scat: ['teleskop', 'Teleskop', 150, [2, 10, 50]], feat: { t: 'fs', n: 10, sticky: true }, dark: true,
     css: '--g1:#2b3a8c;--g2:#0d1036;--g3:#06081c;--f1:#4b3fb8;--f2:#160f48;--rim:rgba(123,147,255,.55);--r1:#141a46;--r2:#0a0e26;--h1:#3d44a8;--h2:#262c86;--pb:#141a42;--pf:#eef1ff;--x1:#3d44a8;--x2:#0a0e26' },
-  { id: 'goldrausch', name: 'Goldrausch', kind: '5 Walzen · 20 Linien · Freispiele ×3', lines: 20, rtp: 95.84, art: ['gold', 'dynamit', 'pfanne'], artBg: '#4a2c10',
+  { id: 'goldrausch', name: 'Goldrausch', kind: '5 Walzen · 20 Linien · Freispiele ×3', lines: 20, rtp: 95.85, art: ['gold', 'dynamit', 'pfanne'], artBg: '#4a2c10',
     blurb: 'Drei Goldpfannen bringen zehn Freispiele, in denen jeder Gewinn dreifach zählt.',
     rule: 'Fünf Walzen und zwanzig Linien am Goldfluss. Das Dynamit ersetzt jedes Symbol außer der Goldpfanne. Drei Goldpfannen öffnen zehn Freispiele mit dreifachen Gewinnen, drei neue Pfannen verlängern sie.',
     base: 'Drei Goldpfannen öffnen zehn Freispiele.', scatPl: 'Goldpfannen', fsSub: 'Alle Gewinne zählen dreifach',
     note: 'Das Dynamit liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol außer der Goldpfanne. Pfannen zählen überall: 3, 4 oder 5 zahlen das 2-, 5- oder 25-fache des Gesamteinsatzes. In den Freispielen zählt jeder Gewinn dreifach, drei neue Pfannen bringen zehn weitere.',
     hi: [['gold', 'Goldklumpen', 250, [25, 125, 750]], ['hacke', 'Spitzhacke', 400, [15, 60, 300]], ['laterne', 'Grubenlampe', 500, [12, 50, 200]], ['erz', 'Erzbrocken', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#8a3a10', '#6b4a10', '#2f6a5a', '#4a4a8a'] },
-    wild: ['dynamit', 'Dynamit', 983, [1, 2, 3]], scat: ['pfanne', 'Goldpfanne', 180, [2, 5, 25]], feat: { t: 'fs', n: 10, mult: 3, re: true },
+    wild: ['dynamit', 'Dynamit', 778, [1, 2, 3]], scat: ['pfanne', 'Goldpfanne', 180, [2, 5, 25]], feat: { t: 'fs', n: 10, mult: 3, re: true },
     css: '--g1:#8a5a2b;--g2:#3a2410;--g3:#1a0f06;--f1:#c8962f;--f2:#5a3a10;--rim:rgba(230,183,82,.6);--r1:#fbf3e2;--r2:#e8d4a8;--h1:#ffeab0;--h2:#f0c75e;--pb:#2e1d0c;--pf:#fff3d6;--x1:#f0c75e;--x2:#5a3a10' },
-  { id: 'drachenhoehle', name: 'Drachenhöhle', kind: '5 Walzen · 20 Linien · Feuerwalzen', lines: 20, rtp: 96.06, art: ['krone', 'flamme', 'stein'], artBg: '#3a0d08',
+  { id: 'drachenhoehle', name: 'Drachenhöhle', kind: '5 Walzen · 20 Linien · Feuerwalzen', lines: 20, rtp: 96.08, art: ['krone', 'flamme', 'stein'], artBg: '#3a0d08',
     blurb: 'Manchmal speit der Drache Feuer: Bis zu drei Walzen werden ganz zum Joker.',
     rule: 'Fünf Walzen, zwanzig Linien im Drachenhort. Die Flamme ersetzt jedes Symbol. Ungefähr bei jeder vierzehnten Drehung speit der Drache Feuer und verwandelt eine, zwei oder drei der Walzen 2 bis 4 ganz in Flammen.',
     base: 'Der Drache schläft. Noch.', rwTxt: n => n === 1 ? 'Der Drache speit Feuer auf eine Walze!' : `Der Drache speit Feuer auf ${n} Walzen!`,
     note: 'Die Flamme liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol. Ungefähr bei jeder vierzehnten Drehung werden zusätzlich 1, 2 oder 3 dieser Walzen ganz zu Flammen, eine Walze am häufigsten.',
     hi: [['krone', 'Drachenkrone', 250, [25, 125, 750]], ['truhe', 'Schatztruhe', 400, [15, 60, 300]], ['kelch', 'Goldkelch', 500, [12, 50, 200]], ['stein', 'Feuerrubin', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#ff8f5a', '#ffd23f', '#f2f4ef', '#e8a0ff'] },
-    wild: ['flamme', 'Flamme', 463, [1, 2, 3]], feat: { t: 'rw', p: 70, k: [6, 3, 1] }, dark: true,
+    wild: ['flamme', 'Flamme', 388, [1, 2, 3]], feat: { t: 'rw', p: 70, k: [6, 3, 1] }, dark: true,
     css: '--g1:#a8301c;--g2:#3a0d08;--g3:#160403;--f1:#a8301c;--f2:#3a0d08;--rim:rgba(255,143,90,.55);--r1:#2a0d0a;--r2:#160605;--h1:#7a2a14;--h2:#4a1408;--pb:#2a0d0a;--pf:#ffe8dc;--x1:#ff8f5a;--x2:#5a0f05' },
-  { id: 'zauberzirkus', name: 'Zauberzirkus', kind: '5 Walzen · 10 Linien · Zauberhüte', lines: 10, rtp: 96.28, art: ['ball', 'zylinder', 'zelt'], artBg: '#4a0f2a',
+  { id: 'zauberzirkus', name: 'Zauberzirkus', kind: '5 Walzen · 10 Linien · Zauberhüte', lines: 10, rtp: 96.3, art: ['ball', 'zylinder', 'zelt'], artBg: '#4a0f2a',
     blurb: 'Zauberhüte verwandeln sich alle in dasselbe Symbol, manchmal sogar ins Zelt.',
     rule: 'Fünf Walzen, zehn Linien in der Manege. Das Zirkuszelt ersetzt jedes Symbol. Landen Zauberhüte, verwandeln sie sich nach dem Stopp alle in dasselbe zufällige Symbol, auch in das Zelt.',
     base: 'Zauberhüte verwandeln sich alle in dasselbe Symbol.',
     note: 'Das Zelt liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol. Zauberhüte können überall landen und zeigen nach dem Stopp alle dasselbe Symbol. Welches, wird nach denselben Gewichten gezogen wie auf den Walzen: Seltenes bleibt selten.',
     hi: [['ball', 'Artistenball', 300, [25, 125, 750]], ['trommel', 'Trommel', 450, [15, 60, 300]], ['glocke', 'Glocke', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#c42c3a', '#2f73dc', '#1f8a5a', '#9a4fc4'] },
-    wild: ['zelt', 'Zirkuszelt', 734, [1, 2, 3]], myst: ['zylinder', 'Zauberhut', 500], feat: { t: 'myst' },
+    wild: ['zelt', 'Zirkuszelt', 541, [1, 2, 3]], myst: ['zylinder', 'Zauberhut', 500], feat: { t: 'myst' },
     css: '--g1:#b0204a;--g2:#4a0f2a;--g3:#1c0410;--f1:#b0204a;--f2:#4a0f2a;--rim:rgba(255,210,63,.55);--r1:#fff8f0;--r2:#f4e0d0;--h1:#fff1b8;--h2:#ffd23f;--pb:#3a0c22;--pf:#fff0f4;--x1:#ffd23f;--x2:#4a0f2a' },
-  { id: 'eispalast', name: 'Eispalast', kind: '5 Walzen · 243 Wege · Freispiele ×2', mode: 'ways', units: 20, rtp: 95.99, art: ['flocke', 'eiskristall', 'schneekugel'], artBg: '#164a7a',
+  { id: 'eispalast', name: 'Eispalast', kind: '5 Walzen · 243 Wege · Freispiele ×2', mode: 'ways', units: 20, rtp: 96.03, art: ['flocke', 'eiskristall', 'schneekugel'], artBg: '#164a7a',
     blurb: 'Keine Linien: Gleiche Symbole auf benachbarten Walzen zahlen, egal in welcher Reihe.',
     rule: 'Fünf Walzen und 243 Wege. Gleiche Symbole auf mindestens drei Walzen von links gewinnen, die Reihe ist egal. Der Eiskristall ersetzt jedes Symbol außer der Schneekugel. Drei Schneekugeln öffnen acht Freispiele mit doppelten Gewinnen.',
     base: 'Drei Schneekugeln öffnen acht Freispiele.', scatPl: 'Schneekugeln', fsSub: 'Alle Gewinne zählen doppelt',
     note: 'Gewinne zahlen je Weg: Liegt ein Symbol auf Walze 1 zweimal und auf Walze 2 und 3 je einmal, sind das zwei Wege. Die Tabelle zeigt Vielfache des Grundeinsatzes, gesetzt wird das 20-fache. Schneekugeln zählen überall: 3, 4 oder 5 zahlen das 2-, 10- oder 50-fache des Gesamteinsatzes.',
     hi: [['diamant', 'Eisdiamant', 300, [10, 40, 200]], ['flocke', 'Schneeflocke', 450, [8, 30, 120]], ['zapfen', 'Eiszapfen', 600, [6, 20, 80]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[4, 10, 40], [3, 8, 30], [2, 6, 25], [2, 5, 20]], col: ['#1f5fa8', '#2a7fb0', '#5a4fc4', '#1f8a8a'] },
-    wild: ['eiskristall', 'Eiskristall', 308, [1, 2, 3]], scat: ['schneekugel', 'Schneekugel', 160, [2, 10, 50]], feat: { t: 'fs', n: 8, mult: 2, re: true },
+    wild: ['eiskristall', 'Eiskristall', 157, [1, 2, 3]], scat: ['schneekugel', 'Schneekugel', 160, [2, 10, 50]], feat: { t: 'fs', n: 8, mult: 2, re: true },
     css: '--g1:#3a8fd0;--g2:#164a7a;--g3:#0a2440;--f1:#6aa8ff;--f2:#203a8a;--rim:rgba(191,230,255,.6);--r1:#f4fbff;--r2:#d2ecfb;--h1:#e8f6ff;--h2:#9fd8ff;--pb:#0f3354;--pf:#eef8ff;--x1:#9fd8ff;--x2:#164a7a' },
-  { id: 'piratenbucht', name: 'Piratenbucht', kind: '5 Walzen · 10 Linien · beide Richtungen', lines: 10, mode: 'both', rtp: 96.39, art: ['karte', 'anker', 'kompass'], artBg: '#0f4a5a',
+  { id: 'piratenbucht', name: 'Piratenbucht', kind: '5 Walzen · 10 Linien · beide Richtungen', lines: 10, mode: 'both', rtp: 96.35, art: ['karte', 'anker', 'kompass'], artBg: '#0f4a5a',
     blurb: 'Jede Linie zahlt von links und von rechts. Der Anker hält alles zusammen.',
     rule: 'Fünf Walzen, zehn Linien, und jede Linie zahlt in beide Richtungen: von links nach rechts und von rechts nach links. Der Anker ersetzt jedes Symbol.',
     base: 'Gewinne zählen von links und von rechts.',
     note: 'Der Anker liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol. Jede Linie zahlt von links und von rechts, fünf gleiche nur einmal.',
     hi: [['karte', 'Schatzkarte', 300, [25, 125, 750]], ['kompass', 'Kompass', 400, [15, 60, 300]], ['saebel', 'Entermesser', 500, [12, 50, 200]], ['muenze', 'Dublone', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#c42c3a', '#1f5fa8', '#1f7a4a', '#8a5a2b'] },
-    wild: ['anker', 'Anker', 606, [1, 2, 3]], feat: { t: 'none' },
+    wild: ['anker', 'Anker', 397, [1, 2, 3]], feat: { t: 'none' },
     css: '--g1:#1d8aa0;--g2:#0f4a5a;--g3:#052530;--f1:#1d8aa0;--f2:#0f4a5a;--rim:rgba(241,223,176,.6);--r1:#fbf3e0;--r2:#ead8ae;--h1:#fff1c4;--h2:#f0c75e;--pb:#0d3a46;--pf:#f4fbfb;--x1:#f0c75e;--x2:#0f4a5a' },
-  { id: 'hexenkueche', name: 'Hexenküche', kind: '5 Walzen · 10 Linien · Steigender Faktor', lines: 10, rtp: 95.89, art: ['kessel', 'hut', 'phiole'], artBg: '#2c1249',
+  { id: 'hexenkueche', name: 'Hexenküche', kind: '5 Walzen · 10 Linien · Steigender Faktor', lines: 10, rtp: 95.96, art: ['kessel', 'hut', 'phiole'], artBg: '#2c1249',
     blurb: 'In den Freispielen hebt jeder Hexenhut den Faktor für alle folgenden Drehungen.',
     rule: 'Fünf Walzen, zehn Linien über dem Kessel. Der Hexenhut ersetzt jedes Symbol außer dem Zaubertrank. Drei Tränke öffnen zehn Freispiele, und jeder Hut, der dort landet, hebt den Faktor für die folgenden Freispiele um eins.',
     base: 'Drei Zaubertränke öffnen zehn Freispiele.', scatPl: 'Zaubertränke', fsSub: 'Jeder Hut hebt den Faktor um eins',
     note: 'Der Hexenhut liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol außer dem Zaubertrank. Tränke zählen überall: 3, 4 oder 5 zahlen das 2-, 5- oder 20-fache des Gesamteinsatzes. In den Freispielen beginnt der Faktor bei ×1, jeder gelandete Hut hebt ihn ab der nächsten Drehung um eins.',
     hi: [['kessel', 'Hexenkessel', 300, [25, 125, 750]], ['besen', 'Besen', 400, [15, 60, 300]], ['kugel', 'Kristallkugel', 500, [12, 50, 200]], ['eule', 'Eule', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#a8f0a0', '#ffd23f', '#ff9ad5', '#9fd8ff'] },
-    wild: ['hut', 'Hexenhut', 902, [1, 2, 3]], scat: ['phiole', 'Zaubertrank', 170, [2, 5, 20]], feat: { t: 'fs', n: 10, prog: true }, dark: true,
+    wild: ['hut', 'Hexenhut', 741, [1, 2, 3]], scat: ['phiole', 'Zaubertrank', 170, [2, 5, 20]], feat: { t: 'fs', n: 10, prog: true }, dark: true,
     css: '--g1:#5b2a86;--g2:#1a0c2e;--g3:#0c0616;--f1:#8a45b8;--f2:#2c1249;--rim:rgba(168,240,160,.5);--r1:#22143a;--r2:#140a24;--h1:#4a2a78;--h2:#2f1a52;--pb:#1d1033;--pf:#f2eaff;--x1:#5fd36a;--x2:#1a0c2e' },
   { id: 'wichtelwald', name: 'Wichtelwald', kind: '5 Walzen · 10 Linien · Wandernde Wichtel', lines: 10, rtp: 96.1, approx: true, art: ['pilz', 'wichtel', 'eichel'], artBg: '#173d1c',
     blurb: 'Jeder Wichtel bleibt stehen, wandert nach links und bringt eine Gratis-Nachdrehung.',
@@ -1947,16 +2035,16 @@ const GS = [
     note: 'Der Wichtel landet auf den Walzen 2 bis 5 und ersetzt jedes Symbol. Nach jeder Drehung mit Wichteln wandern alle eine Walze nach links, und die übrigen Felder drehen gratis neu. Neue Wichtel schließen sich an.',
     hi: [['falter', 'Falter', 3000, [25, 125, 750]], ['pilz', 'Fliegenpilz', 4000, [15, 60, 300]], ['eichel', 'Eichel', 5000, [12, 50, 200]], ['blatt', 'Eichenblatt', 6000, [10, 40, 150]]],
     low: { w: [10000, 11000, 12000, 13000], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#b02a3b', '#8a5a2b', '#2f6a2a', '#2a5ca8'] },
-    wild: ['wichtel', 'Wichtel', 1124, [1, 2, 3, 4]], feat: { t: 'walk' },
+    wild: ['wichtel', 'Wichtel', 967, [1, 2, 3, 4]], feat: { t: 'walk' },
     css: '--g1:#3f7a3a;--g2:#173d1c;--g3:#08180a;--f1:#3f7a3a;--f2:#173d1c;--rim:rgba(191,236,203,.5);--r1:#f6fbef;--r2:#dcebc8;--h1:#f4f8c8;--h2:#c8e07a;--pb:#13301a;--pf:#effbe8;--x1:#c8e07a;--x2:#173d1c' },
-  { id: 'donnergipfel', name: 'Donnergipfel', kind: '5 Walzen · 10 Linien · Blitz-Freispiele', lines: 10, rtp: 95.96, art: ['edelweiss', 'blitz', 'wolke'], artBg: '#26324a',
+  { id: 'donnergipfel', name: 'Donnergipfel', kind: '5 Walzen · 10 Linien · Blitz-Freispiele', lines: 10, rtp: 96.05, art: ['edelweiss', 'blitz', 'wolke'], artBg: '#26324a',
     blurb: 'Drei Gewitterwolken bringen zwölf Freispiele, in denen viermal so viele Blitze fallen.',
     rule: 'Fünf Walzen, zehn Linien am Gipfel. Der Blitz ersetzt jedes Symbol außer der Wolke. Drei Wolken öffnen zwölf Freispiele, in denen Blitze viermal so häufig sind. Drei neue Wolken verlängern um zwölf.',
     base: 'Drei Gewitterwolken öffnen zwölf Freispiele.', scatPl: 'Gewitterwolken', fsSub: 'Viermal so viele Blitze',
     note: 'Der Blitz liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol außer der Wolke. Wolken zählen überall: 3, 4 oder 5 zahlen das 2-, 5- oder 25-fache des Gesamteinsatzes. In den Freispielen fallen viermal so viele Blitze.',
     hi: [['edelweiss', 'Edelweiß', 300, [25, 125, 750]], ['amethyst', 'Bergkristall', 450, [15, 60, 300]], ['feder', 'Adlerfeder', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#ffd23f', '#9fd8ff', '#f2f4ef', '#ff9f80'] },
-    wild: ['blitz', 'Blitz', 763, [1, 2, 3]], scat: ['wolke', 'Gewitterwolke', 150, [2, 5, 25]], feat: { t: 'fs', n: 12, wildX: 4, re: true }, dark: true,
+    wild: ['blitz', 'Blitz', 599, [1, 2, 3]], scat: ['wolke', 'Gewitterwolke', 150, [2, 5, 25]], feat: { t: 'fs', n: 12, wildX: 4, re: true }, dark: true,
     css: '--g1:#4a5a7a;--g2:#1a2234;--g3:#0a0e18;--f1:#5a4fc4;--f2:#1a1a4a;--rim:rgba(255,210,63,.5);--r1:#1e2638;--r2:#121826;--h1:#3a4a6a;--h2:#26324a;--pb:#1a2234;--pf:#eef2ff;--x1:#ffd23f;--x2:#1a2234' }
 ];
 function gsPick(r) { let x = int(r.T); for (let j = 0; j < r.w.length; j++) { x -= r.w[j]; if (x < 0) return j; } return 0; }
@@ -1974,6 +2062,10 @@ function gsPrep(c) {
   c.wt = wts(1); c.fwt = c.feat.wildX ? wts(c.feat.wildX) : c.wt;
   c.rev = c.M >= 0 ? tot(S.map((s, j) => j <= c.W ? s.w : 0)) : null;
   c.rwk = c.feat.t === 'rw' ? tot(c.feat.k) : null;
+  const B = GS_BOOST;
+  const pr = GS_PRICE[c.id] || {};
+  c.buy = pr.fs ? pr.fs[0] : 0; c.buyQ = pr.fs ? pr.fs[1] : 0; c.lk = pr.lk[0]; c.lkQ = pr.lk[1];
+  c.bst = { pm: B.pm, mv: B.mv, mt: tot(B.mw), pw: c.feat.t === 'rw' ? 0 : B.pw, wv: B.wv, wt: tot(B.ww), wr: c.mode === 'both' ? [2] : [1, 2] };
   return c;
 }
 /* Beste Linie von links. Eine reine Joker-Reihe zählt wie das wertvollste Symbol, jeder Joker multipliziert mit c.wx (falls gesetzt). */
@@ -1988,9 +2080,18 @@ function gsLine(c, cs) {
   return best;
 }
 /* o.fs: Freispiel, o.mult: Faktor, o.stick: Felder ('Walze:Reihe'), auf denen ein Joker liegen bleibt */
+/* Gekaufte Freispiele: Ein normal gezogenes Feld bekommt so viele Streusymbole dazu, dass es drei sind (nur auf Walzen, die welche tragen) */
+function gsTrig(c) {
+  const g0 = c.wt.map(r => [gsPick(r), gsPick(r), gsPick(r)]);
+  let n = 0; g0.forEach(col => col.forEach(s => { if (s === c.SC) n++; }));
+  const free = c.wt.map((r, i) => i).filter(i => c.wt[i].w[c.SC] > 0 && !g0[i].includes(c.SC));
+  while (n < 3 && free.length) { const i = free.splice(int(free.length), 1)[0]; g0[i][int(3)] = c.SC; n++; }
+  return g0;
+}
+/* o: fs (Freispiel), mult, stick (liegende Joker), g0 (vorgegebenes Feld), nob (keine Glücksdrehung), boost (sicher eine Glücksdrehung) */
 function gsSpin(c, per, o = {}) {
   const wt = o.fs ? c.fwt : c.wt, W = c.W, st = o.stick || [];
-  const g0 = wt.map(r => [gsPick(r), gsPick(r), gsPick(r)]);
+  const g0 = o.g0 || wt.map(r => [gsPick(r), gsPick(r), gsPick(r)]);
   let wl = 0; g0.forEach((col, i) => col.forEach((s, r) => { if (s === W && !st.includes(i + ':' + r)) wl++; }));
   st.forEach(k => { g0[+k[0]][+k[2]] = W; });
   let g = g0, x = null;
@@ -2000,8 +2101,15 @@ function gsSpin(c, per, o = {}) {
     g = g0.map((col, i) => set.includes(i) ? [W, W, W] : col); x = { rw: set };
   }
   if (c.M >= 0 && g0.some(col => col.includes(c.M))) { const r = gsPick(c.rev); g = g0.map(col => col.map(s => s === c.M ? r : s)); x = { myst: r }; }
+  let bst = null;
+  if (!o.fs && !o.stick && !o.nob) {
+    const B = c.bst, r = o.boost ? int(B.pm + B.pw) : int(1000);
+    if (r < B.pm) bst = { t: 'm', m: B.mv[gsPick(B.mt)] };
+    else if (r < B.pm + B.pw) { const reel = B.wr[int(B.wr.length)]; bst = { t: 'w', m: B.wv[gsPick(B.wt)], reel }; g = g.map((col, i) => i === reel ? [W, W, W] : col); }
+  }
   const mult = o.mult || 1, hits = new Set(), wins = []; let ret = 0;
-  const add = w => { w.pay *= per * mult; ret += w.pay; w.cells.forEach(k => hits.add(k)); wins.push(w); };
+  /* sc: Streugewinn, den nur der Multi trifft, nicht die wilde Walze */
+  const add = (w, sc) => { const bm = bst && (bst.t === 'm' || !sc) ? bst.m : 1; w.pay *= per * mult * bm; if (bm > 1) w.bm = bm; ret += w.pay; w.cells.forEach(k => hits.add(k)); wins.push(w); };
   if (c.mode === 'ways') {
     for (let s = 0; s < W; s++) {
       let ways = 1, len = 0; const cells = [];
@@ -2018,14 +2126,15 @@ function gsSpin(c, per, o = {}) {
   });
   let nsc = 0; const sc = [];
   if (c.SC >= 0) g.forEach((col, i) => col.forEach((s, r) => { if (s === c.SC) { nsc++; sc.push(i + ':' + r); } }));
-  if (nsc >= 3) add({ s: c.SC, len: nsc, pay: c.S[c.SC].sp[Math.min(nsc, 5) - 3] * c.cost, cells: sc });
-  return { g0, g, x, wins, hits, ret, nsc, trigger: nsc >= 3, wl, mult };
+  if (nsc >= 3) add({ s: c.SC, len: nsc, pay: c.S[c.SC].sp[Math.min(nsc, 5) - 3] * c.cost, cells: sc }, true);
+  return { g0, g, x, bst, wins, hits, ret, nsc, trigger: nsc >= 3, wl, mult };
 }
 /* Eine bezahlte Runde: Grunddrehung, dazu Nachdrehungen (Wichtel) oder Freispiele */
-function gsRound(c, per) {
+/* buy: 'fs' = gekaufte Freispiele (erste Drehung löst sicher aus), 'lk' = Glücksdrehung (erste Drehung hat sicher Multi oder wilde Walze) */
+function gsRound(c, per, buy) {
   const f = c.feat, spins = []; let total = 0;
   const push = s => { spins.push(s); total += s.ret; return s; };
-  let s = push(gsSpin(c, per));
+  let s = push(gsSpin(c, per, buy === 'fs' ? { g0: gsTrig(c), nob: true } : buy === 'lk' ? { boost: true } : {}));
   if (f.t === 'walk') for (let k = 1; k <= 30; k++) {
     const st = []; s.g.forEach((col, i) => col.forEach((y, r) => { if (y === c.W && i > 0) st.push((i - 1) + ':' + r); }));
     if (!st.length) break;
@@ -2136,6 +2245,19 @@ function buyBtn(game, lines, per, go) {
   upd();
   return { el: b, upd: disarm, lock: d => { b.disabled = d; if (d) disarm(); }, destroy: () => clearTimeout(t) };
 }
+/* Kaufknopf mit Bestätigung: txt() liefert [Beschriftung, Kleingedrucktes, Preis]. Der erste Klick nennt den Preis, erst der zweite kauft. */
+function armBuy(txt, go) {
+  const b = h('<button class="btn buy" type="button"><b></b><small></small></button>');
+  let armed = false, t = 0;
+  const upd = () => { const [m, s, p] = txt(); $('b', b).textContent = armed ? `Wirklich kaufen? ${fmt(p)} Taler` : m; $('small', b).textContent = s; b.classList.toggle('armed', armed); };
+  const disarm = () => { armed = false; clearTimeout(t); upd(); };
+  b.onclick = () => {
+    if (!armed) { armed = true; upd(); clearTimeout(t); t = setTimeout(disarm, 4000); return; }
+    disarm(); go();
+  };
+  upd();
+  return { el: b, upd: disarm, lock: d => { b.disabled = d; if (d) disarm(); }, destroy: () => clearTimeout(t) };
+}
 /* Ansagen, während die Walzen einzeln nachdrehen */
 function baitCalls(ban, more, then) {
   let got = 2;
@@ -2238,8 +2360,11 @@ function reelSet(box, grid, cell, lines = null) {
   function spin(next, pick, base = 1100, stag = 420, o = {}) {
     clearFx();
     /* Ab der ersten Spannungswalze drehen alle folgenden einzeln nach, auch wenn das dritte Symbol schon liegt */
+    /* Turbo-Hebel aus dem Bonusladen: Die Walzen laufen gut doppelt so schnell */
+    const tb = turbo();
+    if (tb) { base = Math.round(base * .45); stag = Math.round(stag * .45); }
     const t0 = calm || !o.tease || !o.tease.length ? -1 : o.tease[0];
-    const tease = t0 < 0 ? [] : reels.map((_, i) => i).filter(i => i >= t0), tms = o.teaseMs || 1300;
+    const tease = t0 < 0 ? [] : reels.map((_, i) => i).filter(i => i >= t0), tms = Math.round((o.teaseMs || 1300) * (tb ? .55 : 1));
     const rev = Math.min(500, Math.round(tms * .4)), gap = Math.max(340, Math.round(tms * .4)), after = 320;
     const T0 = tease.length ? (tease[0] ? base + (tease[0] - 1) * stag : 0) : 0;
     let end = 0;
@@ -3305,12 +3430,19 @@ function mountKisten(body) {
 const gsRank = (t, col) => svg(`<text x="24" y="37" text-anchor="middle" font-size="36" font-weight="700" font-family="Grenze Gotisch,Georgia,serif" fill="${col}" stroke="rgba(0,0,0,.5)" stroke-width="1.500" paint-order="stroke">${t}</text>`);
 GS.forEach(c => GS_LOW.forEach(([t], i) => { SYM[c.id + '_' + t] = gsRank(t, c.low.col[i]); }));
 const GSS = {};
-function gsWinText(c, w) {
-  const v = fmt(rnd2(w.pay)) + ' Taler';
+function gsWinText(c, w, b) {
+  const v = (w.bm > 1 ? `${b && b.t === 'w' ? 'Walze' : 'Multi'} ×${w.bm} · ` : '') + fmt(rnd2(w.pay)) + ' Taler';
   if (w.s === c.SC) return `${w.len} ${c.scatPl} · ${v}`;
   const nm = c.S[w.s].n;
   if (w.ways) return `${w.ways} ${w.ways === 1 ? 'Weg' : 'Wege'} · ${w.len}× ${nm} · ${v}`;
   return `Linie ${w.li + 1}${w.rtl ? ' von rechts' : ''} · ${w.len}× ${nm}${w.x > 1 ? ` · Joker ×${w.x}` : ''} · ${v}`;
+}
+/* Erklärung der Glücksdrehungen für die Gewinntafel, aus den echten Werten */
+function gsBoostNote(c) {
+  const B = c.bst, list = a => a.map(m => '×' + m).join(', ').replace(/, ([^,]*)$/, ' oder $1');
+  let t = `Glücksdrehungen: Etwa jede ${Math.round(1000 / B.pm)}. bezahlte Drehung bekommt einen Multi (${list(B.mv)}) auf alle Gewinne.`;
+  if (B.pw) t += ` Etwa jede ${Math.round(1000 / B.pw)}. macht ${B.wr.length > 1 ? 'Walze 2 oder 3' : 'Walze 3'} zur wilden Walze, dann zählen die Liniengewinne ${list(B.wv)}.`;
+  return t + ' In Freispielen und Nachdrehungen gibt es keine.';
 }
 function mountGS(c) {
   return body => {
@@ -3323,13 +3455,21 @@ function mountGS(c) {
         <div class="kv"><span>${c.mode === 'ways' ? `Gesamteinsatz (${c.units} × Grundeinsatz)` : `Gesamt bei ${c.L.length} Linien`}</span><span class="num" id="gs-tot"></span></div>
         <button class="btn go" id="gs-spin" type="button">Walzen drehen</button>
         <div id="gs-auto"></div>
+        <div class="gs-buys" id="gs-buys"></div>
+        <div class="gs-vouch" id="gs-vouch" hidden></div>
         <p class="msg" id="gs-msg" aria-live="polite">${c.mode === 'ways' ? 'Gewinne zählen von links, die Reihe ist egal.' : c.mode === 'both' ? 'Gewinne zählen von links und von rechts.' : 'Gewinne laufen von links nach rechts.'}</p>
         <div class="pay gen">${payHead3(['3', '4', '5'])}${pays.map(s => payRow3(s, s.p)).join('')}</div>
         <p class="note">${c.note}</p>
+        <p class="note">${gsBoostNote(c)}</p>
       </aside></div>`;
     const bet = betField('gs-bet', 1, c.mode === 'ways' ? 'Grundeinsatz' : 'Einsatz je Linie', c.cost); $('#gs-betslot', body).append(bet.el);
     const q = s => $(s, body), msg = q('#gs-msg'), btn = q('#gs-spin'), ban = q('#gs-b'), tot = q('#gs-tot'), cab = q('#gs-cab'), box = q('#gs-r');
-    const updTot = () => { tot.textContent = fmt(rnd2(bet.get() * c.cost)) + ' Taler'; };
+    /* Kaufen am Automaten: Glücksdrehung immer, Freispiele dort, wo es welche gibt. Erster Klick nennt den Preis, der zweite kauft. */
+    const T = () => rnd2(bet.get() * c.cost);
+    const bLk = armBuy(() => [`Glücksdrehung · ${fmt(rnd2(T() * c.lk))} Taler`, `${c.bst.pw ? 'Sicher Multi oder wilde Walze' : 'Sicher ein Multi'} · ${num1(c.lk)}-fach · Quote ${pct(c.lkQ)}`, rnd2(T() * c.lk)], () => spin('lk'));
+    const bFs = c.buy ? armBuy(() => [`Freispiele kaufen · ${fmt(rnd2(T() * c.buy))} Taler`, `${num1(c.buy)}-facher Gesamteinsatz · Quote ${pct(c.buyQ)}`, rnd2(T() * c.buy)], () => spin('fs')) : null;
+    const buys = [bFs, bLk].filter(Boolean); q('#gs-buys').append(...buys.map(b => b.el));
+    const updTot = () => { tot.textContent = fmt(T()) + ' Taler'; buys.forEach(b => b.upd()); };
     bet.el.addEventListener('input', updTot); bet.el.addEventListener('click', () => setTimeout(updTot)); updTot();
     if (!GSS[c.id]) GSS[c.id] = c.wt.map(r => [gsPick(r), gsPick(r), gsPick(r)].map(s => s === c.M || s === c.SC ? 0 : s));
     const rs = reelSet(box, GSS[c.id], (s, cls = '') => `<div class="sc ${cls}">${SYM[c.S[s].k]}</div>`, c.mode === 'ways' ? [] : c.L);
@@ -3353,41 +3493,72 @@ function mountGS(c) {
     const ro = new ResizeObserver(() => stk.forEach((el, k) => placeStk(el, k))); ro.observe(box);
     const wildKeys = g => { const k = []; g.forEach((col, i) => col.forEach((s, r) => { if (s === W) k.push(i + ':' + r); })); return k; };
     let R = null, timer = 0;
-    const wait = (ms, fn) => { timer = setTimeout(fn, calm ? Math.min(ms, 40) : ms); };
+    const wait = (ms, fn) => { timer = setTimeout(fn, calm ? Math.min(ms, 40) : turbo() ? Math.round(ms * .5) : ms); };
+    /* Gutscheine aus dem Bonusladen. Ein Drehpaket läuft nach dem Start von selbst weiter, bis es leer ist oder angehalten wird. */
+    const vb = q('#gs-vouch'); let pack = null, packT = 0;
+    const perTxt = per => `${fmt(per)} Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}`;
+    function paintV() {
+      const mine = S.inv.filter(e => e.g === c.id);
+      vb.hidden = !mine.length;
+      vb.innerHTML = '<p class="flabel">Gutscheine aus dem Bonusladen</p>' + mine.map(e => `<button class="btn${pack === e ? ' on' : ''}" type="button" data-v="${S.inv.indexOf(e)}"${R && pack !== e ? ' disabled' : ''}>
+        <b>${e.k === 'fs' ? 'Freispiele einlösen' : e.k === 'lk' ? 'Glücksdrehung einlösen' : pack === e ? 'Paket anhalten' : 'Drehpaket abspielen'}</b><small>${perTxt(e.per)} · noch ${e.n}</small></button>`).join('');
+    }
+    vb.addEventListener('click', ev => {
+      const b = ev.target.closest('[data-v]'), e = b && S.inv[+b.dataset.v]; if (!e) return;
+      if (e.k === 'pk') { if (pack === e) { pack = null; clearTimeout(packT); paintV(); return; } if (R) return; pack = e; spin(null, e); return; }
+      spin(e.k, e);
+    });
+    paintV();
     const ctl = spinKeys(q('#gs-auto'), btn, () => spin(), () => !!R);
     function label(i) {
       const s = R.spins[i];
       if (s.free) return `Freispiel ${s.free} von ${f.re ? fsKnown(R.spins, i, f.n, f.n) : f.n}${s.mult > 1 ? ` · Gewinne ×${s.mult}` : ''}`;
       if (s.respin) return `Nachdrehung ${s.respin} · gratis`;
+      if (i === 0 && R.kind === 'fs') return `Gekaufte Freispiele: Drei ${c.scatPl} kommen sicher.`;
+      if (i === 0 && R.kind === 'lk') return `Glücksdrehung: ${c.bst.pw ? 'Multi oder wilde Walze' : 'Ein Multi'} kommt sicher.`;
       return c.base;
     }
+    const unbadge = () => $$('.gs-multi', cab).forEach(x => x.remove());
+    /* Treffer nachträglich aufleuchten lassen, ohne die Walzen neu zu zeichnen (sonst verschwindet die wilde Walze) */
+    const lightHits = hits => { const strips = $$('.reel .strip', box); hits.forEach(k => { const el = strips[+k[0]] && strips[+k[0]].children[+k[2]]; if (el) el.classList.add('hit'); }); };
     function show(i) {
       const s = R.spins[i], quick = !!(s.free || s.respin);
-      ban.textContent = label(i);
+      ban.textContent = label(i); unbadge();
       if (s.respin) stick(s.stick, true);
       const o = c.SC >= 0 && (!s.free || f.re) ? { tease: teaseReels(s.g0, isScat), teaseMs: quick ? 800 : 1300, lit: isScat, ...baitCalls(ban, c.scatPl, s.free ? 'Weitere Freispiele!' : 'Freispiele!') } : {};
       timer = setTimeout(() => land(i), rs.spin(s.g0, () => gsPick(c.wt[2]), quick ? 620 : 900, quick ? 130 : 210, o));
     }
+    /* Nach dem Stopp der Reihe nach: Zauberhüte, wachsende Joker, wilde Walze, Multi. Jeder Schritt ruft den nächsten auf. */
     function land(i) {
-      const s = R.spins[i];
-      if (s.x && s.x.myst != null) {
+      const s = R.spins[i], b = s.bst, wr = b && b.t === 'w', steps = [];
+      if (s.x && s.x.myst != null) steps.push(next => {
         rs.rest(); ban.textContent = `Die Zauberhüte werden zu: ${c.S[s.x.myst].n}!`;
         wait(650, () => {
-          rs.swap(s.g); rs.rest(s.hits);
+          rs.swap(s.g); rs.rest(wr ? null : s.hits);
           const strips = $$('.reel .strip', box);
           s.g0.forEach((col, ci) => col.forEach((y, r) => { const el = y === c.M && strips[ci].children[r]; if (el) el.classList.add('flip'); }));
-          wait(450, () => after(i));
+          wait(450, next);
         });
-        return;
-      }
-      rs.rest(s.hits);
-      if (s.x && s.x.rw) { s.x.rw.forEach(ri => rs.expand(ri, wildSym, 'gsx')); ban.textContent = c.rwTxt(s.x.rw.length); wait(800, () => after(i)); return; }
-      after(i);
+      });
+      else rs.rest(wr ? null : s.hits);
+      if (s.x && s.x.rw) steps.push(next => { s.x.rw.forEach(ri => rs.expand(ri, wildSym, 'gsx')); ban.textContent = c.rwTxt(s.x.rw.length); wait(800, next); });
+      if (wr) steps.push(next => {
+        rs.expand(b.reel, `${wildSym}<b class="wmx">×${b.m}</b>`, 'gsx wm');
+        ban.textContent = `Wilde Walze ×${b.m}! Walze ${b.reel + 1} ist ganz Joker.`;
+        wait(950, () => { lightHits(s.hits); next(); });
+      });
+      if (b && b.t === 'm' && (s.ret > 0 || R.kind === 'lk')) steps.push(next => {
+        cab.append(h(`<div class="gs-multi" aria-hidden="true"><b>×${b.m}</b><small>Multi</small></div>`));
+        ban.textContent = s.ret > 0 ? `Multi ×${b.m}! Alle Gewinne dieser Drehung zählen ${b.m}-fach.` : `Multi ×${b.m}, aber diesmal ohne Gewinn.`;
+        wait(1000, next);
+      });
+      const run = k => k < steps.length ? steps[k](() => run(k + 1)) : after(i);
+      run(0);
     }
     function after(i) {
       const s = R.spins[i], nx = R.spins[i + 1];
       R.sum += s.ret;
-      const ws = s.wins.map(w => ({ ...w, text: gsWinText(c, w) }));
+      const ws = s.wins.map(w => ({ ...w, text: gsWinText(c, w, s.bst) }));
       rs.showWins(ws, winSum(ws));
       if (f.sticky && s.free) stick(wildKeys(s.g0), false);
       if (f.t === 'walk') stick(wildKeys(s.g), false);
@@ -3396,7 +3567,7 @@ function mountGS(c) {
       else if (nx && nx.respin) ban.textContent = c.walkTxt + ' …';
       if (R.spins.length > 1) say(msg, `Bisher ${fmt(rnd2(R.sum))} Taler.`, R.sum ? 'good' : '');
       if (!nx) { wait(ws.length ? 250 : 0, done); return; }
-      wait(s.ret || s.trigger || s.x || nx.respin ? 1300 : 600, () => nx.free === 1 ? intro(() => show(i + 1)) : show(i + 1));
+      wait(s.ret || s.trigger || s.x || s.bst || nx.respin ? 1300 : 600, () => nx.free === 1 ? intro(() => show(i + 1)) : show(i + 1));
     }
     function intro(go) {
       cab.classList.add('fs-mode');
@@ -3410,27 +3581,40 @@ function mountGS(c) {
       const last = r.spins[r.spins.length - 1];
       GSS[c.id] = last.x && last.x.myst != null ? last.g : last.g0;
       settle(c.id, r.stake, r.total);
-      if (r.spins.some(s => s.free)) flag('fs');
+      if (r.kind !== 'fs' && r.spins.some(s => s.free)) flag('fs');
       cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove()); unstick();
-      btn.disabled = false; bet.lock(false);
+      btn.disabled = false; bet.lock(false); buys.forEach(b => b.lock(false));
       const free = r.spins.filter(s => s.free).length, re = r.spins.filter(s => s.respin).length;
       if (free) { ban.textContent = `${free} Freispiele sind vorbei.`; say(msg, `Insgesamt ${fmt(r.total)} Taler.`, r.total ? 'good' : ''); }
       else if (re) { ban.textContent = `${re} ${re === 1 ? 'Nachdrehung' : 'Nachdrehungen'}, dann sind die Wichtel weitergezogen.`; say(msg, r.total ? `Insgesamt ${fmt(r.total)} Taler.` : 'Diesmal kein Gewinn.', r.total ? 'good' : ''); }
       else say(msg, r.total ? `Gewinn: ${fmt(r.total)} Taler.` : 'Diesmal kein Gewinn.', r.total ? 'good' : '');
+      if (pack && !S.inv.includes(pack)) { pack = null; say(msg, msg.textContent + ' Das Drehpaket ist aufgebraucht.', r.total ? 'good' : ''); }
+      paintV();
       ctl.ended(r.total > 0);
+      if (pack) packT = setTimeout(() => { if (pack && !R) spin(null, pack); }, calm ? 40 : turbo() ? 300 : 700);
     }
-    function spin() {
+    /* kind: null (normale Drehung), 'fs' (Freispiele gekauft), 'lk' (Glücksdrehung). v: Gutschein, dann ist schon bezahlt. */
+    function spin(kind = null, v = null) {
       if (R) return false;
-      const per = bet.get(), stake = rnd2(per * c.cost);
-      if (!okBet(per, msg, c.cost) || !take(stake)) return false;
-      R = Object.assign(lucky(() => gsRound(c, per), r => r.total), { stake, sum: 0 });
-      unstick(); cab.classList.remove('fs-mode');
-      btn.disabled = true; bet.lock(true); say(msg, 'Die Walzen laufen.');
+      let per, stake;
+      if (v) {
+        if (!S.inv.includes(v)) return false;
+        per = v.per; kind = v.k === 'pk' ? null : v.k; stake = useVoucher(v);
+        $('input', bet.el).value = per; updTot();
+      } else {
+        const f = kind === 'fs' ? c.buy : kind === 'lk' ? c.lk : 1;
+        per = bet.get(); stake = rnd2(per * c.cost * f);
+        if (!okBet(per, msg, c.cost * f) || !take(stake)) return false;
+      }
+      R = Object.assign(lucky(() => gsRound(c, per, kind), r => r.total), { stake, sum: 0, kind });
+      unstick(); unbadge(); cab.classList.remove('fs-mode');
+      btn.disabled = true; bet.lock(true); buys.forEach(b => b.lock(true)); paintV();
+      say(msg, v ? `Gutschein eingelöst: ${v.k === 'pk' ? 'Paket-Drehung' : vName(v.k)}.` : kind === 'fs' ? 'Freispiele gekauft. Die Walzen laufen.' : kind === 'lk' ? 'Glücksdrehung gekauft. Die Walzen laufen.' : 'Die Walzen laufen.');
       show(0);
       return true;
     }
     btn.onclick = () => spin();
-    return () => { clearTimeout(timer); ctl.destroy(); ro.disconnect(); done(); };
+    return () => { pack = null; clearTimeout(timer); clearTimeout(packT); buys.forEach(b => b.destroy()); ctl.destroy(); ro.disconnect(); done(); };
   };
 }
 
@@ -4353,7 +4537,7 @@ const GROUPS = {
 };
 const groupOf = k => Object.keys(GROUPS).find(g => GROUPS[g].list.includes(k));
 
-$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['fortschritt', 'Fortschritt'], ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
+$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['fortschritt', 'Fortschritt'], ['laden', 'Bonusladen'], ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
   .map(([k, n]) => `<a href="#${k}" data-r="${k}">${n}${k === 'aktionen' ? ' <span class="nbadge" id="nbadge" hidden></span>' : k === 'fortschritt' ? ' <span class="nbadge" id="fbadge" hidden></span>' : ''}</a>`).join('');
 
 function tileHTML(k, feature) {
@@ -4424,12 +4608,14 @@ function hall(root, g) {
 function lobby(root) {
   const n = Object.keys(GAMES).length;
   const open = openPromos(), fs = S.promo.alchemie || 0;
-  const gearStrip = canBuy() ? `<a class="promo-strip gear-strip" href="#fortschritt"><b>Ausrüstung</b><span>Du hast ${P().tok} Token. Damit kannst du deine Ausrüstung aufwerten und dein Glück heben.</span><span class="go">Ansehen →</span></a>` : '';
+  const gearStrip = canBuy() ? `<a class="promo-strip gear-strip" href="#fortschritt"><b>Ausrüstung</b><span>Du hast ${P().tok} Token. Das reicht für ein neues Stück Ausrüstung, das dein Glück hebt.</span><span class="go">Ansehen →</span></a>` : '';
+  const nv = S.inv.reduce((a, e) => a + e.n, 0);
+  const shopStrip = nv ? `<a class="promo-strip" href="#laden"><b>Gutscheine</b><span>${nv === 1 ? 'Ein Gutschein' : nv + ' Gutscheine'} aus dem Bonusladen ${nv === 1 ? 'wartet' : 'warten'} noch auf dich.</span><span class="go">Ansehen →</span></a>` : '';
   const strip = open || fs ? `<a class="promo-strip" href="#${open ? 'aktionen' : 'alchemie'}"><b>Aktionen</b><span>${open ? (open === 1 ? 'Ein Aktionscode wartet noch auf dich.' : `${open} Aktionscodes warten auf dich: Extra-Taler und Freispiele.`) : ''}${fs ? ` ${fs} Gratis-Freispiele im Alchemistenbuch sind noch offen.` : ''}</span><span class="go">${open ? 'Einlösen' : 'Spielen'} →</span></a>` : '';
   root.innerHTML = `<section class="felt hero"><div><h1>Zur Goldenen Elster</h1><p>${n} Spiele, tausend Taler zum Start und nirgends echtes Geld.</p>
-    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><a class="fact" href="#fortschritt">Level ${lvOf(P().xp).n}</a><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
+    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><a class="fact" href="#fortschritt">Level ${lvOf(P().xp).n}</a><a class="fact" href="#laden">Bonusladen</a><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
     <div class="mag"><button class="magpie" id="magpie" type="button" aria-label="Die Elster anstupsen">${MAGPIE}</button><p class="bubble" id="bubble" role="status" hidden></p></div></section>
-  ${strip}${gearStrip}
+  ${strip}${gearStrip}${shopStrip}
   ${Object.keys(GROUPS).map(g => `<section><div class="sect-row"><h2 class="sect"><a href="#${g}" style="text-decoration:none">${GROUPS[g].name}</a></h2><span>${GROUPS[g].aside}</span></div><div class="tiles ${GROUPS[g].cls}">${groupTiles(g)}</div></section>`).join('')}`;
   let poke = 0;
   const mag = $('#magpie', root), bub = $('#bubble', root);
@@ -4453,7 +4639,9 @@ function ledger(root) {
     <div class="ledfoot"><span>Nachgefüllt: <span class="num">${S.topups}</span>-mal 1.000 Taler · Aus Aktionen: <span class="num">${fmt(S.bonus || 0)}</span> Taler</span><button class="btn" id="reset" type="button">Von vorn anfangen</button></div>
     <p class="note">Beim Hold’em zählt als Einsatz, was du in den Pot gelegt hast, und als Rückfluss, was du gewonnen hast. Einen Hausvorteil gibt es dort nicht, deshalb steht keine Theorie dabei.</p>
     ${lucky_n ? `<p class="note">★ zählt die Runden, die mit dem Glücksregler über ×1 liefen, insgesamt ${fmt(lucky_n)}. Für diese Runden gilt die Theorie-Spalte nicht, deine Quote ist deshalb höher.</p>` : ''}
-    ${gearLuck() ? `<p class="note">Deine Ausrüstung gibt dir Glück +${luckPct(gearLuck())}. Deine Quote liegt deshalb etwas über der Theorie.</p>` : ''}</div></section>`;
+    ${gearLuck() ? `<p class="note">Deine Ausrüstung gibt dir Glück +${luckPct(gearLuck())}. Deine Quote liegt deshalb etwas über der Theorie.</p>` : ''}
+    ${S.spent ? `<p class="note">Für Ausrüstung ausgegeben: <span class="num">${fmt(S.spent)}</span> Taler. Das zählt nicht als Einsatz.</p>` : ''}
+    ${S.shop || S.inv.length ? `<p class="note">Bonusladen: ${S.shop >= 0 ? `<span class="num">${fmt(S.shop)}</span> Taler gingen netto in Turbo, Tränke, Glückskekse und Wundertüten.` : `Die Wundertüten brachten netto <span class="num">${fmt(-S.shop)}</span> Taler mehr, als der Laden gekostet hat.`}${S.inv.length ? ` Offene Gutscheine: <span class="num">${fmt(invOpen())}</span> Taler.` : ''} Eingelöste Gutscheine stehen mit ihrem Preis als Einsatz beim Automaten.</p>` : ''}</div></section>`;
   let armed = false;
   $('#reset', root).onclick = e => {
     if (!armed) { armed = true; e.target.textContent = 'Wirklich alles löschen?'; return; }
@@ -4474,12 +4662,17 @@ function ledger(root) {
 function progress(root, note) {
   const p = P(), L = lvOf(p.xp), gl = gearLuck(), got = ACH.filter(a => p.ach[a.id]).length;
   const gearCard = g => {
-    const k = p.gear[g.id] || 0, T = TIERS[k], c = nextCost(g.id), nx = TIERS[k + 1];
-    return `<article class="gcard t${k}" style="--tc:${T.c}">
+    const L = eqLv(g.id), own = L >= 0, max = L >= EQ_MAX, cur = eqLuck(g, L), c = own && !max ? upCost(g, L) : 0;
+    const act = !own
+      ? `<button class="btn${g.tok <= p.tok ? ' go' : ''}" type="button" data-gear="${g.id}"${g.tok > p.tok ? ' disabled' : ''}>Kaufen · ${g.tok} Token<small>${g.tok > p.tok ? `Dir fehlen ${g.tok - p.tok} Token` : 'Danach mit Talern aufwerten'}</small></button>`
+      : max ? '<p class="gmax">Stufe 10. Mehr geht nicht.</p>'
+      : `<button class="btn buy" type="button" data-up="${g.id}"${c > S.bal ? ' disabled' : ''}><b>Auf Stufe ${L + 1} · ${fmt(c)} Taler</b><small>Glück +${luckPct(eqLuck(g, L + 1) - cur)}${c > S.bal ? ' · so viel ist nicht in der Börse' : ''}</small></button>`;
+    return `<article class="gcard${own ? '' : ' t0'}${max ? ' t3' : ''}" style="--tc:${eqCol(L)}">
       <div class="gicon">${SYM[g.s]}</div>
       <div class="gbody"><h3>${g.n}</h3><p>${g.t}</p>
-        <div class="gpips">${[1, 2, 3].map(j => `<i class="${j <= k ? 'on' : ''}" style="--pc:${TIERS[j].c}"></i>`).join('')}<span>${k ? `${T.n} · Glück +${luckPct(T.b)}` : 'Noch nicht gekauft'}</span></div></div>
-      ${c ? `<button class="btn${c <= p.tok ? ' go' : ''}" type="button" data-gear="${g.id}"${c > p.tok ? ' disabled' : ''}>${k ? 'Auf ' + nx.n : 'Kaufen'} · ${c} Token<small>Glück +${luckPct(nx.b - T.b)}${c > p.tok ? ` · dir fehlen ${c - p.tok} Token` : ''}</small></button>` : '<p class="gmax">Gold. Mehr geht nicht.</p>'}
+        <div class="gpips"><span>${own ? `Stufe ${L} von ${EQ_MAX} · Glück +${luckPct(cur)}` : `Glück +${luckPct(g.b)}, aufgewertet bis +${luckPct(eqLuck(g, EQ_MAX))}`}</span></div>
+        ${own ? `<div class="eqbar" aria-hidden="true"><i style="width:${(L / EQ_MAX * 100).toFixed(0)}%"></i></div>` : ''}</div>
+      ${act}
     </article>`;
   };
   const achCard = a => {
@@ -4488,7 +4681,7 @@ function progress(root, note) {
       <div><h3>${a.n}</h3><p>${a.t}</p>${!done && goal > 1 ? `<div class="abar"><i style="width:${(v / goal * 100).toFixed(1)}%"></i></div><small>${fmt(v)} / ${fmt(goal)}</small>` : ''}</div>
       <span class="arew">${done ? 'Geschafft' : a.tok ? '+' + a.tok + ' Token' : 'Ruhm'}</span></li>`;
   };
-  root.innerHTML = `<section><header class="ghead"><h1>Fortschritt</h1><p>Jede Runde bringt Erfahrung, jedes Level bringt Token. Für Token gibt es Ausrüstung, die dein Glück ein wenig hebt. Erfolge bringen weitere Token.</p></header>
+  root.innerHTML = `<section><header class="ghead"><h1>Fortschritt</h1><p>Jede Runde bringt Erfahrung, jedes Level bringt Token. Für Token gibt es Ausrüstung, die dein Glück ein wenig hebt, und mit Talern wertest du sie weiter auf. Erfolge bringen weitere Token.</p></header>
     <div class="pg-top">
       <div class="side pg-lv"><div class="pg-big"><span>Level</span><b>${L.n}</b></div>
         <div class="xpline" role="progressbar" aria-label="Erfahrung bis Level ${L.n + 1}" aria-valuemin="0" aria-valuemax="${L.need}" aria-valuenow="${L.into}"><i style="width:${(L.into / L.need * 100).toFixed(1)}%"></i></div>
@@ -4497,22 +4690,171 @@ function progress(root, note) {
       <div class="side pg-tok"><div class="pg-big"><span>Token</span><b>${p.tok}</b></div>
         <div class="kv"><span>Glück durch Ausrüstung</span><span class="num">+${luckPct(gl)} von ${luckPct(GEAR_MAX)}</span></div>
         <div class="xpline" role="progressbar" aria-label="Glück durch Ausrüstung" aria-valuemin="0" aria-valuemax="${GEAR_MAX * 100}" aria-valuenow="${rnd2(gl * 100)}"><i style="width:${(gl / GEAR_MAX * 100).toFixed(1)}%"></i></div>
-        <p class="note">Glück +1 % heißt: Bei einer von hundert Auslosungen zieht die Elster ein zweites Mal, und das Bessere für dich zählt. Volle Ausrüstung bringt +5 %. Das hebt die Quote je nach Spiel um etwa 2,5 bis 5 Prozentpunkte, an den Automaten um rund 4.</p></div>
+        <p class="note">Glück +1 % heißt: Bei einer von hundert Auslosungen zieht die Elster ein zweites Mal, und das Bessere für dich zählt. Alle fünf Stücke auf Stufe 10 bringen +5 %. Das hebt die Quote je nach Spiel um etwa 2,5 bis 5 Prozentpunkte, an den Automaten um rund 4.</p></div>
     </div>
-    <div class="sect-row"><h2 class="sect">Ausrüstung</h2><span>${GEAR.filter(g => p.gear[g.id]).length} von ${GEAR.length} Stücken</span></div>
+    <div class="sect-row"><h2 class="sect">Ausrüstung</h2><span>${GEAR.filter(g => eqLv(g.id) >= 0).length} von ${GEAR.length} Stücken</span></div>
+    <p class="note pg-how">Neue Stücke kosten Token, und je mehr Glück eins bringt, desto teurer ist es. Danach wertest du es mit Talern auf, bis Stufe 10. Jede Stufe kostet doppelt so viel wie die vorige.</p>
     <p class="msg" id="pg-msg" aria-live="polite"></p>
     <div class="gear">${GEAR.map(gearCard).join('')}</div>
     <div class="sect-row"><h2 class="sect">Erfolge</h2><span>${got} von ${ACH.length}</span></div>
     <ul class="achs">${ACH.map(achCard).join('')}</ul>
     ${hasLuck() ? '<p class="note" style="margin-top:12px">Erfolge rund ums Gewinnen zählen nur in Runden ohne Glücksregler. Die Ausrüstung zählt dabei nicht als Glücksregler.</p>' : ''}</section>`;
   if (note) say($('#pg-msg', root), note.text, note.cls);
+  const again = (text, id) => {
+    const y = scrollY;
+    progress(root, { text, cls: 'good' }); scrollTo(0, y);
+    const nb = $(`[data-up="${id}"]`, root); if (nb && !nb.disabled) nb.focus();
+  };
   $$('[data-gear]', root).forEach(b => b.addEventListener('click', () => {
-    const id = b.dataset.gear, g = GEAR.find(x => x.id === id), y = scrollY;
-    if (!buyGear(id)) return;
-    progress(root, { text: `${g.n} ist jetzt ${TIERS[P().gear[id]].n}. Dein Glück: +${luckPct(gearLuck())}.`, cls: 'good' });
-    scrollTo(0, y);
-    const nb = $(`[data-gear="${id}"]`, root); if (nb && !nb.disabled) nb.focus();
+    const id = b.dataset.gear, g = GEAR.find(x => x.id === id);
+    if (buyGear(id)) again(`${g.n} gehört jetzt dir. Dein Glück: +${luckPct(gearLuck())}.`, id);
   }));
+  /* Aufwerten kostet Taler: Der erste Klick nennt den Preis, erst der zweite bezahlt. Nach 4 Sekunden verfällt der erste Klick. */
+  $$('[data-up]', root).forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.up, g = GEAR.find(x => x.id === id), L = eqLv(id), c = upCost(g, L), lab = $('b', b);
+    if (!b.classList.contains('armed')) {
+      $$('[data-up].armed', root).forEach(x => { x.classList.remove('armed'); $('b', x).textContent = x.dataset.lab; });
+      b.dataset.lab = lab.textContent; b.classList.add('armed'); lab.textContent = `Wirklich? ${fmt(c)} Taler zahlen`;
+      clearTimeout(pgArm); pgArm = setTimeout(() => { if (b.isConnected) { b.classList.remove('armed'); lab.textContent = b.dataset.lab; } }, 4000);
+      return;
+    }
+    clearTimeout(pgArm);
+    if (upGear(id)) again(`${g.n} ist jetzt auf Stufe ${L + 1}. Dein Glück: +${luckPct(gearLuck())}.${L + 1 < EQ_MAX ? ` Die nächste Stufe kostet ${fmt(upCost(g, L + 1))} Taler.` : ''}`, id);
+  }));
+}
+let pgArm = 0;
+
+/* ---------- Bonusladen ----------
+   Gutscheine für die zehn neuen Automaten: Freispiele und Glücksdrehungen zu Preisen aus der Simulation (Quote knapp unter 96 %),
+   Drehpakete mit kleinem Mengenrabatt (Quote bleibt unter 100 %). Dazu Turbo-Hebel, Erfahrungstrank, Glückskeks und Wundertüte.
+   Ein Gutschein: { k: 'fs' | 'lk' | 'pk', g: Automat, per: Einsatz je Linie, n: übrig, v: bezahlter Restwert }. Beim Einlösen zählt der anteilige Wert als Einsatz. */
+const PACKS = [[10, .01], [25, .02], [50, .03]];
+const PERS = [.1, .2, .5, 1, 2, 5, 10, 25, 50, 100];
+const SHOP = [
+  { id: 'turbo', n: 'Turbo-Hebel', s: 'blitz', col: '#9ff0e0', price: 2500, once: true, t: 'Ein Hebel für alle Automaten: Die Walzen laufen gut doppelt so schnell. Einmal kaufen, dann oben am Automaten an- und ausschalten.', sub: 'Für immer, jederzeit abschaltbar' },
+  { id: 'xp', n: 'Erfahrungstrank', s: 'phiole', col: '#b48cff', price: 1500, rounds: 100, t: 'Doppelte Erfahrung für die nächsten 100 Runden. Weitere Tränke hängen sich hinten an.', sub: 'Doppelte XP für 100 Runden' },
+  { id: 'lk', n: 'Glückskeks', s: 'blatt', col: '#7ff0b4', price: 3000, rounds: 50, t: 'Glück +1 % für die nächsten 50 Runden, zusätzlich zur Ausrüstung. Ein zweiter Keks verlängert.', sub: 'Glück +1 % für 50 Runden' },
+  { id: 'tuete', n: 'Wundertüte', s: 'truhe', col: '#f0c14e', price: 1000, t: 'Taler, Gutscheine für Freispiele oder Glücksdrehungen, ein Trank, ein Glückskeks oder mit viel Glück ein Token. Was drin ist, weiß nur die Elster.', sub: 'Inhalt zufällig' }
+];
+/* Wundertüte, Chancen in Prozent. Im Mittel kommt etwa 80 % des Preises zurück (Gutscheine und Tränke zum Ladenpreis gerechnet). */
+const TUETE = [[34, 'taler', 300], [22, 'taler', 600], [8, 'taler', 1500], [1, 'taler', 10000], [12, 'fs'], [10, 'lk5'], [8, 'xp'], [4, 'keks'], [1, 'tok']];
+function turbo() { return !!(S.own && S.own.turbo && S.turbo); }
+function charm() { return S.buff && S.buff.lk > 0 ? .01 : 0; }
+function extraLuck() { return gearLuck() + charm(); }
+const vName = k => ({ fs: 'Freispiele', lk: 'Glücksdrehung', pk: 'Drehpaket' })[k];
+function vPrice(c, k, per, n) {
+  const T = per * c.cost;
+  if (k === 'pk') return rnd2(T * n * (1 - PACKS.find(p => p[0] === n)[1]));
+  return rnd2(T * (k === 'fs' ? c.buy : c.lk) * n);
+}
+function addVoucher(k, g, per, n, v) {
+  const e = S.inv.find(x => x.k === k && x.g === g && x.per === per);
+  if (e) { e.n += n; e.v = rnd2(e.v + v); } else S.inv.push({ k, g, per, n, v });
+}
+/* Einen Gutschein benutzen: liefert den anteiligen Wert, der als Einsatz zählt */
+function useVoucher(e) {
+  const share = e.n > 1 ? rnd2(e.v / e.n) : e.v;
+  e.n--; e.v = rnd2(e.v - share);
+  if (e.n <= 0) S.inv.splice(S.inv.indexOf(e), 1);
+  save(); return share;
+}
+const invOpen = () => rnd2(S.inv.reduce((a, e) => a + e.v, 0));
+function bought() { const p = P(); p.buys = (p.buys || 0) + 1; checkAch(); save(); paint(); }
+function paintTurbo() {
+  $$('.turbofact').forEach(b => { b.hidden = !(S.own && S.own.turbo); b.textContent = `Turbo: ${S.turbo ? 'an' : 'aus'}`; b.setAttribute('aria-pressed', String(!!S.turbo)); b.classList.toggle('on', !!S.turbo); });
+}
+document.addEventListener('click', e => { if (!e.target.closest('.turbofact')) return; S.turbo = !S.turbo; save(); paintTurbo(); });
+function openTuete() {
+  let r = int(100), e = TUETE[0];
+  for (const x of TUETE) { if (r < x[0]) { e = x; break; } r -= x[0]; }
+  const [, k, a] = e;
+  if (k === 'taler') { S.bal = rnd2(S.bal + a); S.shop = rnd2(S.shop - a); return `In der Wundertüte: ${fmt(a)} Taler!`; }
+  if (k === 'fs' || k === 'lk5') {
+    const pool = GS.filter(x => k === 'lk5' || x.buy), c = pool[int(pool.length)], kk = k === 'fs' ? 'fs' : 'lk', n = kk === 'fs' ? 1 : 5, v = vPrice(c, kk, 1, n);
+    addVoucher(kk, c.id, 1, n, v); S.shop = rnd2(S.shop - v);
+    return `In der Wundertüte: ${kk === 'fs' ? 'Freispiele' : '5 Glücksdrehungen'} für ${c.name} mit 1 Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}, Wert ${fmt(v)} Taler.`;
+  }
+  if (k === 'xp') { S.buff.xp = (S.buff.xp || 0) + 100; return 'In der Wundertüte: ein Erfahrungstrank. Doppelte XP für die nächsten 100 Runden.'; }
+  if (k === 'keks') { S.buff.lk = (S.buff.lk || 0) + 50; return 'In der Wundertüte: ein Glückskeks. Glück +1 % für die nächsten 50 Runden.'; }
+  P().tok++; return 'In der Wundertüte: ein Token! Den gibt es sonst nur für Level und Erfolge.';
+}
+function buyItem(id) {
+  const it = SHOP.find(x => x.id === id);
+  if (!it || (it.once && S.own[id]) || !take(it.price)) return null;
+  S.shop = rnd2(S.shop + it.price);
+  let text;
+  if (id === 'turbo') { S.own.turbo = 1; S.turbo = true; text = 'Der Turbo-Hebel gehört dir und ist an. Am Automaten schaltest du ihn oben neben der Quote an und aus.'; }
+  else if (id === 'xp') { S.buff.xp = (S.buff.xp || 0) + it.rounds; text = `Erfahrungstrank getrunken: doppelte XP für ${S.buff.xp} Runden.`; }
+  else if (id === 'lk') { S.buff.lk = (S.buff.lk || 0) + it.rounds; text = `Glückskeks gegessen: Glück +1 % für ${S.buff.lk} Runden.`; }
+  else text = openTuete();
+  bought(); paintTurbo();
+  return text;
+}
+const SH = { g: 'sternwarte', per: 1 };
+function shop(root, note) {
+  const c = GS.find(x => x.id === SH.g) || GS[0], per = SH.per, T = rnd2(per * c.cost), unit = c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie';
+  const offer = (k, n, main, sub) => {
+    const pr = vPrice(c, k, per, n), poor = pr > S.bal;
+    return `<button class="btn buy" type="button" data-k="${k}" data-n="${n}" data-p="${pr}"${poor ? ' disabled' : ''}><b>${main} · ${fmt(pr)} Taler</b><small>${poor ? 'So viel ist nicht in der Börse' : sub}</small></button>`;
+  };
+  const offers = [
+    c.buy ? offer('fs', 1, 'Freispiele', `${num1(c.buy)}-facher Gesamteinsatz · Quote ${pct(c.buyQ)}`) : `<button class="btn buy" type="button" disabled><b>Freispiele</b><small>${c.name} hat keine Freispiele</small></button>`,
+    offer('lk', 1, 'Glücksdrehung', `${num1(c.lk)}-fach · Quote ${pct(c.lkQ)}`),
+    offer('lk', 5, '5 Glücksdrehungen', `${num1(c.lk)}-fach je Drehung · Quote ${pct(c.lkQ)}`),
+    ...PACKS.map(([n, d]) => offer('pk', n, `${n} Drehungen`, `${Math.round(d * 100)} % Rabatt · Quote ca. ${pct(c.rtp / 100 / (1 - d))}`))
+  ].join('');
+  const item = it => {
+    const own = it.once && S.own[it.id], left = it.id === 'xp' ? S.buff.xp || 0 : it.id === 'lk' ? S.buff.lk || 0 : 0, poor = it.price > S.bal;
+    const act = own
+      ? `<button class="btn${S.turbo ? ' go' : ''}" type="button" data-turbo>Turbo ist ${S.turbo ? 'an' : 'aus'}<small>Klick schaltet ihn ${S.turbo ? 'aus' : 'an'}</small></button>`
+      : `<button class="btn buy" type="button" data-item="${it.id}" data-p="${it.price}"${poor ? ' disabled' : ''}><b>${it.id === 'tuete' ? 'Öffnen' : left ? 'Verlängern' : 'Kaufen'} · ${fmt(it.price)} Taler</b><small>${poor ? 'So viel ist nicht in der Börse' : it.sub}</small></button>`;
+    return `<article class="gcard${own || left ? ' t3' : ''}" style="--tc:${it.col}"><div class="gicon">${SYM[it.s]}</div>
+      <div class="gbody"><h3>${it.n}</h3><p>${it.t}</p>${own ? '<div class="gpips"><span>Gehört dir</span></div>' : left ? `<div class="gpips"><span>Aktiv: noch ${left} Runden</span></div>` : ''}</div>${act}</article>`;
+  };
+  const inv = S.inv.map(e => `<li class="sh-v"><b>${e.k === 'pk' ? `Drehpaket` : vName(e.k)}</b><span>${GAMES[e.g].name} · ${fmt(e.per)} Taler ${GS.find(x => x.id === e.g).mode === 'ways' ? 'Grundeinsatz' : 'je Linie'} · noch ${e.n}${e.k === 'pk' ? ' Drehungen' : ''}</span><a class="btn" href="#${e.g}">Einlösen →</a></li>`).join('');
+  root.innerHTML = `<section><header class="ghead"><h1>Bonusladen</h1><p>Hier gibst du Taler für Extras aus: Gutscheine für die Automaten, einen Turbo-Hebel, Tränke und Glücksbringer. Alles bleibt Spielgeld, und keine Quote im Laden liegt über 100 %.</p></header>
+    <p class="msg" id="sh-msg" aria-live="polite"></p>
+    <div class="sect-row"><h2 class="sect">Für die Automaten</h2><span>Gutscheine, eingelöst am Automaten</span></div>
+    <div class="side sh-conf">
+      <div class="sh-pick">
+        <div class="field"><label for="sh-g">Automat</label><select id="sh-g">${GS.map(x => `<option value="${x.id}"${x.id === c.id ? ' selected' : ''}>${x.name}</option>`).join('')}</select></div>
+        <div class="field"><label for="sh-per">Einsatz ${unit}</label><select id="sh-per">${PERS.map(v => `<option value="${v}"${v === per ? ' selected' : ''}>${fmt(v)} Taler</option>`).join('')}</select></div>
+      </div>
+      <div class="kv"><span>Gesamteinsatz je Drehung</span><span class="num">${fmt(T)} Taler</span></div>
+      <div class="sh-offers">${offers}</div>
+      <p class="note">Freispiele: Die erste Drehung bringt sicher drei ${c.scatPl || 'Streusymbole'}. Glücksdrehung: sicher ein Multi (×2 bis ×10)${c.bst.pw ? ' oder eine wilde Walze (×2 bis ×5)' : ''}. Ein Drehpaket startest du am Automaten, dann läuft es von selbst und lässt sich anhalten.</p>
+    </div>
+    <div class="sect-row"><h2 class="sect">Deine Gutscheine</h2><span>${S.inv.length ? `Wert ${fmt(invOpen())} Taler` : 'noch keine'}</span></div>
+    ${S.inv.length ? `<ul class="sh-inv">${inv}</ul>` : '<p class="note sh-tip">Gekaufte Gutscheine erscheinen hier und direkt am Automaten.</p>'}
+    <div class="sect-row"><h2 class="sect">Tränke, Glücksbringer und mehr</h2><span>${SHOP.length} Dinge</span></div>
+    <div class="gear">${SHOP.map(item).join('')}</div></section>`;
+  const m = $('#sh-msg', root);
+  if (note) { say(m, note.text, note.cls); if (note.go) m.append(' ', h(`<a href="#${note.go}">Jetzt einlösen →</a>`)); }
+  const again = n => { const y = scrollY; shop(root, n); scrollTo(0, y); };
+  $('#sh-g', root).addEventListener('change', e => { SH.g = e.target.value; again(); });
+  $('#sh-per', root).addEventListener('change', e => { SH.per = +e.target.value; again(); });
+  /* Erster Klick nennt den Preis, der zweite zahlt. Nach 4 Sekunden verfällt der erste Klick. */
+  const arm = (b, go) => {
+    const lab = $('b', b);
+    if (!b.classList.contains('armed')) {
+      $$('.btn.buy.armed', root).forEach(x => { x.classList.remove('armed'); $('b', x).textContent = x.dataset.lab; });
+      b.dataset.lab = lab.textContent; b.classList.add('armed'); lab.textContent = `Wirklich? ${fmt(+b.dataset.p)} Taler zahlen`;
+      clearTimeout(pgArm); pgArm = setTimeout(() => { if (b.isConnected) { b.classList.remove('armed'); lab.textContent = b.dataset.lab; } }, 4000);
+      return;
+    }
+    clearTimeout(pgArm); go();
+  };
+  $$('[data-k]', root).forEach(b => b.addEventListener('click', () => arm(b, () => {
+    const k = b.dataset.k, n = +b.dataset.n, pr = vPrice(c, k, per, n);
+    if (!take(pr)) return;
+    addVoucher(k, c.id, per, n, pr); bought();
+    again({ text: `Gekauft: ${k === 'pk' ? n + ' Drehungen' : k === 'lk' && n > 1 ? n + ' Glücksdrehungen' : vName(k)} für ${c.name} mit ${fmt(per)} Taler ${unit}.`, cls: 'good', go: c.id });
+  })));
+  $$('[data-item]', root).forEach(b => b.addEventListener('click', () => arm(b, () => {
+    const text = buyItem(b.dataset.item);
+    if (text) again({ text, cls: 'good' });
+  })));
+  $$('[data-turbo]', root).forEach(b => b.addEventListener('click', () => { S.turbo = !S.turbo; save(); again({ text: `Turbo ist jetzt ${S.turbo ? 'an' : 'aus'}.` }); }));
 }
 
 /* ---------- Wege ---------- */
@@ -4521,7 +4863,7 @@ function route() {
   flush();
   if (cleanup) { cleanup(); cleanup = null; }
   let id = location.hash.slice(1) || 'lobby';
-  if (id !== 'kassenbuch' && id !== 'aktionen' && id !== 'fortschritt' && !GROUPS[id] && !GAMES[id]) id = 'lobby';
+  if (id !== 'kassenbuch' && id !== 'aktionen' && id !== 'fortschritt' && id !== 'laden' && !GROUPS[id] && !GAMES[id]) id = 'lobby';
   const root = $('#view'); root.innerHTML = '';
   const navId = GAMES[id] ? groupOf(id) : id;
   $$('#nav a').forEach(a => a.dataset.r === navId ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
@@ -4530,15 +4872,16 @@ function route() {
   else if (id === 'kassenbuch') ledger(root);
   else if (id === 'aktionen') promos(root);
   else if (id === 'fortschritt') progress(root);
+  else if (id === 'laden') shop(root);
   else if (GROUPS[id]) hall(root, id);
   else {
     const g = GAMES[id];
     const sub = `<nav class="machines" aria-label="${GROUPS[navId].name}">${GROUPS[navId].list.map(k => `<a href="#${k}"${k === id ? ' aria-current="page"' : ''}>${GAMES[k].name}</a>`).join('')}</nav>`;
     root.innerHTML = `<section><header class="ghead"><h1>${g.name}</h1><p>${g.rule}</p>
-      <div class="facts"><span class="fact">${g.rtp == null ? g.rtpLabel : 'Auszahlungsquote ' + rtpTxt(g)}</span><span class="fact luckfact" hidden></span><span class="fact gearfact" hidden></span><span class="fact keyfact">Leertaste: Hauptknopf</span></div>
+      <div class="facts"><span class="fact">${g.rtp == null ? g.rtpLabel : 'Auszahlungsquote ' + rtpTxt(g)}</span><span class="fact luckfact" hidden></span><span class="fact gearfact" hidden></span>${g.slot ? '<button class="fact turbofact" type="button" hidden></button>' : ''}<span class="fact keyfact">Leertaste: Hauptknopf</span></div>
       <p class="keyhint" id="keyhint" hidden>Klick einmal irgendwo ins Spiel, dann reagiert die Leertaste.</p></header>${sub}<div id="stage"></div></section>`;
     cleanup = g.mount($('#stage', root)) || null;
-    keyHint(); paintLuck();
+    keyHint(); paintLuck(); paintTurbo();
   }
 }
 window.addEventListener('hashchange', route);
