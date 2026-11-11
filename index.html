@@ -6,7 +6,7 @@
 <title>Zur Goldenen Elster</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fredoka:wght@500;600;700&family=Grenze+Gotisch:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Grenze+Gotisch:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: ein Salon bei Nacht. Klare Flächen in Tinte, Spieltische aus Petrol-Filz mit Messingrahmen,
    Messing nur für Geld und Handlung, das Schillern der Elsterfedern als kühler Akzent. Harte 1px-Kanten überall. */
@@ -623,146 +623,199 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 .fact.turbofact{cursor:pointer}
 .fact.turbofact[hidden]{display:none}
 .fact.turbofact.on{background:linear-gradient(180deg,#bff5ea,#5fd3bb);color:#062019;border-color:#bff5ea;font-weight:600}
-/* Shop im Stil eines bunten Spiele-Shops: dicke dunkle Konturen, Kanten-Schatten, kräftige Verläufe, runde Schrift */
-.shopplus{display:grid;place-items:center;width:32px;height:32px;padding:0;border-radius:10px;border:2px solid #0e3d17;background:linear-gradient(#6df07a,#24b03a);color:#fff;font:700 1.35rem/1 "Fredoka",var(--body);text-shadow:0 2px 0 rgba(0,0,0,.35);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 3px 0 #0e3d17;cursor:pointer}
-.shopplus:active{transform:translateY(2px);box-shadow:0 1px 0 #0e3d17}
+/* Shop: die Schatzkammer. Dieselbe Sprache wie die Spieltische: Tinte, Petrol-Filz, Messing, harte 1px-Kanten. */
+.shopplus{display:grid;place-items:center;width:32px;height:32px;padding:0;border-radius:50%;border:1px solid var(--brass-lo);background:linear-gradient(180deg,var(--brass-hi),var(--brass) 55%,#cf9a35);color:#1a1205;font:700 1.3rem/1 var(--body);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 2px 0 var(--brass-lo);cursor:pointer;transition:filter .15s,transform .08s}
+.shopplus:hover{filter:brightness(1.07)}
+.shopplus:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
 /* Auf dem Handy sitzt das + als kleines Abzeichen an der Ecke der Börse, damit die Kopfzeile einzeilig bleibt */
-@media (max-width:560px){.purse{position:relative}.shopplus{position:absolute;right:-12px;bottom:-9px;width:24px;height:24px;border-radius:8px;font-size:1.05rem;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 2px 0 #0e3d17}}
-.rb-ov{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(4,8,14,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:rbFade .18s ease-out}
-@keyframes rbFade{from{opacity:0}}
-body.rb-open{overflow:hidden}
-.rb-shop{--ol:#0f1520;position:relative;width:min(1000px,100%);max-height:calc(100vh - 32px);display:grid;grid-template-rows:auto minmax(0,1fr);border:4px solid var(--ol);border-radius:26px;background:linear-gradient(180deg,#304c7c,#1c2b4a);box-shadow:0 8px 0 var(--ol),0 24px 60px rgba(0,0,0,.55);overflow:hidden;font-family:"Fredoka",var(--body);color:#fff;animation:rbPop .32s cubic-bezier(.2,.9,.3,1.3)}
-.rb-shop:focus{outline:none}
-.rb-shop.inline{max-height:none;animation:none;margin-top:6px}
-@keyframes rbPop{from{transform:scale(.86) translateY(18px);opacity:0}}
-.rb-top{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 22px;background:linear-gradient(180deg,#5db8ff,#2f74ff);border-bottom:4px solid var(--ol)}
-.rb-title{margin:0;font:700 2.2rem/1 "Fredoka",var(--body);letter-spacing:.03em;text-transform:uppercase;color:#fff;text-shadow:3px 3px 0 var(--ol),-2px 2px 0 var(--ol),2px -2px 0 var(--ol),-2px -2px 0 var(--ol),0 5px 0 var(--ol)}
-.rb-bal{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:999px;background:#0f1a2c;border:3px solid var(--ol);font:700 1.15rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.08)}
-.rb-coin{display:inline-block;width:26px;height:26px;flex:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
-.rb-coin svg{width:100%;height:100%;display:block}
-.rb-x{width:44px;height:44px;flex:none;border-radius:12px;border:3px solid var(--ol);background:linear-gradient(#ff6b6b,#e0262f);color:#fff;font:700 1.3rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.3)}
-.rb-x:active,.rb-buy:active:not(:disabled),.rb-tab:active,.rb-pm:active:not(:disabled),.rb-slot:active,.rb-no:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ol)}
-.rb-body{display:grid;grid-template-columns:172px minmax(0,1fr);min-height:0}
-.rb-tabs{display:grid;align-content:start;gap:12px;padding:18px 12px;background:rgba(0,0,0,.2);border-right:4px solid var(--ol);overflow:auto}
-.rb-tab{position:relative;display:flex;align-items:center;gap:8px;min-height:50px;padding:6px 10px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,var(--t1),var(--t2));color:#fff;font:700 1rem/1.1 "Fredoka",var(--body);text-align:left;box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.35)}
-.rb-tab i{width:30px;height:30px;flex:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
-.rb-tab i svg{width:100%;height:100%;display:block}
-.rb-tab.on{outline:3px solid #fff;outline-offset:-8px;filter:brightness(1.12)}
-.rb-tab:not(.on){filter:saturate(.8)}
-.t-angebote{--t1:#ffcf3d;--t2:#f08a00}.t-automaten{--t1:#ff7aa8;--t2:#d6336c}.t-boosts{--t1:#c98bff;--t2:#7b3fe0}.t-paesse{--t1:#5fe0a0;--t2:#16a36a}.t-kisten{--t1:#ffa65c;--t2:#e0601b}.t-inventar{--t1:#6fc3ff;--t2:#2a77e0}
-.rb-dot{position:absolute;top:-9px;right:-8px;min-width:24px;height:24px;padding:0 6px;display:grid;place-items:center;border-radius:999px;background:#ff3b4f;border:3px solid var(--ol);font:700 .78rem/1 "Fredoka",var(--body);animation:rbBounce 1.4s ease-in-out infinite}
-@keyframes rbBounce{50%{transform:translateY(-3px)}}
-.rb-main{position:relative;padding:20px;overflow:auto;min-height:0}
-.rb-shop.inline .rb-main{overflow:visible}
-.rb-h{margin:24px 0 12px;font:700 1.3rem/1.1 "Fredoka",var(--body);color:#fff;text-shadow:2px 2px 0 var(--ol),-1px 1px 0 var(--ol),1px -1px 0 var(--ol),-1px -1px 0 var(--ol)}
-.rb-h:first-child{margin-top:0}
-.rb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:18px 16px;padding-top:8px}
-.rb-card{position:relative;display:grid;justify-items:center;align-content:start;gap:6px;padding:14px 12px 12px;border-radius:18px;border:3px solid var(--ol);background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.38),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));box-shadow:inset 0 3px 0 rgba(255,255,255,.25),0 5px 0 var(--ol);text-align:center;transition:transform .15s}
-.rb-card:hover{transform:translateY(-3px) rotate(-.5deg)}
-.rb-card.off{filter:grayscale(.85) brightness(.75)}
-.rb-rar{font:700 .64rem/1 "Fredoka",var(--body);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.3)}
-.rb-ico{position:relative;width:84px;height:84px;display:grid;place-items:center;animation:rbFloat 2.6s ease-in-out infinite}
-.rb-ico svg{width:100%;height:100%;filter:drop-shadow(0 4px 0 rgba(0,0,0,.35)) drop-shadow(0 0 12px rgba(255,255,255,.35))}
-.rb-ico.big{width:120px;height:120px}
-@keyframes rbFloat{50%{transform:translateY(-5px)}}
-.rb-tag{position:absolute;right:-16px;bottom:-4px;padding:2px 8px;border-radius:10px;background:#fff;color:var(--ol);border:3px solid var(--ol);font:700 .85rem/1.1 "Fredoka",var(--body);white-space:nowrap;transform:rotate(6deg)}
-.rb-name{margin:2px 0 0;font:700 1.12rem/1.1 "Fredoka",var(--body);color:#fff;hyphens:auto;overflow-wrap:break-word;max-width:100%;text-shadow:2px 2px 0 var(--ol),-1px 1px 0 var(--ol),1px -1px 0 var(--ol),-1px -1px 0 var(--ol),0 3px 0 var(--ol)}
-.rb-sub{margin:0;min-height:2.5em;font:500 .8rem/1.25 "Fredoka",var(--body);color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.55)}
-.rb-badge{position:absolute;top:-13px;left:-10px;z-index:2;padding:4px 10px;border-radius:10px;border:3px solid var(--ol);background:#ff3b5c;color:#fff;font:700 .76rem/1 "Fredoka",var(--body);letter-spacing:.04em;white-space:nowrap;transform:rotate(-8deg);box-shadow:0 3px 0 var(--ol);text-shadow:0 1px 0 rgba(0,0,0,.35)}
-.rb-badge.best{background:#ffd84d;color:var(--ol);text-shadow:none}
-.rb-badge.pass,.rb-badge.free{background:#16a36a}
-.rb-badge.own{background:#2a77e0}
-.rb-badge.mys{background:#7b3fe0}
-.rb-badge.hot{font-size:1.15rem;padding:6px 12px;animation:rbWig 1.8s ease-in-out infinite}
-@keyframes rbWig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(-3deg) scale(1.07)}}
-.rb-buy{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:46px;padding:6px 12px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,#6df07a,#24b03a);color:#fff;font:700 1.15rem/1 "Fredoka",var(--body);text-shadow:0 2px 0 rgba(0,0,0,.35);box-shadow:inset 0 3px 0 rgba(255,255,255,.35),0 4px 0 var(--ol);cursor:pointer}
-.rb-buy:hover:not(:disabled){filter:brightness(1.08)}
-.rb-buy:disabled{background:linear-gradient(180deg,#8d98a5,#5d6874);cursor:default}
-.rb-buy s{opacity:.75;font-size:.82em;margin-right:2px}
-.rb-buy .rb-coin{width:22px;height:22px}
-.rb-buy.owned,.rb-buy.go{background:linear-gradient(180deg,#6fc3ff,#2a77e0)}
-.rb-buy.off{background:linear-gradient(180deg,#8d98a5,#5d6874)}
-.rb-buy.free{background:linear-gradient(180deg,#ffd84d,#f08c00)}
-.rb-buy:disabled.owned{background:linear-gradient(180deg,#6fc3ff,#2a77e0)}
-.rb-left{position:relative;width:100%;height:22px;border-radius:999px;background:rgba(0,0,0,.4);border:2px solid var(--ol);overflow:hidden}
-.rb-left i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#6df07a,#24b03a)}
-.rb-left span{position:relative;display:block;font:700 .72rem/18px "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.6)}
-.rb-hero{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) 220px;align-items:center;gap:20px;padding:22px 24px;border-radius:22px;border:3px solid var(--ol);background:radial-gradient(90% 120% at 12% 20%,rgba(255,255,255,.4),transparent 55%),linear-gradient(135deg,var(--r1),var(--r2));box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 6px 0 var(--ol)}
-.rb-hero .rb-name{font-size:1.7rem}
-.rb-hero .rb-sub{min-height:0;font-size:.95rem}
-.rb-kicker{display:inline-block;margin-bottom:6px;padding:4px 10px;border-radius:999px;background:var(--ol);font:700 .75rem/1.2 "Fredoka",var(--body);letter-spacing:.08em;text-transform:uppercase;color:#ffd84d}
-.rb-timer{margin:10px 0 0;font:600 .95rem/1 "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.5)}
-.rb-cd{font-variant-numeric:tabular-nums}
-.rb-slots{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:thin}
-.rb-slot{flex:0 0 auto;display:grid;justify-items:center;gap:4px;width:94px;padding:8px 6px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,var(--g1,#3a4a66),var(--g2,#1d2a40));color:#fff;font:600 .76rem/1.1 "Fredoka",var(--body);box-shadow:0 4px 0 var(--ol);cursor:pointer;text-shadow:0 1px 0 rgba(0,0,0,.6)}
-.rb-slot i{width:44px;height:44px}
-.rb-slot i svg{width:100%;height:100%;display:block}
-.rb-slot.on{outline:3px solid #ffd84d;outline-offset:2px}
-.rb-step{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 14px;padding:10px 14px;border-radius:16px;background:rgba(0,0,0,.25);border:3px solid var(--ol)}
-.rb-steplbl{font:600 .95rem "Fredoka",var(--body)}
-.rb-pm{width:42px;height:42px;border-radius:12px;border:3px solid var(--ol);background:linear-gradient(180deg,#ffd84d,#f08c00);color:var(--ol);font:700 1.5rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.4),0 4px 0 var(--ol);cursor:pointer}
-.rb-pm:disabled{filter:grayscale(1) brightness(.7);cursor:default}
-.rb-stepv{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:100px;font:700 1.25rem/1 "Fredoka",var(--body)}
-.rb-steptot{margin-left:auto;font:500 .88rem "Fredoka",var(--body);opacity:.85}
-.rb-note{margin:18px 0 0;font:500 .84rem/1.4 "Fredoka",var(--body);color:rgba(255,255,255,.82)}
-.rb-drops{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
-.rb-tile{position:relative;flex:0 0 104px;display:grid;justify-items:center;align-content:center;gap:4px;height:118px;padding:8px 6px;border-radius:14px;border:3px solid var(--ol);background:radial-gradient(100% 70% at 50% 0%,rgba(255,255,255,.38),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));text-align:center;font:600 .74rem/1.1 "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.6)}
-.rb-tile i{width:48px;height:48px}
-.rb-tile i svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
-.rb-tile b{position:absolute;top:4px;right:6px;font:700 .72rem "Fredoka",var(--body)}
-.rb-tile.win{box-shadow:0 0 0 4px #fff,0 0 30px 6px var(--r1);transform:scale(1.06);z-index:1}
-.rb-empty{padding:34px 10px;text-align:center;font:600 1.05rem "Fredoka",var(--body);opacity:.85}
-.rb-layer{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:16px;background:rgba(6,10,18,.68);animation:rbFade .15s}
-.rb-layer:focus{outline:none}
-.rb-shop.inline .rb-layer{position:fixed;z-index:40}
-.rb-pbox{width:min(420px,100%);display:grid;justify-items:center;gap:12px;padding:20px;border-radius:22px;border:4px solid var(--ol);background:linear-gradient(180deg,#36548a,#1e2e4f);box-shadow:0 6px 0 var(--ol);text-align:center;animation:rbPop .28s cubic-bezier(.2,.9,.3,1.3)}
-.rb-pbox h3{margin:0;font:700 1.7rem/1 "Fredoka",var(--body);text-shadow:2px 2px 0 var(--ol),-2px 2px 0 var(--ol),2px -2px 0 var(--ol),-2px -2px 0 var(--ol),0 4px 0 var(--ol)}
-.rb-pitem{display:grid;place-items:center;width:130px;height:130px;border-radius:20px;border:3px solid var(--ol);background:radial-gradient(100% 70% at 50% 0%,rgba(255,255,255,.4),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));box-shadow:0 5px 0 var(--ol)}
-.rb-pitem.yay{animation:rbYay .6s cubic-bezier(.2,.9,.3,1.5)}
-@keyframes rbYay{from{transform:scale(.4) rotate(-20deg)}}
-.rb-ptext{margin:0;font:500 1.05rem/1.4 "Fredoka",var(--body)}
-.rb-pp{display:inline-flex;align-items:center;gap:4px;font-weight:700;vertical-align:-6px}
-.rb-psub{margin:0;font:500 .84rem/1.3 "Fredoka",var(--body);opacity:.85}
-.rb-pbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;width:100%}
-.rb-no{min-height:46px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,#8d98a5,#5d6874);color:#fff;font:700 1.1rem/1 "Fredoka",var(--body);box-shadow:inset 0 3px 0 rgba(255,255,255,.25),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.3)}
-.rb-rollbox{width:min(560px,100%)}
-.rb-case{position:relative;width:100%;overflow:hidden;padding:10px 0;border-radius:16px;border:3px solid var(--ol);background:#0f1a2c;cursor:pointer}
-.rb-strip{display:flex;gap:8px;width:max-content;will-change:transform}
-.rb-mark{position:absolute;top:0;bottom:0;left:50%;width:4px;margin-left:-2px;background:#ffd84d;box-shadow:0 0 12px #ffd84d}
-.rb-mark::before,.rb-mark::after{content:"";position:absolute;left:50%;transform:translateX(-50%);border:9px solid transparent}
-.rb-mark::before{top:0;border-top-color:#ffd84d}
-.rb-mark::after{bottom:0;border-bottom-color:#ffd84d}
-.rb-won{margin:0;min-height:1.4em;font:600 1.05rem/1.4 "Fredoka",var(--body)}
-.rb-rays{position:relative;isolation:isolate}
-.rb-rays::before{content:"";position:absolute;inset:-46px;z-index:-1;border-radius:50%;background:repeating-conic-gradient(rgba(255,216,77,.4) 0 12deg,transparent 12deg 24deg);-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);animation:rbSpin 6s linear infinite}
-@keyframes rbSpin{to{transform:rotate(360deg)}}
-.lvchip.vip::before{content:"VIP";position:absolute;top:-8px;right:-6px;padding:1px 5px;border-radius:6px;border:1px solid #0f1520;background:linear-gradient(#ff7b9c,#d7194c);color:#fff;font:700 .58rem/1.2 "Fredoka",var(--body);letter-spacing:.04em}
+@media (max-width:560px){.purse{position:relative}.shopplus{position:absolute;right:-10px;bottom:-9px;width:24px;height:24px;font-size:1.05rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 0 0 2px var(--ink)}}
+.sk-ov{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(3,6,9,.74);-webkit-backdrop-filter:blur(4px) saturate(1.15);backdrop-filter:blur(4px) saturate(1.15);animation:skFade .2s ease-out both}
+@keyframes skFade{from{opacity:0}}
+body.sk-open{overflow:hidden}
+.sk-shop{position:relative;width:min(1060px,100%);max-height:calc(100vh - 32px);display:grid;grid-template-rows:auto auto minmax(0,1fr);border-radius:12px;background:linear-gradient(180deg,var(--ink2),var(--ink));border:1px solid var(--line2);box-shadow:inset 0 0 0 1px rgba(230,183,82,.16),0 30px 80px rgba(0,0,0,.6);overflow:hidden;animation:skRise .28s cubic-bezier(.2,.8,.3,1) both}
+@keyframes skRise{from{transform:translateY(14px);opacity:0}}
+.sk-shop:focus{outline:none}
+.sk-shop.inline{max-height:none;margin-top:8px;animation:none}
+.sk-top{display:flex;align-items:center;gap:16px;padding:18px 18px 16px 24px;background:radial-gradient(90% 160% at 0% 0%,rgba(18,84,87,.6),transparent 62%),linear-gradient(180deg,var(--ink3),var(--ink2));border-bottom:1px solid var(--line)}
+.sk-eyebrow{margin-bottom:6px;font:500 .7rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--irid)}
+.sk-title{font:800 clamp(2.1rem,4.4vw,2.9rem)/.92 var(--disp);color:var(--brass);text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.sk-purse{margin-left:auto;display:flex;align-items:baseline;gap:8px;padding:9px 16px;border-radius:999px;background:var(--ink);border:1px solid var(--line2);box-shadow:var(--hair)}
+.sk-purse .lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.sk-purse b{font:500 1.15rem/1 var(--mono);color:var(--bone)}
+.sk-purse .unit{font-size:.85rem;color:var(--mute)}
+.sk-x{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line2);background:var(--ink3);color:var(--mute);font-size:1.05rem;cursor:pointer;transition:color .15s,border-color .15s}
+.sk-x:hover{color:var(--bone);border-color:var(--brass-lo)}
+.sk-tabs{display:flex;gap:4px;padding:10px 20px;border-bottom:1px solid var(--line);background:var(--ink2);overflow-x:auto;scrollbar-width:none}
+.sk-tab{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;border:1px solid transparent;background:none;color:var(--mute);font-weight:600;font-size:.95rem;white-space:nowrap;cursor:pointer}
+.sk-tab:hover{color:var(--bone);background:var(--ink3)}
+.sk-tab.on{color:var(--brass);background:var(--ink3);border-color:var(--line2);box-shadow:var(--hair)}
+.sk-n{min-width:20px;height:20px;padding:0 6px;display:inline-grid;place-items:center;border-radius:999px;background:var(--brass);color:#1a1205;font:600 .7rem/1 var(--mono)}
+.sk-dot{width:7px;height:7px;border-radius:50%;background:var(--brass);box-shadow:0 0 8px var(--brass)}
+.sk-main{padding:24px 24px 18px;overflow:auto;min-height:0;overscroll-behavior:contain}
+.sk-shop.inline .sk-main{overflow:visible}
+.sk-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin:34px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--line);font:700 1.7rem/1 var(--disp);color:var(--brass)}
+.sk-h.first{margin-top:0}
+.sk-h span{font:500 .74rem/1.3 var(--mono);color:var(--mute)}
+/* Vitrinen */
+.sk-lead{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:16px}
+.sk-hero{position:relative;display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;align-items:center;padding:20px 26px 22px 20px;border-radius:var(--r);background:radial-gradient(130% 100% at 30% 0%,var(--baize2),var(--baize) 62%,#082c2f);border:1px solid #041618;box-shadow:inset 0 0 0 5px rgba(0,0,0,.16),inset 0 0 0 6px rgba(230,183,82,.45),0 12px 32px rgba(0,0,0,.38)}
+.sk-hero .sk-stage::after{display:none}
+.sk-hero .sk-stage{height:190px;border:0;border-radius:8px;background:radial-gradient(48% 62% at 50% 0%,rgba(247,217,143,.4),transparent 72%);box-shadow:none}
+.sk-hero .sk-art{width:146px;height:146px}
+.sk-hero .sk-info{padding:0}
+.sk-hero .sk-kind{color:var(--brass-hi)}
+.sk-hero .sk-name{font:800 clamp(2rem,3.6vw,2.7rem)/1 var(--disp);color:var(--bone);letter-spacing:0}
+.sk-hero .sk-desc{max-width:44ch;font-size:1rem;color:#d3e2de}
+.sk-hero .sk-act{padding:16px 0 0;max-width:300px}
+.sk-hero .sk-note{margin:12px 0 0}
+.sk-off{position:absolute;top:8px;left:6px;z-index:1;padding:7px 10px;border-radius:4px;background:var(--brass);color:#1a1205;font:600 .82rem/1 var(--mono);transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.sk-cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sk-case{position:relative;display:grid;grid-template-rows:auto 1fr auto;min-width:0;border-radius:var(--r);background:linear-gradient(180deg,var(--ink3),var(--ink2));border:1px solid var(--line);box-shadow:var(--hair);transition:border-color .2s,transform .2s,box-shadow .2s}
+.sk-case:hover{border-color:var(--brass-lo);transform:translateY(-2px);box-shadow:var(--hair),0 14px 30px rgba(0,0,0,.45)}
+.sk-stage{position:relative;height:156px;display:grid;place-items:center;overflow:hidden;border-radius:7px 7px 0 0;background:radial-gradient(52% 72% at 50% 0%,rgba(247,217,143,.26),transparent 72%),radial-gradient(130% 100% at 50% 0%,var(--baize2),var(--baize) 60%,#071d20);border-bottom:1px solid rgba(230,183,82,.45);box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
+.sk-stage::before{content:"";position:absolute;left:50%;bottom:14px;width:130px;height:20px;margin-left:-65px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent)}
+.sk-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 42%,transparent 54%)}
+.sk-art{position:relative;width:100px;height:100px;margin-bottom:8px;filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+.sk-art svg{display:block;width:100%;height:100%}
+.sk-case:hover .sk-art,.sk-hero:hover .sk-art{transform:translateY(-5px) rotate(-3deg) scale(1.05)}
+.sk-ribbon{position:absolute;top:10px;right:10px;z-index:1;padding:5px 8px;border-radius:4px;background:rgba(0,0,0,.5);border:1px solid rgba(122,232,174,.5);color:var(--win);font:500 .64rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.sk-info{display:grid;align-content:start;gap:6px;padding:14px 16px 4px}
+.sk-kind{font:500 .68rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--irid)}
+.sk-name{margin:0;font:700 1.22rem/1.15 var(--body);color:var(--bone);letter-spacing:-.01em}
+.sk-desc{font-size:.9rem;line-height:1.4;color:var(--mute)}
+.sk-act{display:flex;align-items:center;gap:10px;padding:12px 16px 16px}
+.sk-free .sk-stage{background:radial-gradient(52% 72% at 50% 0%,rgba(247,217,143,.36),transparent 72%),radial-gradient(130% 100% at 50% 0%,#3a2a12,#21170a 60%,#120c05)}
+/* Knöpfe */
+.sk-buy{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;padding:8px 14px;border-radius:6px;border:1px solid var(--brass-lo);background:linear-gradient(180deg,var(--brass-hi),var(--brass) 52%,#d49e36);color:#1a1205;font:600 1rem/1.1 var(--body);text-decoration:none;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 2px 0 var(--brass-lo);transition:filter .15s,transform .08s}
+.sk-buy span{font:500 1.02rem/1 var(--mono);font-variant-numeric:tabular-nums}
+.sk-buy s{margin-right:8px;opacity:.55}
+.sk-buy:hover:not(:disabled){filter:brightness(1.06)}
+.sk-buy:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.sk-buy:disabled{background:var(--ink4);border-color:var(--line2);color:var(--mute);box-shadow:var(--hair);opacity:1}
+.sk-buy:disabled .sk-coin{filter:grayscale(1);opacity:.6}
+.sk-buy.armed{background:linear-gradient(180deg,#fff4d2,#f7d98f);animation:skArm .8s ease-in-out infinite alternate}
+.sk-buy.armed span{font:700 .98rem/1.1 var(--body)}
+@keyframes skArm{from{box-shadow:inset 0 1px 0 #fff,0 0 0 2px rgba(247,217,143,.5)}to{box-shadow:inset 0 1px 0 #fff,0 0 0 6px rgba(247,217,143,.14)}}
+.sk-buy.ghost{background:var(--ink3);border-color:var(--line2);color:var(--bone);box-shadow:var(--hair)}
+.sk-buy.ghost:hover{border-color:var(--brass-lo);filter:none}
+.sk-coin{width:16px;height:16px;flex:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c9,var(--brass) 55%,var(--brass-lo));box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.28)}
+.sk-own{display:inline-flex;align-items:center;gap:8px;min-height:46px;color:var(--win);font-weight:600;font-size:.95rem;white-space:nowrap}
+.sk-own::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--win);box-shadow:0 0 8px var(--win)}
+.sk-switch{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0;border:0;background:none;color:var(--bone);font-weight:600;cursor:pointer}
+.sk-switch i{position:relative;width:48px;height:28px;border-radius:999px;background:var(--ink);border:1px solid var(--line2);transition:background .2s,border-color .2s}
+.sk-switch i::after{content:"";position:absolute;top:4px;left:4px;width:18px;height:18px;border-radius:50%;background:var(--mute);transition:transform .2s,background .2s}
+.sk-switch[aria-checked="true"] i{background:rgba(95,216,198,.22);border-color:var(--irid)}
+.sk-switch[aria-checked="true"] i::after{transform:translateX(20px);background:var(--irid)}
+.sk-note{margin:0 16px 16px;padding:10px 12px;border-radius:6px;background:rgba(122,232,174,.08);border:1px solid rgba(122,232,174,.35);color:var(--bone);font-size:.9rem;line-height:1.38;animation:skFade .3s}
+.sk-note.wait{display:none}
+.sk-note a{color:var(--brass-hi);font-weight:600}
+.sk-left{height:6px;margin-top:6px;border-radius:999px;background:var(--ink);overflow:hidden}
+.sk-left i{display:block;height:100%;background:linear-gradient(90deg,var(--irid),#bff5ea)}
+.sk-leftt{font:500 .72rem/1.2 var(--mono);color:var(--irid)}
+/* Abrollband in der Vitrine */
+.sk-roll{position:absolute;inset:12px 14px 16px;z-index:2;overflow:hidden;border-radius:6px;background:rgba(4,10,12,.9);box-shadow:inset 0 0 0 1px rgba(230,183,82,.6),0 0 0 4px rgba(0,0,0,.3)}
+.sk-rstrip{display:flex;flex-direction:column;height:100%;will-change:transform}
+.sk-pt{flex:0 0 100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:0 10px;text-align:left}
+.sk-pt i{width:54px;height:54px;flex:none}
+.sk-pt i svg{display:block;width:100%;height:100%}
+.sk-pt span{font:700 1rem/1.15 var(--body);color:var(--rc)}
+.sk-pt.won{animation:skWon .6s cubic-bezier(.2,.9,.3,1.4)}
+.sk-pt.won i{filter:drop-shadow(0 0 14px var(--rc))}
+@keyframes skWon{from{transform:scale(.8)}}
+/* Für Automaten: Preisliste wie eine Karte im Salon */
+.sk-slots{display:flex;gap:4px;padding:4px;margin-bottom:16px;overflow-x:auto;border-radius:14px;background:var(--ink2);border:1px solid var(--line);scrollbar-width:thin}
+.sk-slot{flex:none;display:inline-flex;align-items:center;gap:8px;padding:5px 13px 5px 5px;border-radius:10px;border:0;background:none;color:var(--mute);font-weight:600;font-size:.92rem;white-space:nowrap;cursor:pointer}
+.sk-slot i{width:28px;height:28px;padding:3px;border-radius:7px;background:linear-gradient(var(--g1),var(--g2))}
+.sk-slot i svg{display:block;width:100%;height:100%}
+.sk-slot:hover{color:var(--bone)}
+.sk-slot.on{background:var(--bone);color:var(--ink)}
+.sk-list,.sk-box{border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(180deg,var(--ink3),var(--ink2));box-shadow:var(--hair);overflow:hidden}
+.sk-lhead{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding:18px 20px;background:radial-gradient(130% 120% at 0% 0%,var(--g1),var(--g2) 60%,var(--g3));border-bottom:1px solid rgba(230,183,82,.45)}
+.sk-strip{display:flex;gap:5px}
+.sk-strip i{width:48px;height:48px;padding:5px;border-radius:8px;background:linear-gradient(var(--r1),var(--r2));box-shadow:inset 0 0 0 1px var(--rim),0 4px 10px rgba(0,0,0,.3)}
+.sk-strip i svg{display:block;width:100%;height:100%}
+.sk-lhead h3{font:700 2rem/1 var(--disp);color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.4)}
+.sk-lhead p{margin-top:5px;font:500 .76rem/1.2 var(--mono);color:rgba(255,255,255,.82)}
+.sk-stake{margin-left:auto;display:flex;align-items:center;gap:6px;padding:5px;border-radius:999px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.14)}
+.sk-stake b{min-width:52px;text-align:center;font:500 1.08rem/1 var(--mono);color:#fff}
+.sk-stake small{max-width:118px;padding:0 10px 0 4px;font:500 .68rem/1.25 var(--mono);color:rgba(255,255,255,.78)}
+.sk-pm{width:36px;height:36px;flex:none;border-radius:50%;border:1px solid var(--line2);background:var(--ink3);color:var(--bone);font:600 1.15rem/1 var(--body);cursor:pointer}
+.sk-pm:hover:not(:disabled){border-color:var(--brass-lo)}
+.sk-pm:disabled{opacity:.35}
+.sk-rows{list-style:none;margin:0;padding:0}
+.sk-item{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(150px,200px);align-items:center;gap:10px 16px;padding:13px 20px;border-top:1px solid var(--line)}
+.sk-item:first-child{border-top:0}
+.sk-item:hover{background:rgba(255,255,255,.02)}
+.sk-ic{width:52px;height:52px;padding:6px;border-radius:8px;background:linear-gradient(var(--r1,var(--ink4)),var(--r2,var(--ink3)));box-shadow:inset 0 0 0 1px var(--rim,var(--line2))}
+.sk-ic.plain{padding:2px;background:radial-gradient(circle at 50% 30%,var(--baize2),var(--baize))}
+.sk-ic svg{display:block;width:100%;height:100%}
+.sk-it{display:grid;gap:3px;min-width:0}
+.sk-it b{font-weight:700;font-size:1.02rem}
+.sk-it span{font-size:.87rem;line-height:1.35;color:var(--mute)}
+.sk-it em{font:500 .72rem/1.2 var(--mono);font-style:normal;color:var(--brass)}
+.sk-item .sk-note{grid-column:1/-1;margin:0}
+.sk-item .sk-own,.sk-item .sk-switch{justify-self:end}
+.sk-fine{padding:13px 20px 16px;border-top:1px solid var(--line);font-size:.84rem;line-height:1.4;color:var(--mute)}
+.sk-drops{margin-top:24px;border-radius:var(--r);border:1px solid var(--line);background:var(--ink2)}
+.sk-drops summary{padding:13px 18px;font-weight:600;color:var(--mute);cursor:pointer}
+.sk-drops summary:hover{color:var(--bone)}
+.sk-dt{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:2px 18px 6px}
+.sk-dt h5{margin:0 0 6px;font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--irid)}
+.sk-dt ul{list-style:none;margin:0;padding:0}
+.sk-dt li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.sk-dt li b{font:500 .82rem/1.2 var(--mono);color:var(--brass)}
+.sk-drops .sk-fine{border-top:0}
+.sk-empty{display:grid;justify-items:center;gap:14px;padding:42px 16px 30px;text-align:center;color:var(--mute)}
+.sk-empty .sk-art{width:110px;height:110px}
+.sk-empty .sk-buy{width:auto;padding-inline:22px}
+.sk-foot{margin-top:26px;font:500 .7rem/1.4 var(--mono);color:var(--dim);text-align:center}
+.lvchip.vip::before{content:"VIP";padding:3px 5px 2px;border-radius:4px;background:linear-gradient(180deg,var(--brass-hi),var(--brass));color:#1a1205;font:600 .58rem/1 var(--mono);letter-spacing:.08em}
 body.goldcab .cab,body.goldcab .cab-gen{box-shadow:inset 0 0 0 5px rgba(0,0,0,.18),inset 0 0 0 7px #f7d98f,0 0 0 3px #c8962f,0 0 30px rgba(247,217,143,.5),0 12px 32px rgba(0,0,0,.38)}
 body.goldcab .reels{border-color:#f0c14e}
+@media (max-width:880px){
+  .sk-lead{grid-template-columns:minmax(0,1fr)}
+  .sk-cases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media (max-width:700px){
-  .rb-ov{padding:8px}
-  .rb-shop{max-height:calc(100vh - 16px);border-radius:20px}
-  .rb-top{padding:10px 10px 10px 16px}
-  .rb-title{font-size:1.7rem}
-  .rb-bal{font-size:1rem}
-  .rb-body{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-  .rb-tabs{display:flex;gap:8px;padding:14px 10px 12px;border-right:0;border-bottom:4px solid var(--ol);overflow-x:auto;overflow-y:hidden}
-  .rb-tab{flex:0 0 auto;min-height:44px;font-size:.9rem}
-  .rb-tab i{width:24px;height:24px}
-  .rb-dot{top:-11px;right:-6px}
-  .rb-main{padding:14px}
-  .rb-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
-  .rb-card{padding:12px 8px 10px}
-  .rb-ico{width:62px;height:62px}
-  .rb-name{font-size:1rem}
-  .rb-sub{font-size:.74rem}
-  .rb-buy{font-size:1rem;min-height:42px;padding:6px 8px}
-  .rb-tag{right:-12px;font-size:.75rem}
-  .rb-hero{grid-template-columns:auto minmax(0,1fr);gap:12px;padding:18px 14px 14px}
-  .rb-hero .rb-buy{grid-column:1/-1}
-  .rb-hero .rb-name{font-size:1.3rem}
-  .rb-ico.big{width:80px;height:80px}
-  .rb-steptot{margin-left:0;width:100%}
+  .sk-ov{padding:0;place-items:stretch}
+  .sk-shop{height:100%;max-height:none;border-radius:0;border:0}
+  .sk-shop.inline{height:auto;border:1px solid var(--line2);border-radius:12px}
+  .sk-top{gap:10px;padding:14px 12px 12px 16px}
+  .sk-title{font-size:1.9rem}
+  .sk-purse{padding:7px 11px}
+  .sk-purse .lbl,.sk-purse .unit{display:none}
+  .sk-tabs{padding:8px 12px}
+  .sk-tab{padding:7px 12px;font-size:.9rem}
+  .sk-main{padding:16px}
+  .sk-h{font-size:1.45rem;margin-top:28px}
+  .sk-hero{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px 18px}
+  .sk-hero .sk-stage{height:140px}
+  .sk-hero .sk-art{width:112px;height:112px}
+  .sk-hero .sk-act{max-width:none}
+  .sk-cases{grid-template-columns:minmax(0,1fr);gap:10px}
+  .sk-case{grid-template-columns:112px minmax(0,1fr);grid-template-rows:1fr auto}
+  .sk-case:hover{transform:none}
+  .sk-case .sk-stage{grid-row:1/3;height:auto;min-height:132px;border-radius:7px 0 0 7px;border-bottom:0;border-right:1px solid rgba(230,183,82,.45)}
+  .sk-case .sk-stage::before{width:80px;margin-left:-40px;bottom:12px}
+  .sk-case .sk-art{width:70px;height:70px}
+  .sk-case .sk-info{padding:12px 12px 2px}
+  .sk-case .sk-desc{font-size:.85rem}
+  .sk-case .sk-act{padding:8px 12px 12px}
+  .sk-case .sk-note{grid-column:1/-1;margin:0 12px 12px}
+  .sk-ribbon{top:6px;right:auto;left:6px}
+  .sk-roll{inset:8px}
+  .sk-pt{flex-direction:column;gap:4px;text-align:center}
+  .sk-pt i{width:40px;height:40px}
+  .sk-pt span{font-size:.8rem}
+  .sk-lhead{padding:14px 16px}
+  .sk-lhead h3{font-size:1.7rem}
+  .sk-stake{margin-left:0;width:100%}
+  .sk-stake small{max-width:none;margin-left:auto}
+  .sk-item{grid-template-columns:44px minmax(0,1fr);gap:10px 12px;padding:12px 14px}
+  .sk-item > .sk-buy{grid-column:2}
+  .sk-item .sk-own,.sk-item .sk-switch{grid-column:2;justify-self:start;min-height:0}
+  .sk-ic{width:44px;height:44px;padding:4px}
+  .sk-dt{grid-template-columns:minmax(0,1fr)}
 }
 .msg a{color:var(--brass-hi);font-weight:600}
 @media (max-width:560px){.gs-multi{top:-24px;right:-6px;padding:4px 10px 3px;border-radius:12px}.gs-multi b{font-size:1.35rem}.gs-multi small{font-size:.55rem}.xpand.wm .wmx{font-size:.95rem;padding:2px 7px;bottom:6px}}
@@ -916,6 +969,108 @@ body.goldcab .reels{border-color:#f0c14e}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* Drachenhöhle: Wild Spins. Jede Stufe hat ihr eigenes Feuer: orange, rot, gold, violett, zuletzt blauweiß. */
+.ws-cab{--fa:#ffb347;--fb:#ff5a1f;--fc:#7a1405}
+.ws-cab.ws-t1,.ws-ov.ws-t1{--fa:#ffd23f;--fb:#ff2a1a;--fc:#6a0404}
+.ws-cab.ws-t2,.ws-ov.ws-t2{--fa:#fff2b0;--fb:#ffae00;--fc:#7a3200}
+.ws-cab.ws-t3,.ws-ov.ws-t3{--fa:#ffc8ff;--fb:#b92cff;--fc:#2a0652}
+.ws-cab.ws-t4,.ws-ov.ws-t4{--fa:#ffffff;--fb:#45c4ff;--fc:#0a2780}
+.ws-cab .reels,.ws-cab .banner,.ws-cab .ws-hud{position:relative;z-index:1}
+.ws-cab.ws-on.fs-mode{background:radial-gradient(130% 100% at 50% 0%,var(--fb),var(--fc) 60%,#080101);box-shadow:inset 0 0 0 5px rgba(0,0,0,.2),inset 0 0 0 6px var(--fa),0 0 46px -8px var(--fb),0 12px 32px rgba(0,0,0,.38);transition:background .4s,box-shadow .4s}
+.ws-cab.ws-on::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;z-index:0;pointer-events:none;border-radius:0 0 var(--r) var(--r);opacity:.75;mix-blend-mode:screen;
+  background:radial-gradient(9% 70% at 6% 100%,var(--fa),transparent 72%),radial-gradient(8% 90% at 19% 100%,var(--fb),transparent 70%),radial-gradient(10% 60% at 33% 100%,var(--fa),transparent 72%),radial-gradient(8% 95% at 47% 100%,var(--fb),transparent 70%),radial-gradient(10% 65% at 61% 100%,var(--fa),transparent 72%),radial-gradient(8% 85% at 75% 100%,var(--fb),transparent 70%),radial-gradient(10% 70% at 90% 100%,var(--fa),transparent 72%);
+  background-size:50% 100%;animation:wsLick 1.6s linear infinite,wsFlick .23s ease-in-out infinite alternate}
+@keyframes wsLick{to{background-position:-100% 0}}
+@keyframes wsFlick{from{transform:scaleY(.92);transform-origin:50% 100%}to{transform:scaleY(1.06);transform-origin:50% 100%}}
+.ws-cab.ws-t4::after{animation:wsLick .9s linear infinite,wsFlick .15s ease-in-out infinite alternate}
+.ws-cab.ws-shake{animation:wsShake .5s cubic-bezier(.36,.07,.19,.97) both}
+.ws-cab.ws-t3.ws-shake,.ws-cab.ws-t4.ws-shake{animation:wsShakeBig .6s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes wsShake{10%,90%{transform:translate(-2px,1px)}20%,80%{transform:translate(4px,-2px)}30%,50%,70%{transform:translate(-6px,2px)}40%,60%{transform:translate(6px,-1px)}}
+@keyframes wsShakeBig{10%,90%{transform:translate(-3px,2px) rotate(-.4deg)}20%,80%{transform:translate(7px,-3px) rotate(.5deg)}30%,50%,70%{transform:translate(-10px,3px) rotate(-.6deg)}40%,60%{transform:translate(10px,-2px) rotate(.6deg)}}
+.ws-sweep{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:var(--r);overflow:hidden}
+.ws-sweep::before{content:"";position:absolute;top:-10%;bottom:-10%;left:-40%;width:40%;background:linear-gradient(90deg,transparent,var(--fb) 30%,var(--fa) 55%,#fff 62%,var(--fa) 70%,transparent);filter:blur(6px);opacity:.9;animation:wsSweep .75s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes wsSweep{to{left:110%}}
+/* Feuerwalze: eine ganze Walze steht in Flammen */
+.xpand.ws-fire{overflow:hidden;background:radial-gradient(70% 40% at 50% 100%,var(--fa),transparent 72%),linear-gradient(0deg,var(--fb),var(--fc) 85%);box-shadow:inset 0 0 0 2px var(--fa),0 0 24px var(--fb);transform-origin:50% 100%;animation:wsRise .55s cubic-bezier(.2,.9,.3,1.15) both,wsGlow .8s .55s ease-in-out infinite alternate}
+.xpand.ws-fire::before{content:"";position:absolute;inset:-20% 0 0;mix-blend-mode:screen;opacity:.85;
+  background:radial-gradient(22% 16% at 25% 80%,var(--fa),transparent 70%),radial-gradient(18% 14% at 70% 60%,var(--fa),transparent 70%),radial-gradient(20% 18% at 45% 35%,var(--fb),transparent 70%),radial-gradient(16% 12% at 80% 15%,var(--fa),transparent 70%);
+  background-size:100% 50%;animation:wsUp .7s linear infinite}
+.xpand.ws-fire svg{position:relative;width:88%;filter:drop-shadow(0 0 10px var(--fa)) drop-shadow(0 0 22px var(--fb));animation:wsPulse .32s ease-in-out infinite alternate}
+@keyframes wsRise{from{transform:scaleY(0);filter:brightness(2.6)}60%{filter:brightness(1.6)}}
+@keyframes wsGlow{to{box-shadow:inset 0 0 0 2px #fff,0 0 40px var(--fa)}}
+@keyframes wsUp{to{background-position:0 -100%}}
+@keyframes wsPulse{to{transform:scale(1.07)}}
+/* Anzeige im Automaten: Stufe, Glut, Freispiele */
+.ws-hud{display:flex;align-items:center;justify-content:space-between;gap:10px;width:min(100%,560px);padding:6px 8px 6px 14px;border-radius:999px;background:rgba(0,0,0,.5);box-shadow:inset 0 0 0 1px var(--fa),0 0 20px -4px var(--fb)}
+.ws-hud .ws-name{font:800 1.2rem/1 var(--disp);color:#fff;text-shadow:0 0 10px var(--fb),0 0 2px var(--fb);white-space:nowrap}
+.ws-glut{display:flex;gap:3px}
+.ws-glut i{display:block;width:30px;height:30px;padding:2px;border-radius:50%;background:rgba(0,0,0,.45);opacity:.35;filter:grayscale(1)}
+.ws-glut i svg{width:100%;height:100%}
+.ws-glut i.on{opacity:1;filter:drop-shadow(0 0 6px var(--fa));background:radial-gradient(circle,var(--fb),transparent 70%)}
+.ws-glut i.new{animation:fsPop .45s cubic-bezier(.2,.9,.3,1.5) both}
+.ws-glut.full i{animation:wsPulse .25s ease-in-out 4 alternate}
+.ws-left{font-size:.85rem;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.1)}
+.ws-ladder ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.ws-ladder li{display:grid;gap:1px;padding:7px 10px;border-radius:6px;border:1px solid var(--line);background:var(--ink)}
+.ws-ladder li b{font-size:.92rem}
+.ws-ladder li span{font-size:.8rem;color:var(--mute);line-height:1.3}
+.ws-ladder li:nth-child(1) b{color:#ffb347}.ws-ladder li:nth-child(2) b{color:#ff6a4a}.ws-ladder li:nth-child(3) b{color:#ffd23f}.ws-ladder li:nth-child(4) b{color:#d58bff}.ws-ladder li:nth-child(5) b{color:#7fd6ff}
+.ws-ladder li.on{border-color:var(--brass);background:linear-gradient(90deg,rgba(230,183,82,.18),var(--ink));box-shadow:0 0 16px -6px var(--brass)}
+.ws-ladder li.done{opacity:.55}
+.ws-ladder .note{margin-top:6px}
+/* Das große Bild: Feuerwand, Funken, Strahlen, der Drache mit Feueratem, der Name der Stufe */
+.ws-ov{--fa:#ffb347;--fb:#ff5a1f;--fc:#7a1405;position:fixed;inset:0;z-index:80;overflow:hidden;cursor:pointer;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 100%,var(--fc),rgba(6,1,1,.94) 72%);animation:fsIn .3s ease-out both;transition:opacity .38s}
+.ws-ov.out{opacity:0}
+.ws-rays{position:absolute;left:50%;top:42%;width:220vmax;height:220vmax;margin:-110vmax 0 0 -110vmax;opacity:.32;background:repeating-conic-gradient(from 0deg,var(--fb) 0 5deg,transparent 5deg 15deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 42%);mask:radial-gradient(circle,#000 0,transparent 42%);animation:wsSpin 9s linear infinite}
+.ws-t3 .ws-rays,.ws-t4 .ws-rays{opacity:.5;animation-duration:4s}
+@keyframes wsSpin{to{transform:rotate(1turn)}}
+.ws-wall{position:absolute;left:-10%;right:-10%;bottom:-4vh;height:calc(30vh + var(--t,0) * 6vh);mix-blend-mode:screen;transform-origin:50% 100%;
+  background:radial-gradient(7% 80% at 5% 100%,var(--fa),transparent 72%),radial-gradient(6% 100% at 15% 100%,var(--fb),transparent 70%),radial-gradient(8% 70% at 26% 100%,var(--fa),transparent 72%),radial-gradient(6% 105% at 37% 100%,var(--fb),transparent 70%),radial-gradient(8% 75% at 49% 100%,#fff,transparent 60%),radial-gradient(6% 100% at 60% 100%,var(--fb),transparent 70%),radial-gradient(8% 72% at 72% 100%,var(--fa),transparent 72%),radial-gradient(6% 95% at 84% 100%,var(--fb),transparent 70%),radial-gradient(8% 80% at 95% 100%,var(--fa),transparent 72%);
+  background-size:50% 100%;animation:wsWall .5s cubic-bezier(.2,.9,.3,1.2) both,wsLick 1.3s linear infinite,wsFlick .18s ease-in-out infinite alternate}
+.ws-t1 .ws-wall{--t:1}.ws-t2 .ws-wall{--t:2}.ws-t3 .ws-wall{--t:3}.ws-t4 .ws-wall{--t:5}
+@keyframes wsWall{from{transform:scaleY(0)}}
+.ws-embers i{position:absolute;bottom:-12px;width:var(--s);height:var(--s);border-radius:50%;background:var(--fa);box-shadow:0 0 8px var(--fb),0 0 16px var(--fb);animation:wsEmber var(--d) linear var(--dl) infinite}
+@keyframes wsEmber{to{transform:translate(var(--dx),-108vh) scale(.25);opacity:0}}
+.ws-dragon{position:absolute;left:-3vw;bottom:0;width:min(64vw,600px);--d1:#c22a14;--d2:#4a0805;--d3:#2a0402;animation:wsSwoop 1s cubic-bezier(.2,.9,.25,1) both}
+.ws-t1 .ws-dragon{--d1:#e0331a;--d2:#5a0606}
+.ws-t2 .ws-dragon{--d1:#e8a020;--d2:#6a2a04;--d3:#3a1402}
+.ws-t3 .ws-dragon{--d1:#8a2ad6;--d2:#22063f;--d3:#16032a}
+.ws-t4 .ws-dragon{--d1:#2a8ad6;--d2:#06204a;--d3:#04122e;filter:drop-shadow(0 0 30px #45c4ff)}
+.ws-drake{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+.ws-eye{filter:drop-shadow(0 0 6px var(--fa));animation:wsPulse .4s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes wsSwoop{from{transform:translate(-70%,30%) rotate(-14deg) scale(.7);opacity:0}70%{transform:translate(3%,-2%) rotate(2deg) scale(1.02);opacity:1}}
+.ws-breath{position:absolute;left:85%;top:29%;width:110vw;height:46%;transform-origin:0 50%;mix-blend-mode:screen;clip-path:polygon(0 40%,100% 0,100% 100%,0 60%);
+  background:radial-gradient(ellipse 60% 50% at 0 50%,#fff 0,var(--fa) 18%,var(--fb) 42%,transparent 72%);animation:wsBreath .55s .75s cubic-bezier(.2,.9,.3,1) both,wsBreathF .14s 1.3s ease-in-out infinite alternate}
+@keyframes wsBreath{from{transform:scaleX(0);opacity:0}}
+@keyframes wsBreathF{to{transform:scale(1.05,1.14)}}
+.ws-txt{position:absolute;z-index:2;top:max(7vh,36px);left:0;right:0;display:grid;justify-items:center;gap:10px;padding:0 16px;text-align:center}
+.ws-txt small{font:600 .82rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fa);text-shadow:0 0 10px var(--fb)}
+.ws-txt b{position:relative;font:800 clamp(2.6rem,9.5vw,7.4rem)/.92 var(--disp);color:#fff;text-shadow:0 0 18px var(--fa),0 0 42px var(--fb),0 0 90px var(--fb),0 4px 0 var(--fc);animation:wsSlam .7s .5s cubic-bezier(.2,.9,.3,1.3) both}
+.ws-txt span{max-width:36ch;font-weight:700;font-size:clamp(1rem,2.4vw,1.25rem);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8);animation:fsIn .4s 1s both}
+@keyframes wsSlam{from{transform:scale(3.2);opacity:0;filter:blur(12px)}60%{transform:scale(.94);opacity:1;filter:none}}
+.ws-pips{display:flex;gap:8px;margin-top:4px;animation:fsIn .4s 1.1s both}
+.ws-pips i{width:34px;height:8px;border-radius:999px;background:rgba(255,255,255,.18)}
+.ws-pips i.done{background:var(--fb)}
+.ws-pips i.on{background:#fff;box-shadow:0 0 12px var(--fa),0 0 24px var(--fb);animation:wsPulse .3s ease-in-out infinite alternate}
+.ws-flash{position:absolute;inset:0;z-index:3;pointer-events:none;background:#fff;opacity:0}
+.ws-t2 .ws-flash,.ws-t3 .ws-flash,.ws-t4 .ws-flash{animation:wsFlash .6s .55s ease-out both}
+@keyframes wsFlash{0%{opacity:.95}100%{opacity:0}}
+.ws-ov.ws-t2,.ws-ov.ws-t3,.ws-ov.ws-t4{animation:fsIn .3s ease-out both,wsShake .55s .55s cubic-bezier(.36,.07,.19,.97) both}
+.ws-ov.ws-t4{animation:fsIn .3s ease-out both,wsShakeBig .7s .55s cubic-bezier(.36,.07,.19,.97) both}
+.ws-t4 .ws-txt b::before,.ws-t4 .ws-txt b::after{content:attr(data-t);position:absolute;inset:0;mix-blend-mode:screen;animation:wsGlitch .9s steps(2) 1.2s infinite}
+.ws-t4 .ws-txt b::before{color:#ff2a6a;transform:translate(-4px,0);text-shadow:none}
+.ws-t4 .ws-txt b::after{color:#2ae0ff;transform:translate(4px,0);text-shadow:none;animation-delay:1.35s}
+@keyframes wsGlitch{0%,100%{clip-path:inset(0 0 60% 0)}50%{clip-path:inset(55% 0 0 0)}}
+@media (max-width:700px){
+  .ws-dragon{width:112vw;left:-34vw;bottom:4vh}
+  .ws-txt{top:max(9vh,40px)}
+  .ws-hud{padding:5px 6px 5px 10px;gap:6px}
+  .ws-hud .ws-name{font-size:.98rem}
+  .ws-glut i{width:24px;height:24px}
+  .ws-left{font-size:.75rem;padding:4px 7px}
+}
+@media (prefers-reduced-motion:reduce){.ws-cab.ws-on::after,.xpand.ws-fire::before,.xpand.ws-fire svg{animation:none}}
 </style>
 </head>
 <body>
@@ -1349,6 +1504,7 @@ Object.assign(SYM, {
   pfanne: svg('<path d="M40 22l7-3" stroke="#3f464b" stroke-width="3" stroke-linecap="round"/><ellipse cx="22" cy="26" rx="20" ry="12" fill="#6f7a82" stroke="#2f363b" stroke-width="1.500"/><ellipse cx="22" cy="24" rx="15" ry="8" fill="#4a5359"/><g fill="#f2c94c" stroke="#9a6a10" stroke-width=".8"><circle cx="16" cy="23" r="2.600"/><circle cx="24" cy="20.500" r="3.200"/><circle cx="28" cy="26" r="2.200"/><circle cx="19" cy="27.500" r="1.900"/></g>'),
   hacke: svg('<path d="M24 13L38 45" stroke="#8a5a2b" stroke-width="5.500" stroke-linecap="round"/><path d="M3 18C12 6 34 4 45 14 35 11 14 12 3 18z" fill="#9aa1a8" stroke="#3f464b" stroke-width="1.500" stroke-linejoin="round"/><rect x="20" y="8" width="8" height="8" rx="1.500" fill="#6a7078" transform="rotate(-24 24 12)"/>'),
   flamme: svg('<path d="M24 2c6 9 17 15 17 28a17 17 0 0 1-34 0c0-7 3-11 7-14 0 5 2 8 5 9-2-8 1-16 5-23z" fill="#f2552c" stroke="#8e1d0a" stroke-width="1.200"/><path d="M24 19c4 5 9 8 9 15a9 9 0 0 1-18 0c0-4 3-7 5-9 0 3 1 4 3 5-1-3-1-7 1-11z" fill="#ffd23f"/>'),
+  drachenei: svg('<path d="M24 3c9 0 17 14 17 26a17 17 0 0 1-34 0C7 17 15 3 24 3z" fill="#7a1a10" stroke="#2a0604" stroke-width="1.200"/><path d="M11 22q3.200 3.500 6.500 0q3.200 3.500 6.500 0q3.200 3.500 6.500 0q3.200 3.500 6.500 0M8.500 31q3.200 3.500 6.500 0q3.200 3.500 6.500 0q3.200 3.500 6.500 0q3.200 3.500 6.500 0q1.500 1.500 3 .500M13 40q3 3 6 0q3 3 6 0q3 3 6 0q2 2 4 0" fill="none" stroke="#e0562a" stroke-width="2" stroke-linecap="round"/><path d="M25 7l-3.500 7 4.500 3-3.500 6 3 4" fill="none" stroke="#ffd23f" stroke-width="1.800" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="17" cy="15" rx="3.200" ry="6" fill="#ffb27a" opacity=".55" transform="rotate(22 17 15)"/>'),
   krone: svg('<path d="M4 17l10 9 10-16 10 16 10-9-4 22H8z" fill="#e6b752" stroke="#8a6318" stroke-width="1.500" stroke-linejoin="round"/><rect x="8" y="36" width="32" height="6" rx="1" fill="#c8962f" stroke="#8a6318"/><circle cx="24" cy="29" r="3.200" fill="#c42c3a"/><circle cx="15" cy="31" r="2.200" fill="#2f73dc"/><circle cx="33" cy="31" r="2.200" fill="#2f73dc"/><g fill="#fff3c9"><circle cx="4" cy="17" r="2"/><circle cx="24" cy="10" r="2"/><circle cx="44" cy="17" r="2"/></g>'),
   zelt: svg('<path d="M24 5L3 30h42z" fill="#d6404e" stroke="#7a0a1c" stroke-width="1.200"/><path d="M24 5L13 30h7zM24 5l4 25h7z" fill="#fff"/><rect x="6" y="30" width="36" height="14" fill="#d6404e" stroke="#7a0a1c" stroke-width="1.200"/><path d="M12 30v14M30 30v14M36 30v14" stroke="#fff" stroke-width="3"/><path d="M18 44v-8a6 6 0 0 1 12 0v8z" fill="#2a1d05"/><path d="M24 5V0l7 2.500-7 2.500" fill="#f6c21c"/>'),
   ball: svg('<circle cx="24" cy="24" r="20" fill="#2f73dc" stroke="#123c80" stroke-width="1.500"/><path d="M24 4c-9 6-9 34 0 40 9-6 9-34 0-40z" fill="#f6c21c"/><path d="M5 18c10 4 28 4 38 0M5 30c10-4 28-4 38 0" stroke="#fff" stroke-width="3" fill="none"/><circle cx="16" cy="13" r="3" fill="#fff" opacity=".7"/>'),
@@ -2075,7 +2231,7 @@ const GS_PRICE = {
   bienenstock: { lk: [7.6, 0.962] },
   sternwarte: { fs: [49.3, 0.961], lk: [4.3, 0.953] },
   goldrausch: { fs: [24, 0.961], lk: [4.6, 0.955] },
-  drachenhoehle: { lk: [3, 0.955] },
+  drachenhoehle: { fs: [61.7, 0.96], lk: [2.4, 0.972] },
   zauberzirkus: { lk: [5.1, 0.953] },
   eispalast: { fs: [14.2, 0.958], lk: [5.2, 0.969] },
   piratenbucht: { lk: [5.8, 0.964] },
@@ -2112,14 +2268,23 @@ const GS = [
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#8a3a10', '#6b4a10', '#2f6a5a', '#4a4a8a'] },
     wild: ['dynamit', 'Dynamit', 778, [1, 2, 3]], scat: ['pfanne', 'Goldpfanne', 180, [2, 5, 25]], feat: { t: 'fs', n: 10, mult: 3, re: true },
     css: '--g1:#8a5a2b;--g2:#3a2410;--g3:#1a0f06;--f1:#c8962f;--f2:#5a3a10;--rim:rgba(230,183,82,.6);--r1:#fbf3e2;--r2:#e8d4a8;--h1:#ffeab0;--h2:#f0c75e;--pb:#2e1d0c;--pf:#fff3d6;--x1:#f0c75e;--x2:#5a3a10' },
-  { id: 'drachenhoehle', name: 'Drachenhöhle', kind: '5 Walzen · 20 Linien · Feuerwalzen', lines: 20, rtp: 96.08, art: ['krone', 'flamme', 'stein'], artBg: '#3a0d08',
-    blurb: 'Manchmal speit der Drache Feuer: Bis zu drei Walzen werden ganz zum Joker.',
-    rule: 'Fünf Walzen, zwanzig Linien im Drachenhort. Die Flamme ersetzt jedes Symbol. Ungefähr bei jeder vierzehnten Drehung speit der Drache Feuer und verwandelt eine, zwei oder drei der Walzen 2 bis 4 ganz in Flammen.',
-    base: 'Der Drache schläft. Noch.', rwTxt: n => n === 1 ? 'Der Drache speit Feuer auf eine Walze!' : `Der Drache speit Feuer auf ${n} Walzen!`,
-    note: 'Die Flamme liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol. Ungefähr bei jeder vierzehnten Drehung werden zusätzlich 1, 2 oder 3 dieser Walzen ganz zu Flammen, eine Walze am häufigsten.',
+  { id: 'drachenhoehle', name: 'Drachenhöhle', kind: '5 Walzen · 20 Linien · Wild Spins', lines: 20, rtp: 96.03, art: ['krone', 'drachenei', 'flamme'], artBg: '#3a0d08',
+    blurb: 'Drei Dracheneier wecken den Drachen: Wild Spins, Super Wild Spins und mehr, bis vier Walzen brennen.',
+    rule: 'Fünf Walzen, zwanzig Linien im Drachenhort. Die Flamme ersetzt jedes Symbol außer dem Drachenei. Manchmal speit der Drache Feuer auf eine, zwei oder drei Walzen. Drei Dracheneier wecken ihn ganz: Dann kommen Wild Spins in fünf Stufen, jede wilder als die davor.',
+    base: 'Drei Dracheneier wecken den Drachen.', rwTxt: n => n === 1 ? 'Der Drache speit Feuer auf eine Walze!' : `Der Drache speit Feuer auf ${n} Walzen!`,
+    scatPl: 'Dracheneier', buyN: 'Wild Spins',
+    note: 'Die Flamme liegt auf den Walzen 2 bis 4 und ersetzt jedes Symbol außer dem Drachenei. Ungefähr bei jeder 26. Drehung werden 1, 2 oder 3 dieser Walzen ganz zu Flammen. Dracheneier zählen überall: 3, 4 oder 5 zahlen das 2-, 10- oder 50-fache des Gesamteinsatzes und starten 8 Freispiele in Stufe 1, 2 oder 3. In den Freispielen füllt jedes Ei die Glut. Drei Eier heben die Stufe und bringen 3 Freispiele mehr.',
     hi: [['krone', 'Drachenkrone', 250, [25, 125, 750]], ['truhe', 'Schatztruhe', 400, [15, 60, 300]], ['kelch', 'Goldkelch', 500, [12, 50, 200]], ['stein', 'Feuerrubin', 600, [10, 40, 150]]],
     low: { w: [1000, 1100, 1200, 1300], p: [[6, 20, 100], [5, 15, 75], [4, 12, 60], [3, 10, 50]], col: ['#ff8f5a', '#ffd23f', '#f2f4ef', '#e8a0ff'] },
-    wild: ['flamme', 'Flamme', 388, [1, 2, 3]], feat: { t: 'rw', p: 70, k: [6, 3, 1] }, dark: true,
+    wild: ['flamme', 'Flamme', 386, [1, 2, 3]], scat: ['drachenei', 'Drachenei', 150, [2, 10, 50]], dark: true,
+    /* Wild Spins: p Feueratem je 1000 bezahlte Drehungen (k: Gewichte für 1, 2, 3 Walzen), n Freispiele zum Start,
+       need Eier füllen die Glut, add Freispiele mehr je voller Glut. Stufe: k Feuerwalzen in jeder Drehung, m Faktor auf alle Gewinne. */
+    feat: { t: 'tier', p: 39, k: [6, 3, 1], n: 8, need: 3, add: 3, tiers: [
+      { n: 'Wild Spins', k: 1, m: 1, t: 'In jeder Drehung brennt eine Walze.' },
+      { n: 'Super Wild Spins', k: 2, m: 1, t: 'In jeder Drehung brennen zwei Walzen.' },
+      { n: 'Mega Wild Spins', k: 2, m: 2, t: 'Zwei Walzen brennen, alle Gewinne zählen doppelt.' },
+      { n: 'Ultra Wild Spins', k: 3, m: 1, t: 'Die Walzen 2, 3 und 4 brennen in jeder Drehung.' },
+      { n: 'Inferno Wild Spins', k: 4, m: 1, t: 'Die Walzen 2 bis 5 stehen in Flammen.' }] },
     css: '--g1:#a8301c;--g2:#3a0d08;--g3:#160403;--f1:#a8301c;--f2:#3a0d08;--rim:rgba(255,143,90,.55);--r1:#2a0d0a;--r2:#160605;--h1:#7a2a14;--h2:#4a1408;--pb:#2a0d0a;--pf:#ffe8dc;--x1:#ff8f5a;--x2:#5a0f05' },
   { id: 'zauberzirkus', name: 'Zauberzirkus', kind: '5 Walzen · 10 Linien · Zauberhüte', lines: 10, rtp: 96.3, art: ['ball', 'zylinder', 'zelt'], artBg: '#4a0f2a',
     blurb: 'Zauberhüte verwandeln sich alle in dasselbe Symbol, manchmal sogar ins Zelt.',
@@ -2190,11 +2355,11 @@ function gsPrep(c) {
   const wts = x => [0, 1, 2, 3, 4].map(i => tot(S.map((s, j) => s.on && !s.on.includes(i) ? 0 : j === c.W ? s.w * x : s.w)));
   c.wt = wts(1); c.fwt = c.feat.wildX ? wts(c.feat.wildX) : c.wt;
   c.rev = c.M >= 0 ? tot(S.map((s, j) => j <= c.W ? s.w : 0)) : null;
-  c.rwk = c.feat.t === 'rw' ? tot(c.feat.k) : null;
+  c.rwk = c.feat.p ? tot(c.feat.k) : null;
   const B = GS_BOOST;
   const pr = GS_PRICE[c.id] || {};
   c.buy = pr.fs ? pr.fs[0] : 0; c.buyQ = pr.fs ? pr.fs[1] : 0; c.lk = pr.lk[0]; c.lkQ = pr.lk[1];
-  c.bst = { pm: B.pm, mv: B.mv, mt: tot(B.mw), pw: c.feat.t === 'rw' ? 0 : B.pw, wv: B.wv, wt: tot(B.ww), wr: c.mode === 'both' ? [2] : [1, 2] };
+  c.bst = { pm: B.pm, mv: B.mv, mt: tot(B.mw), pw: c.feat.p ? 0 : B.pw, wv: B.wv, wt: tot(B.ww), wr: c.mode === 'both' ? [2] : [1, 2] };
   return c;
 }
 /* Beste Linie von links. Eine reine Joker-Reihe zählt wie das wertvollste Symbol, jeder Joker multipliziert mit c.wx (falls gesetzt). */
@@ -2217,16 +2382,22 @@ function gsTrig(c) {
   while (n < 3 && free.length) { const i = free.splice(int(free.length), 1)[0]; g0[i][int(3)] = c.SC; n++; }
   return g0;
 }
-/* o: fs (Freispiel), mult, stick (liegende Joker), g0 (vorgegebenes Feld), nob (keine Glücksdrehung), boost (sicher eine Glücksdrehung) */
+/* o: fs (Freispiel), mult, stick (liegende Joker), g0 (vorgegebenes Feld), nob (keine Glücksdrehung), boost (sicher eine Glücksdrehung),
+   wr (Wild Spins: so viele Feuerwalzen, bis drei aus den Walzen 2 bis 4, bei vier die Walzen 2 bis 5) */
 function gsSpin(c, per, o = {}) {
   const wt = o.fs ? c.fwt : c.wt, W = c.W, st = o.stick || [];
   const g0 = o.g0 || wt.map(r => [gsPick(r), gsPick(r), gsPick(r)]);
   let wl = 0; g0.forEach((col, i) => col.forEach((s, r) => { if (s === W && !st.includes(i + ':' + r)) wl++; }));
   st.forEach(k => { g0[+k[0]][+k[2]] = W; });
   let g = g0, x = null;
-  if (c.feat.t === 'rw' && !o.fs && int(1000) < c.feat.p) {
+  if (c.feat.p && !o.fs && int(1000) < c.feat.p) {
     const k = 1 + gsPick(c.rwk), set = [1, 2, 3];
     while (set.length > k) set.splice(int(set.length), 1);
+    g = g0.map((col, i) => set.includes(i) ? [W, W, W] : col); x = { rw: set };
+  }
+  if (o.wr) {
+    const set = o.wr >= 4 ? [1, 2, 3, 4] : [1, 2, 3];
+    while (set.length > o.wr) set.splice(int(set.length), 1);
     g = g0.map((col, i) => set.includes(i) ? [W, W, W] : col); x = { rw: set };
   }
   if (c.M >= 0 && g0.some(col => col.includes(c.M))) { const r = gsPick(c.rev); g = g0.map(col => col.map(s => s === c.M ? r : s)); x = { myst: r }; }
@@ -2253,8 +2424,9 @@ function gsSpin(c, per, o = {}) {
       if (b.pay) add({ li, s: b.s, len: b.len, x: b.x, pay: b.pay, rtl: true, cells: l.map((r, i) => i + ':' + r).slice(5 - b.len) });
     }
   });
+  /* Dracheneier zählen, wie sie gelandet sind, auch wenn danach Feuer über ihre Walze fegt */
   let nsc = 0; const sc = [];
-  if (c.SC >= 0) g.forEach((col, i) => col.forEach((s, r) => { if (s === c.SC) { nsc++; sc.push(i + ':' + r); } }));
+  if (c.SC >= 0) (c.feat.t === 'tier' ? g0 : g).forEach((col, i) => col.forEach((s, r) => { if (s === c.SC) { nsc++; sc.push(i + ':' + r); } }));
   if (nsc >= 3) add({ s: c.SC, len: nsc, pay: c.S[c.SC].sp[Math.min(nsc, 5) - 3] * c.cost, cells: sc }, true);
   return { g0, g, x, bst, wins, hits, ret, nsc, trigger: nsc >= 3, wl, mult };
 }
@@ -2278,6 +2450,22 @@ function gsRound(c, per, buy) {
       if (f.sticky) { s.stick = stick.slice(); s.g0.forEach((col, i) => col.forEach((y, r) => { const k = i + ':' + r; if (y === c.W && !stick.includes(k)) stick.push(k); })); }
       if (f.prog) { m += s.wl; s.mNext = m; }
       if (f.re && s.trigger) left += f.n;
+    }
+  }
+  /* Wild Spins: 3, 4 oder 5 Eier starten Stufe 1, 2 oder 3. Eier in den Freispielen füllen die Glut, jede volle Glut hebt die Stufe
+     (bis zur obersten) und bringt add Freispiele. s.tier: Stufe dieser Drehung, s.of: so viele Freispiele waren bis hier bekannt,
+     s.glut: Glut danach, s.up: Stufen gestiegen, s.more: Freispiele dazu */
+  if (f.t === 'tier' && spins[0].trigger) {
+    const top = f.tiers.length - 1; let t = Math.min(spins[0].nsc, 5) - 3, left = f.n, g = 0, n = 0;
+    spins[0].tierNext = t;
+    while (left > 0 && n < 200) {
+      left--; n++;
+      const T = f.tiers[t];
+      s = push(gsSpin(c, per, { fs: true, mult: T.m, wr: T.k }));
+      s.free = n; s.tier = t; s.of = n + left;
+      g += s.nsc; let up = 0, more = 0;
+      while (g >= f.need) { g -= f.need; if (t < top) { t++; up++; } left += f.add; more += f.add; }
+      s.glut = g; s.up = up; s.more = more; s.tierNext = t;
     }
   }
   return { spins, total: rnd2(total) };
@@ -3573,12 +3761,52 @@ function gsBoostNote(c) {
   if (B.pw) t += ` Etwa jede ${Math.round(1000 / B.pw)}. macht ${B.wr.length > 1 ? 'Walze 2 oder 3' : 'Walze 3'} zur wilden Walze, dann zählen die Liniengewinne ${list(B.wv)}.`;
   return t + ' In Freispielen und Nachdrehungen gibt es keine.';
 }
+/* Wild Spins der Drachenhöhle: Stufenleiter für die Gewinntafel und das große Bild beim Start und bei jedem Aufstieg */
+function wsLadder(c) {
+  const f = c.feat;
+  return `<div class="ws-ladder" id="ws-ladder"><p class="flabel">Wild Spins in fünf Stufen</p>
+    <ol>${f.tiers.map((T, i) => `<li data-t="${i}"><b>${T.n}</b><span>${T.t}${i < 3 ? ` Start mit ${i + 3} Eiern.` : ''}</span></li>`).join('')}</ol>
+    <p class="note">In den Freispielen füllt jedes Drachenei die Glut. Drei Eier heben die Stufe und bringen ${f.add} Freispiele mehr, auch ganz oben.</p></div>`;
+}
+const WS_DRAKE = `<svg class="ws-drake" viewBox="0 0 260 200" aria-hidden="true">
+  <defs><linearGradient id="wsdg" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" style="stop-color:var(--d1)"/><stop offset="1" style="stop-color:var(--d2)"/></linearGradient></defs>
+  <path d="M92 52C70 30 48 14 14 4c24 16 42 34 58 58z" fill="#7a4a12"/>
+  <path d="M34 200c6-50 24-92 60-118l58 30c-22 28-40 56-44 88z" fill="url(#wsdg)"/>
+  <path d="M56 136L22 124l38-8zM70 110L36 92l40 4zM86 88L60 62l34 14z" fill="var(--d3)"/>
+  <path d="M138 104l100-20-12 34-90-4z" fill="#2a0302"/>
+  <path d="M146 106l84-16-8 22-76-2z" fill="var(--fa)" opacity=".75"/>
+  <path d="M84 70c12-26 44-36 76-28 28 6 54 16 76 26 8 4 10 12 4 16l-40 8c-20 4-40 8-60 12-22 2-44-8-56-34z" fill="url(#wsdg)"/>
+  <path d="M112 50c18-10 38-8 54 0-16 0-32 4-46 10z" fill="var(--d3)" opacity=".7"/>
+  <path d="M118 46C104 22 82 8 48 0c26 18 44 34 56 56z" fill="#e6b752"/>
+  <path d="M118 46C108 28 92 16 70 8c18 12 30 26 38 42z" fill="#f7d98f" opacity=".6"/>
+  <ellipse class="ws-eye" cx="150" cy="60" rx="11" ry="7" fill="var(--fa)"/><ellipse cx="152" cy="60" rx="2.4" ry="6" fill="#1a0402"/>
+  <path d="M222 66c4-2 8 0 8 4-4 0-6-1-8-4z" fill="#1a0402"/>
+  <path d="M160 100l5 12 5-12zM176 97l5 13 5-14zM192 94l5 12 5-13zM210 92l4 10 4-11z" fill="#fff6e0"/>
+  <path d="M136 112c24 6 54 8 86 6 8 0 10 8 4 12-26 10-56 16-80 12-18-4-28-18-10-30z" fill="url(#wsdg)"/>
+  <path d="M170 121l5-10 5 10zM190 121l5-11 5 10zM208 120l5-9 4 8z" fill="#fff6e0"/>
+  <path d="M120 104c-12 16-16 32-10 46 6-16 16-28 30-36z" fill="var(--d3)"/>
+  <path d="M96 64c10 4 20 4 30 0M104 80c10 4 22 4 32-2M178 52c8 2 16 6 22 10" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+/* t: Stufe, up: Aufstieg statt Start, more: Freispiele dazu (bzw. zum Start) */
+function wsOverlay(c, t, up, more) {
+  const f = c.feat, T = f.tiers[t], n = 16 + t * 14;
+  const embers = Array.from({ length: n }, () => `<i style="left:${(Math.random() * 100).toFixed(1)}%;--s:${(3 + Math.random() * (5 + t)).toFixed(1)}px;--d:${(1.4 + Math.random() * 1.6).toFixed(2)}s;--dl:-${(Math.random() * 2).toFixed(2)}s;--dx:${(Math.random() * 30 - 15).toFixed(1)}vw"></i>`).join('');
+  const el = h(`<div class="ws-ov ws-t${t}" role="status" aria-live="assertive" title="Klicken zum Überspringen">
+    <div class="ws-rays"></div><div class="ws-wall"></div><div class="ws-embers">${embers}</div>
+    <div class="ws-dragon">${WS_DRAKE}<div class="ws-breath"></div></div>
+    <div class="ws-txt"><small>${up ? 'Die Glut ist voll · Stufe auf!' : `Stufe ${t + 1} von ${f.tiers.length}`}</small><b data-t="${T.n}">${T.n}</b>
+      <span>${T.t} ${up ? `${more} Freispiele mehr.` : `${more} Freispiele.`}</span>
+      <div class="ws-pips" aria-hidden="true">${f.tiers.map((_, i) => `<i class="${i < t ? 'done' : i === t ? 'on' : ''}"></i>`).join('')}</div></div>
+    <div class="ws-flash"></div></div>`);
+  document.body.append(el);
+  return el;
+}
 function mountGS(c) {
   return body => {
-    const f = c.feat, W = c.W, isScat = s => s === c.SC, wildSym = SYM[c.S[W].k];
+    const f = c.feat, W = c.W, isScat = s => s === c.SC, wildSym = SYM[c.S[W].k], TIER = f.t === 'tier';
     const pays = c.S.filter(s => s.p).sort((a, b) => b.p[2] - a.p[2]);
     body.innerHTML = `<div class="split gs${c.mode === 'ways' ? ' gs-ways' : ''}" style="${c.css}">
-      <div class="felt cab cab-gen" id="gs-cab"><p class="banner" id="gs-b" aria-live="polite">${c.base}</p><div class="reels five" id="gs-r"></div></div>
+      <div class="felt cab cab-gen${TIER ? ' ws-cab' : ''}" id="gs-cab"><p class="banner" id="gs-b" aria-live="polite">${c.base}</p>${TIER ? '<div class="ws-hud" id="ws-hud" hidden></div>' : ''}<div class="reels five" id="gs-r"></div></div>
       <aside class="side">
         <div id="gs-betslot"></div>
         <div class="kv"><span>${c.mode === 'ways' ? `Gesamteinsatz (${c.units} × Grundeinsatz)` : `Gesamt bei ${c.L.length} Linien`}</span><span class="num" id="gs-tot"></span></div>
@@ -3588,6 +3816,7 @@ function mountGS(c) {
         <div class="gs-vouch" id="gs-vouch" hidden></div>
         <p class="msg" id="gs-msg" aria-live="polite">${c.mode === 'ways' ? 'Gewinne zählen von links, die Reihe ist egal.' : c.mode === 'both' ? 'Gewinne zählen von links und von rechts.' : 'Gewinne laufen von links nach rechts.'}</p>
         <div class="pay gen">${payHead3(['3', '4', '5'])}${pays.map(s => payRow3(s, s.p)).join('')}</div>
+        ${TIER ? wsLadder(c) : ''}
         <p class="note">${c.note}</p>
         <p class="note">${gsBoostNote(c)}</p>
       </aside></div>`;
@@ -3596,7 +3825,7 @@ function mountGS(c) {
     /* Kaufen am Automaten: Glücksdrehung immer, Freispiele dort, wo es welche gibt. Erster Klick nennt den Preis, der zweite kauft. */
     const T = () => rnd2(bet.get() * c.cost);
     const bLk = armBuy(() => [`Glücksdrehung · ${fmt(rnd2(T() * c.lk))} Taler`, `${c.bst.pw ? 'Sicher Multi oder wilde Walze' : 'Sicher ein Multi'} · ${num1(c.lk)}-fach · Quote ${pct(c.lkQ)}`, rnd2(T() * c.lk)], () => spin('lk'));
-    const bFs = c.buy ? armBuy(() => [`Freispiele kaufen · ${fmt(rnd2(T() * c.buy))} Taler`, `${num1(c.buy)}-facher Gesamteinsatz · Quote ${pct(c.buyQ)}`, rnd2(T() * c.buy)], () => spin('fs')) : null;
+    const bFs = c.buy ? armBuy(() => [`${c.buyN || 'Freispiele'} kaufen · ${fmt(rnd2(T() * c.buy))} Taler`, `${num1(c.buy)}-facher Gesamteinsatz · Quote ${pct(c.buyQ)}`, rnd2(T() * c.buy)], () => spin('fs')) : null;
     const buys = [bFs, bLk].filter(Boolean); q('#gs-buys').append(...buys.map(b => b.el));
     const updTot = () => { tot.textContent = fmt(T()) + ' Taler'; buys.forEach(b => b.upd()); };
     bet.el.addEventListener('input', updTot); bet.el.addEventListener('click', () => setTimeout(updTot)); updTot();
@@ -3630,7 +3859,7 @@ function mountGS(c) {
       const mine = S.inv.filter(e => e.g === c.id);
       vb.hidden = !mine.length;
       vb.innerHTML = '<p class="flabel">Gutscheine aus dem Shop</p>' + mine.map(e => `<button class="btn${pack === e ? ' on' : ''}" type="button" data-v="${S.inv.indexOf(e)}"${R && pack !== e ? ' disabled' : ''}>
-        <b>${e.k === 'fs' ? 'Freispiele einlösen' : e.k === 'lk' ? 'Glücksdrehung einlösen' : pack === e ? 'Paket anhalten' : 'Drehpaket abspielen'}</b><small>${perTxt(e.per)} · noch ${e.n}</small></button>`).join('');
+        <b>${e.k === 'fs' ? `${c.buyN || 'Freispiele'} einlösen` : e.k === 'lk' ? 'Glücksdrehung einlösen' : pack === e ? 'Paket anhalten' : 'Drehpaket abspielen'}</b><small>${perTxt(e.per)} · noch ${e.n}</small></button>`).join('');
     }
     vb.addEventListener('click', ev => {
       const b = ev.target.closest('[data-v]'), e = b && S.inv[+b.dataset.v]; if (!e) return;
@@ -3641,11 +3870,44 @@ function mountGS(c) {
     /* Im Shop-Fenster über dem Automaten gekauft: Gutscheine sofort zeigen */
     const onInv = () => paintV(); document.addEventListener('elster-inv', onInv);
     const ctl = spinKeys(q('#gs-auto'), btn, () => spin(), () => !!R);
+    /* Wild Spins: Anzeige von Stufe, Glut und Freispielen im Automaten, Stufe in der Leiter an der Seite */
+    const hud = q('#ws-hud'), lad = q('#ws-ladder');
+    function setTier(t) {
+      for (let k = 0; k < 5; k++) cab.classList.toggle('ws-t' + k, k === t);
+      cab.classList.toggle('ws-on', t >= 0);
+      if (lad) $$('li', lad).forEach(li => { const k = +li.dataset.t; li.classList.toggle('on', k === t); li.classList.toggle('done', t >= 0 && k < t); });
+    }
+    function paintHud(t, glut, n, of, fresh = 0) {
+      if (!hud) return;
+      hud.hidden = false;
+      hud.innerHTML = `<b class="ws-name">${f.tiers[t].n}</b>
+        <span class="ws-glut${glut >= f.need ? ' full' : ''}" title="Glut: ${Math.min(glut, f.need)} von ${f.need} Eiern">${Array.from({ length: f.need }, (_, k) => `<i class="${k < glut ? 'on' : ''}${k >= glut - fresh && k < glut ? ' new' : ''}">${SYM[c.S[c.SC].k]}</i>`).join('')}</span>
+        <span class="ws-left num">${n} / ${of}</span>`;
+    }
+    const glutBefore = i => i > 1 ? R.spins[i - 1].glut : 0;
+    function wsClear() {
+      setTier(-1); if (hud) hud.hidden = true;
+      $$('.ws-ov').forEach(x => x.remove()); cab.classList.remove('ws-shake');
+    }
+    function shake() { if (calm) return; cab.classList.remove('ws-shake'); void cab.offsetWidth; cab.classList.add('ws-shake'); }
+    function sweep() { if (calm) return; const el = h('<div class="ws-sweep" aria-hidden="true"></div>'); cab.append(el); setTimeout(() => el.remove(), 900); }
+    /* Großes Bild für den Start der Wild Spins und jeden Aufstieg. Ein Klick überspringt es. */
+    function tierShow(t, up, more, go) {
+      cab.classList.add('fs-mode'); setTier(t);
+      ban.textContent = up ? `Stufe auf: ${f.tiers[t].n}! ${more} Freispiele mehr.` : `${f.tiers[t].n}! ${f.tiers[t].t}`;
+      if (calm) { go(); return; }
+      const el = wsOverlay(c, t, up, more);
+      let gone = false;
+      const fin = () => { if (gone) return; gone = true; clearTimeout(timer); el.classList.add('out'); setTimeout(() => el.remove(), 380); if (R) go(); };
+      el.addEventListener('click', fin);
+      timer = setTimeout(fin, turbo() ? 1500 : 2700 + t * 300);
+    }
     function label(i) {
       const s = R.spins[i];
+      if (s.free && TIER) return `${f.tiers[s.tier].n} · Freispiel ${s.free} von ${s.of}`;
       if (s.free) return `Freispiel ${s.free} von ${f.re ? fsKnown(R.spins, i, f.n, f.n) : f.n}${s.mult > 1 ? ` · Gewinne ×${s.mult}` : ''}`;
       if (s.respin) return `Nachdrehung ${s.respin} · gratis`;
-      if (i === 0 && R.kind === 'fs') return `Gekaufte Freispiele: Drei ${c.scatPl} kommen sicher.`;
+      if (i === 0 && R.kind === 'fs') return `Gekaufte ${c.buyN || 'Freispiele'}: Drei ${c.scatPl} kommen sicher.`;
       if (i === 0 && R.kind === 'lk') return `Glücksdrehung: ${c.bst.pw ? 'Multi oder wilde Walze' : 'Ein Multi'} kommt sicher.`;
       return c.base;
     }
@@ -3656,7 +3918,8 @@ function mountGS(c) {
       const s = R.spins[i], quick = !!(s.free || s.respin);
       ban.textContent = label(i); unbadge();
       if (s.respin) stick(s.stick, true);
-      const o = c.SC >= 0 && (!s.free || f.re) ? { tease: teaseReels(s.g0, isScat), teaseMs: quick ? 800 : 1300, lit: isScat, ...baitCalls(ban, c.scatPl, s.free ? 'Weitere Freispiele!' : 'Freispiele!') } : {};
+      if (TIER && s.free) paintHud(s.tier, glutBefore(i), s.free, s.of);
+      const o = TIER && s.free ? { lit: isScat } : c.SC >= 0 && (!s.free || f.re) ? { tease: teaseReels(s.g0, isScat), teaseMs: quick ? 800 : 1300, lit: isScat, ...baitCalls(ban, c.scatPl, s.free ? 'Weitere Freispiele!' : 'Freispiele!') } : {};
       timer = setTimeout(() => land(i), rs.spin(s.g0, () => gsPick(c.wt[2]), quick ? 620 : 900, quick ? 130 : 210, o));
     }
     /* Nach dem Stopp der Reihe nach: Zauberhüte, wachsende Joker, wilde Walze, Multi. Jeder Schritt ruft den nächsten auf. */
@@ -3672,7 +3935,20 @@ function mountGS(c) {
         });
       });
       else rs.rest(wr ? null : s.hits);
-      if (s.x && s.x.rw) steps.push(next => { s.x.rw.forEach(ri => rs.expand(ri, wildSym, 'gsx')); ban.textContent = c.rwTxt(s.x.rw.length); wait(800, next); });
+      /* Wild Spins: erst zählen die gelandeten Eier in die Glut, dann fegt das Feuer über die Walzen */
+      if (TIER && s.free && s.nsc) steps.push(next => {
+        const g0 = glutBefore(i);
+        paintHud(s.tier, g0 + s.nsc, s.free, s.of, s.nsc);
+        ban.textContent = g0 + s.nsc >= f.need ? 'Die Glut ist voll!' : `${s.nsc === 1 ? 'Ein Drachenei' : s.nsc + ' Dracheneier'}: Die Glut steigt.`;
+        wait(750, next);
+      });
+      if (s.x && s.x.rw) steps.push(next => {
+        const n = s.x.rw.length, fire = TIER ? 'gsx ws-fire' : 'gsx';
+        if (TIER) { sweep(); if (n >= 3 || (s.free && s.tier >= 2)) shake(); }
+        s.x.rw.forEach((ri, k) => setTimeout(() => rs.expand(ri, wildSym, fire), TIER && !calm ? 120 + k * 110 : 0));
+        ban.textContent = s.free ? `${f.tiers[s.tier].n}: ${n === 1 ? 'Eine Walze brennt' : n + ' Walzen brennen'}${s.mult > 1 ? ', alle Gewinne ×' + s.mult : ''}!` : c.rwTxt(n);
+        wait(TIER ? 950 + n * 110 : 800, next);
+      });
       if (wr) steps.push(next => {
         rs.expand(b.reel, `${wildSym}<b class="wmx">×${b.m}</b>`, 'gsx wm');
         ban.textContent = `Wilde Walze ×${b.m}! Walze ${b.reel + 1} ist ganz Joker.`;
@@ -3694,13 +3970,17 @@ function mountGS(c) {
       if (f.sticky && s.free) stick(wildKeys(s.g0), false);
       if (f.t === 'walk') stick(wildKeys(s.g), false);
       if (s.trigger && f.t === 'fs' && (!s.free || f.re)) ban.textContent = `${s.nsc} ${c.scatPl}: ${f.n} ${s.free ? 'weitere ' : ''}Freispiele!`;
+      else if (TIER && !s.free && s.trigger) ban.textContent = `${s.nsc} ${c.scatPl}! Der Drache erwacht: ${f.tiers[s.tierNext].n}!`;
+      else if (TIER && s.free && s.more && !s.up) ban.textContent = `Die Glut ist voll: ${s.more} Freispiele mehr!`;
       else if (f.prog && s.free && s.wl) ban.textContent = `${s.wl === 1 ? 'Ein Hut' : s.wl + ' Hüte'}: ab jetzt ×${s.mNext}`;
       else if (nx && nx.respin) ban.textContent = c.walkTxt + ' …';
       if (R.spins.length > 1) say(msg, `Bisher ${fmt(rnd2(R.sum))} Taler.`, R.sum ? 'good' : '');
       if (!nx) { wait(ws.length ? 250 : 0, done); return; }
-      wait(s.ret || s.trigger || s.x || s.bst || nx.respin ? 1300 : 600, () => nx.free === 1 ? intro(() => show(i + 1)) : show(i + 1));
+      const go = () => show(i + 1);
+      wait(s.ret || s.trigger || s.x || s.bst || nx.respin || s.more ? 1300 : 600, () => nx.free === 1 ? intro(go, nx) : TIER && s.up ? tierShow(s.tierNext, true, s.more, go) : go());
     }
-    function intro(go) {
+    function intro(go, nx) {
+      if (TIER) { tierShow(nx.tier, false, f.n, go); return; }
       cab.classList.add('fs-mode');
       if (calm) { go(); return; }
       const el = fsIntro(cab, `${f.n} Freispiele`, c.fsSub, SYM[c.S[c.SC].k]);
@@ -3713,10 +3993,11 @@ function mountGS(c) {
       GSS[c.id] = last.x && last.x.myst != null ? last.g : last.g0;
       settle(c.id, r.stake, r.total);
       if (r.kind !== 'fs' && r.spins.some(s => s.free)) flag('fs');
-      cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove()); unstick();
+      cab.classList.remove('fs-mode'); $$('.fs-intro', cab).forEach(x => x.remove()); unstick(); if (TIER) wsClear();
       btn.disabled = false; bet.lock(false); buys.forEach(b => b.lock(false));
       const free = r.spins.filter(s => s.free).length, re = r.spins.filter(s => s.respin).length;
-      if (free) { ban.textContent = `${free} Freispiele sind vorbei.`; say(msg, `Insgesamt ${fmt(r.total)} Taler.`, r.total ? 'good' : ''); }
+      if (free && TIER) { ban.textContent = `${free} Freispiele sind vorbei. Höchste Stufe: ${f.tiers[Math.max(...r.spins.map(s => s.tierNext || 0))].n}.`; say(msg, `Insgesamt ${fmt(r.total)} Taler.`, r.total ? 'good' : ''); }
+      else if (free) { ban.textContent = `${free} Freispiele sind vorbei.`; say(msg, `Insgesamt ${fmt(r.total)} Taler.`, r.total ? 'good' : ''); }
       else if (re) { ban.textContent = `${re} ${re === 1 ? 'Nachdrehung' : 'Nachdrehungen'}, dann sind die Wichtel weitergezogen.`; say(msg, r.total ? `Insgesamt ${fmt(r.total)} Taler.` : 'Diesmal kein Gewinn.', r.total ? 'good' : ''); }
       else say(msg, r.total ? `Gewinn: ${fmt(r.total)} Taler.` : 'Diesmal kein Gewinn.', r.total ? 'good' : '');
       if (pack && !S.inv.includes(pack)) { pack = null; say(msg, msg.textContent + ' Das Drehpaket ist aufgebraucht.', r.total ? 'good' : ''); }
@@ -3738,7 +4019,7 @@ function mountGS(c) {
         if (!okBet(per, msg, c.cost * f) || !take(stake)) return false;
       }
       R = Object.assign(lucky(() => gsRound(c, per, kind), r => r.total), { stake, sum: 0, kind });
-      unstick(); unbadge(); cab.classList.remove('fs-mode');
+      unstick(); unbadge(); cab.classList.remove('fs-mode'); if (TIER) wsClear();
       btn.disabled = true; bet.lock(true); buys.forEach(b => b.lock(true)); paintV();
       say(msg, v ? `Gutschein eingelöst: ${v.k === 'pk' ? 'Paket-Drehung' : vName(v.k)}.` : kind === 'fs' ? 'Freispiele gekauft. Die Walzen laufen.' : kind === 'lk' ? 'Glücksdrehung gekauft. Die Walzen laufen.' : 'Die Walzen laufen.');
       show(0);
@@ -4962,201 +5243,190 @@ function claimDaily() {
   return { e, text };
 }
 
-const COIN = `<i class="rb-coin" aria-hidden="true">${SYM.muenze}</i>`;
-const RB_TABS = [['angebote', 'Angebote', 'stern'], ['automaten', 'Automaten', 'sieben'], ['boosts', 'Boosts', 'phiole'], ['paesse', 'Gamepässe', 'krone'], ['kisten', 'Kisten', 'truhe'], ['inventar', 'Inventar', 'schluessel']];
-const SH = { tab: 'angebote', g: 'sternwarte', per: 1 };
+/* ---------- Shop: Darstellung ----------
+   Die Schatzkammer: Vitrinen aus Tinte und Petrol-Filz mit Messingrand, in derselben Sprache wie die Spieltische.
+   Drei Bereiche statt sechs. Kaufen ohne Zusatzfenster: Der erste Klick auf den Preis fragt nach, der zweite kauft,
+   nach 4 Sekunden verfällt die Frage. Wundertüte und Tageskiste rollen direkt in ihrer Vitrine aus. */
+const svgA = b => `<svg viewBox="0 0 64 64" aria-hidden="true">${b}</svg>`;
+const SK_ART = {
+  turbo: svgA('<rect x="9" y="45" width="46" height="11" rx="3" fill="#3a2a0e"/><rect x="9" y="45" width="46" height="4.500" rx="2.200" fill="#e6b752"/><rect x="9" y="52" width="46" height="4" rx="2" fill="#9f7224"/><path d="M28 47L41 13" stroke="#8b949b" stroke-width="5.500" stroke-linecap="round"/><path d="M28 47L41 13" stroke="#e9eef0" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="47" r="5" fill="#9f7224"/><circle cx="28" cy="47" r="2.200" fill="#f7d98f"/><circle cx="42" cy="11.500" r="8.500" fill="#b3202e" stroke="#6e0f18" stroke-width="1.500"/><circle cx="39" cy="8.500" r="3" fill="#ff8f95"/><path d="M13 16l7-9-1.500 6.500H24l-7.500 10 1.500-7.500z" fill="#f7d98f"/><path d="M51 29l4-5-1 3.800h3.200l-4.400 5.800 1-4.400z" fill="#f7d98f" opacity=".8"/>'),
+  vip: svgA('<g transform="rotate(-8 32 32)"><rect x="6" y="15" width="52" height="34" rx="5" fill="#0d151b" stroke="#e6b752" stroke-width="2"/><rect x="10" y="19" width="44" height="26" rx="3" fill="none" stroke="#e6b752" stroke-opacity=".35"/><path d="M21 32l-3.500-12 8 6.500L32 17l6.500 9.500 8-6.500L43 32z" fill="#e6b752"/><rect x="20" y="32.500" width="24" height="3.600" rx="1.200" fill="#f7d98f"/><circle cx="32" cy="25" r="1.800" fill="#c42c3a"/><text x="32" y="43" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="5.500" letter-spacing="2.400" fill="#f7d98f">VIP</text></g>'),
+  gold: svgA('<rect x="7" y="9" width="50" height="46" rx="5" fill="#c8962f" stroke="#f7d98f" stroke-width="1.500"/><rect x="12" y="14" width="40" height="36" rx="3" fill="#7a5214"/><rect x="14.500" y="16.500" width="35" height="31" rx="2" fill="#0b373b"/><rect x="17" y="21" width="9.400" height="22" rx="1.600" fill="#f2f4ef"/><rect x="27.300" y="21" width="9.400" height="22" rx="1.600" fill="#f2f4ef"/><rect x="37.600" y="21" width="9.400" height="22" rx="1.600" fill="#f2f4ef"/><g font-family="Grenze Gotisch,Georgia,serif" font-weight="700" font-size="14" fill="#c42c3a" text-anchor="middle"><text x="21.700" y="37">7</text><text x="32" y="37">7</text><text x="42.300" y="37">7</text></g><g fill="#f7d98f"><circle cx="8" cy="10" r="3.500"/><circle cx="56" cy="10" r="3.500"/><circle cx="8" cy="54" r="3.500"/><circle cx="56" cy="54" r="3.500"/><path d="M25 9.500h14L32 3z"/></g>'),
+  xp: svgA('<path d="M26 6h12v13l12.500 19A13 13 0 0 1 39.600 58H24.400A13 13 0 0 1 13.500 38L26 19z" fill="#16323a" stroke="#bfe9e2" stroke-width="2"/><path d="M18.300 36h27.400l3.300 5a9.500 9.500 0 0 1-8 14.600H23a9.500 9.500 0 0 1-8-14.600z" fill="#5fd8c6"/><path d="M18.300 36h27.400" stroke="#d8fff8" stroke-width="2"/><circle cx="27" cy="46" r="2.400" fill="#d8fff8"/><circle cx="35" cy="50" r="1.600" fill="#d8fff8"/><circle cx="31" cy="41" r="1.200" fill="#d8fff8"/><rect x="24.500" y="2.500" width="15" height="6" rx="2" fill="#9a6a3c"/><path d="M21 26c-2 3-4 6-5 9" stroke="#fff" stroke-opacity=".35" stroke-width="2.500" stroke-linecap="round" fill="none"/><path d="M51 10l1.600 4.200 4.200 1.600-4.200 1.600L51 21.600l-1.600-4.200-4.200-1.600 4.200-1.600z" fill="#f7d98f"/>'),
+  lk: svgA('<path d="M6 41C9 23 30 13 46 23c6 4 10 10 12 18-9-7-19-5-25 3C26 37 15 35 6 41z" fill="#e3a94e" stroke="#8a5a1c" stroke-width="1.800" stroke-linejoin="round"/><path d="M33 44c-3-7 0-14 8-17" fill="none" stroke="#8a5a1c" stroke-width="1.800" stroke-linecap="round"/><path d="M16 31c5-6 13-9 20-8" fill="none" stroke="#fbe0a8" stroke-width="2" stroke-linecap="round" opacity=".7"/><path d="M29 41l24 9-1.800 4.600-24-9z" fill="#f6f1e4" stroke="#c9bfa8" stroke-width=".800"/><path d="M33 44.500l12 4.500" stroke="#c42c3a" stroke-width="1.200" stroke-linecap="round"/><g fill="#3fae5a"><circle cx="50" cy="9" r="2.600"/><circle cx="54.600" cy="9" r="2.600"/><circle cx="50" cy="13.600" r="2.600"/><circle cx="54.600" cy="13.600" r="2.600"/></g><path d="M52.300 13.600l1 6" stroke="#2a7a3e" stroke-width="1.400" stroke-linecap="round"/>'),
+  tuete: svgA('<path d="M20 24C11 33 8 45 12 51c4 6 12 8 20 8s16-2 20-8c4-6 1-18-8-27z" fill="#5b2a86"/><path d="M20 24C11 33 8 45 12 51c4 6 12 8 20 8" fill="none" stroke="#7d45ad" stroke-width="2" opacity=".8"/><path d="M21 24c-3-4-5-10-3-14 4 2 8 3 14 3s10-1 14-3c2 4 0 10-3 14z" fill="#4a1f70"/><path d="M19 24c8 3 18 3 26 0" fill="none" stroke="#e6b752" stroke-width="3" stroke-linecap="round"/><path d="M43 25l5 9M43 25l1 11" stroke="#e6b752" stroke-width="2" stroke-linecap="round"/><circle cx="48" cy="35" r="2" fill="#f7d98f"/><circle cx="44" cy="37" r="2" fill="#f7d98f"/><text x="32" y="52" text-anchor="middle" font-family="Grenze Gotisch,Georgia,serif" font-weight="700" font-size="20" fill="#f7d98f">?</text><path d="M14 40c1-5 3-9 6-12" stroke="#fff" stroke-opacity=".25" stroke-width="2.500" stroke-linecap="round" fill="none"/>'),
+  kiste: svgA('<path d="M9 30c0-9 10-15 23-15s23 6 23 15z" fill="#8a5a2b" stroke="#5a3a18" stroke-width="1.500"/><rect x="9" y="29" width="46" height="26" rx="2.500" fill="#6b4220" stroke="#4a2c12" stroke-width="1.500"/><path d="M9 29h46" stroke="#e6b752" stroke-width="3"/><rect x="16" y="15.500" width="5" height="39.500" fill="#e6b752"/><rect x="43" y="15.500" width="5" height="39.500" fill="#e6b752"/><rect x="27.500" y="26" width="9" height="11" rx="2" fill="#f7d98f" stroke="#9f7224"/><path d="M32 30.500v3.500" stroke="#5a3a10" stroke-width="2" stroke-linecap="round"/><path d="M12 51h40" stroke="#000" stroke-opacity=".2" stroke-width="2"/><path d="M53 6l1.400 3.600L58 11l-3.600 1.400L53 16l-1.400-3.600L48 11l3.600-1.400z" fill="#f7d98f"/>')
+};
+const SK_RC = { c: '#c9d4d2', r: '#8fbaff', e: '#d2a8ff', l: '#f7d98f', m: '#ffa3ba' };
+const SK_KIND = { turbo: 'Gamepass', vip: 'Gamepass', gold: 'Gamepass', xp: 'Boost · 100 Runden', lk: 'Boost · 50 Runden', tuete: 'Überraschung' };
+const SK_TABS = [['vitrinen', 'Vitrinen'], ['automaten', 'Für Automaten'], ['besitz', 'Dein Besitz']];
+const SH = { tab: 'vitrinen', g: 'drachenhoehle', per: 1, note: null };
 let shopOv = null, shopCd = 0;
-const rv = r => `--r1:${RAR[r][1]};--r2:${RAR[r][2]}`;
+const skCoin = '<i class="sk-coin" aria-hidden="true"></i>';
 const topSym = c => SYM[c.S.filter(s => s.p).sort((a, b) => b.p[2] - a.p[2])[0].k];
-/* Ein Shop-Fenster in win zeichnen. inline: als eigene Seite (ohne Schließen-Knopf) */
-function rbShop(win, inline) {
+const unitOf = c => c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie';
+/* Ein Shop in win zeichnen. inline: als eigene Seite (ohne Schließen-Knopf) */
+function skShop(win, inline) {
   const acts = [], A = fn => { acts.push(fn); return `data-a="${acts.length - 1}"`; };
-  const again = () => { const mm = $('.rb-main', win), sc = mm ? mm.scrollTop : 0, y = scrollY; rbShop(win, inline); const m2 = $('.rb-main', win); if (m2) m2.scrollTop = sc; if (inline) scrollTo(0, y); };
-  const card = o => `<article class="rb-card${o.cls ? ' ' + o.cls : ''}" style="${rv(o.rar)}">
-      ${o.badge ? `<span class="rb-badge ${o.bc || ''}">${o.badge}</span>` : ''}<span class="rb-rar">${RAR[o.rar][0]}</span>
-      <div class="rb-ico">${o.ico}${o.tag ? `<b class="rb-tag">${o.tag}</b>` : ''}</div>
-      <h3 class="rb-name">${o.name}</h3><p class="rb-sub">${o.sub}</p>${o.extra || ''}${o.btn}</article>`;
-  const priceBtn = (p, a, old) => `<button class="rb-buy" type="button" ${a}${p > S.bal ? ' disabled title="So viel ist nicht in der Börse"' : ''}>${COIN}<span>${old ? `<s>${fmt(old)}</s> ` : ''}${fmt(p)}</span></button>`;
-  /* Kaufen: Abfrage, dann bezahlen, dann Erfolg oder Abrollband */
-  async function buyFlow(o) {
-    if (!(await rbAsk(win, o))) return;
-    const r = o.go(); if (!r) return;
-    const b = $('.rb-bal b', win); if (b) b.textContent = fmt(S.bal);
-    if (r.e) await rbRoll(win, TUETE, r.e, o.name, r.text);
-    else await rbDone(win, o, r.text, r.slot);
-    again();
-  }
-  const itemCard = (it, price = it.price, extra = {}) => {
-    const own = it.once && S.own[it.id], left = it.rounds ? S.buff[it.id] || 0 : 0;
-    let btn;
-    if (own && it.id === 'vip') btn = '<button class="rb-buy owned" type="button" disabled>Aktiv</button>';
-    else if (own) {
-      const on = it.id === 'turbo' ? S.turbo : S.gold;
-      btn = `<button class="rb-buy ${on ? 'owned' : 'off'}" type="button" aria-pressed="${!!on}" ${A(() => { if (it.id === 'turbo') S.turbo = !S.turbo; else S.gold = !S.gold; save(); paint(); paintTurbo(); again(); })}>${on ? 'An' : 'Aus'}</button>`;
-    } else btn = priceBtn(price, A(() => buyFlow({ ico: SYM[it.s], name: it.n, rar: it.rar, price, note: it.t, go: extra.go || (() => buyItem(it.id, price)) })), extra.old);
-    return card({
-      rar: it.rar, ico: SYM[it.s], name: it.n, sub: it.t, btn,
-      badge: own ? 'GEKAUFT' : it.once ? 'GAMEPASS' : it.id === 'tuete' ? '???' : left ? 'AKTIV' : null, bc: own ? 'own' : it.once ? 'pass' : it.id === 'tuete' ? 'mys' : 'pass',
-      tag: it.id === 'xp' ? '2× XP' : it.id === 'lk' ? '+1 %' : null,
-      extra: left ? `<div class="rb-left"><i style="width:${Math.min(100, left / it.rounds * 100).toFixed(0)}%"></i><span>Noch ${left} Runden</span></div>` : ''
-    });
+  const m0 = $('.sk-main', win), keep = m0 && m0.dataset.tab === SH.tab ? m0.scrollTop : 0, y = scrollY;
+  const again = () => skShop(win, inline);
+  const note = k => SH.note && SH.note.k === k && Date.now() < SH.note.until ? SH.note : null;
+  const noteHTML = k => { const n = note(k); return n ? `<p class="sk-note${n.roll && !n.shown ? ' wait' : ''}" role="status">${n.html}</p>` : ''; };
+  const setNote = (k, html, roll) => { SH.note = { k, html, roll: !!roll, shown: false, until: Date.now() + 9000 }; };
+  /* Gewinn aus Wundertüte oder Tageskiste: Name in seiner Farbe, dann der Text (ohne den Namen doppelt) */
+  const prizeNote = (e, text) => { const [n, , r] = prizeOf(e), c = SK_RC[r]; return text.startsWith(n) ? `<b style="color:${c}">${text}</b>` : `<b style="color:${c}">${n}!</b> ${text}`; };
+  /* Preisknopf. data-arm: Der erste Klick fragt nach. */
+  const price = (p, fn, old) => p > S.bal
+    ? `<button class="sk-buy" type="button" disabled title="So viel ist nicht in der Börse">${skCoin}<span>${old ? `<s>${fmt(old)}</s>` : ''}${fmt(p)}</span></button>`
+    : `<button class="sk-buy" type="button" data-arm="${fmt(p)}" ${A(fn)}>${skCoin}<span>${old ? `<s>${fmt(old)}</s>` : ''}${fmt(p)}</span></button>`;
+  /* Kauf eines Artikels; bei Wundertüte rollt danach der Inhalt in der Vitrine aus */
+  const buyNow = (k, go) => () => {
+    const r = go(); if (!r) return;
+    setNote(k, r.e ? prizeNote(r.e, r.text) : r.text, !!r.e);
+    again(); if (r.e) skRoll(win, k, TUETE, r.e);
   };
-  const dailyCard = () => card({
-    rar: 'l', badge: 'GRATIS', bc: 'free', ico: SYM.truhe, name: 'Tageskiste', sub: 'Jeden Tag gratis: Taler, Glücksdrehungen oder ein Trank.',
-    btn: S.daily === today() ? `<button class="rb-buy" type="button" disabled>Neu in <span class="rb-cd">${untilMidnight()}</span></button>`
-      : `<button class="rb-buy free" type="button" ${A(async () => { const r = claimDaily(); if (!r) return; const b = $('.rb-bal b', win); if (b) b.textContent = fmt(S.bal); await rbRoll(win, DAILY, r.e, 'Tageskiste', r.text); again(); })}>Öffnen</button>`
-  });
-  const drops = tab => `<div class="rb-drops">${tab.map(e => { const [n, s, r] = prizeOf(e); return `<div class="rb-tile" style="${rv(r)}"><b>${e[0]} %</b><i>${SYM[s]}</i><span>${n}</span></div>`; }).join('')}</div>`;
+  const kase = o => `<article class="sk-case${o.cls ? ' ' + o.cls : ''}" data-k="${o.k}">
+      <div class="sk-stage">${o.ribbon ? `<span class="sk-ribbon">${o.ribbon}</span>` : ''}<div class="sk-art">${o.art}</div></div>
+      <div class="sk-info"><p class="sk-kind">${o.kind}</p><h4 class="sk-name">${o.name}</h4><p class="sk-desc">${o.desc}</p>${o.extra || ''}</div>
+      <div class="sk-act">${o.btn}</div>${noteHTML(o.k)}</article>`;
+  const toggle = (id, on) => `<button class="sk-switch" type="button" role="switch" aria-checked="${!!on}" ${A(() => { if (id === 'turbo') S.turbo = !S.turbo; else S.gold = !S.gold; save(); paint(); paintTurbo(); again(); })}><i></i><span>${on ? 'An' : 'Aus'}</span></button>`;
+  const leftBar = it => { const left = it.rounds ? S.buff[it.id] || 0 : 0; return left ? `<div class="sk-left" aria-hidden="true"><i style="width:${Math.min(100, left / it.rounds * 100).toFixed(0)}%"></i></div><p class="sk-leftt">Noch ${left} Runden aktiv</p>` : ''; };
+  const itemCase = it => {
+    const own = it.once && S.own[it.id], left = it.rounds ? S.buff[it.id] || 0 : 0;
+    const btn = own ? (it.id === 'vip' ? '<span class="sk-own">Aktiv, für immer</span>' : toggle(it.id, it.id === 'turbo' ? S.turbo : S.gold))
+      : price(it.price, buyNow(it.id, () => buyItem(it.id, it.price)));
+    return kase({ k: it.id, art: SK_ART[it.id], kind: SK_KIND[it.id], name: it.n, desc: it.t, btn, ribbon: own ? 'Gehört dir' : left ? 'Aktiv' : '', extra: leftBar(it) });
+  };
+  const dropList = tab => `<ul>${tab.map(e => `<li><span>${prizeOf(e)[0]}</span><b>${e[0]} %</b></li>`).join('')}</ul>`;
   const tabs = {
-    angebote() {
-      const d = deal(), it = d.it;
-      return `<div class="rb-hero" style="${rv(it.rar)}"><span class="rb-badge hot">−25 %</span>
-          <div class="rb-ico big">${SYM[it.s]}</div>
-          <div><span class="rb-kicker">Tagesangebot</span><h3 class="rb-name">${it.n}</h3><p class="rb-sub">${it.t}</p><p class="rb-timer">Endet in <b class="rb-cd">${untilMidnight()}</b></p></div>
-          ${d.used ? '<button class="rb-buy" type="button" disabled>Heute gekauft</button>' : priceBtn(d.price, A(() => buyFlow({ ico: SYM[it.s], name: it.n, rar: it.rar, price: d.price, note: 'Tagesangebot, nur heute und nur einmal.', go: () => { const prev = S.dealDay; S.dealDay = today(); const r = buyItem(it.id, d.price); if (!r) S.dealDay = prev; return r; } })), it.price)}
+    vitrinen() {
+      const d = deal(), it = d.it, kiste = S.daily === today();
+      const dealGo = () => { const prev = S.dealDay; S.dealDay = today(); const r = buyItem(it.id, d.price); if (!r) S.dealDay = prev; return r; };
+      const daily = () => { const r = claimDaily(); if (!r) return; setNote('kiste', prizeNote(r.e, r.text), true); again(); skRoll(win, 'kiste', DAILY, r.e); };
+      return `<div class="sk-lead">
+          <article class="sk-hero" data-k="deal">
+            <div class="sk-stage"><span class="sk-off">−25 %</span><div class="sk-art">${SK_ART[it.id]}</div></div>
+            <div class="sk-info"><p class="sk-kind">Tagesangebot · endet in <span class="sk-cd num">${untilMidnight()}</span></p><h3 class="sk-name">${it.n}</h3><p class="sk-desc">${it.t}</p>
+              <div class="sk-act">${d.used ? '<span class="sk-own">Heute schon gekauft</span>' : price(d.price, buyNow('deal', dealGo), it.price)}</div>${noteHTML('deal')}</div>
+          </article>
+          ${kase({ k: 'kiste', cls: 'sk-free', art: SK_ART.kiste, kind: 'Jeden Tag gratis', name: 'Tageskiste', desc: 'Taler, Glücksdrehungen oder ein Trank.',
+            btn: kiste ? `<button class="sk-buy" type="button" disabled>Neu in <span class="sk-cd">${untilMidnight()}</span></button>` : `<button class="sk-buy" type="button" ${A(daily)}>Kiste öffnen</button>` })}
         </div>
-        <h3 class="rb-h">Gratis</h3><div class="rb-grid">${dailyCard()}</div>
-        <h3 class="rb-h">Beliebt</h3><div class="rb-grid">${['tuete', 'turbo', 'vip', 'xp'].map(id => itemCard(item(id))).join('')}</div>`;
+        <h3 class="sk-h">Gamepässe <span>einmal kaufen, für immer behalten</span></h3>
+        <div class="sk-cases">${['turbo', 'vip', 'gold'].map(id => itemCase(item(id))).join('')}</div>
+        <h3 class="sk-h">Boosts und Wundertüte <span>zählen bei jeder Runde eine Runde herunter, egal an welchem Spiel</span></h3>
+        <div class="sk-cases">${['xp', 'lk', 'tuete'].map(id => itemCase(item(id))).join('')}</div>
+        <details class="sk-drops"><summary>Was steckt in der Wundertüte und in der Tageskiste?</summary>
+          <div class="sk-dt"><div><h5>Wundertüte</h5>${dropList(TUETE)}</div><div><h5>Tageskiste</h5>${dropList(DAILY)}</div></div>
+          <p class="sk-fine">Die Wundertüte gibt im Mittel etwa 80 % ihres Preises zurück, Gutscheine und Tränke zum Ladenpreis gerechnet.</p></details>`;
     },
     automaten() {
-      const c = GS.find(x => x.id === SH.g) || GS[0], per = SH.per, pi = PERS.indexOf(per), unit = c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie';
-      const wild = SYM[c.S[c.W].k], sc = c.SC >= 0 ? SYM[c.S[c.SC].k] : SYM.stern, top = topSym(c);
-      const vc = (k, n, o) => {
-        const pr = vPrice(c, k, per, n);
-        return card({ ...o, btn: priceBtn(pr, A(() => buyFlow({ ico: o.ico, name: `${o.name}: ${c.name}`, rar: o.rar, price: pr, note: `${fmt(per)} Taler ${unit}. Der Gutschein liegt danach am Automaten bereit.`,
-          go: () => { if (!take(pr)) return null; addVoucher(k, c.id, per, n, pr); bought(); return { text: `${o.name} für ${c.name} liegt im Inventar und direkt am Automaten.`, slot: c.id }; } }))) });
+      const c = GS.find(x => x.id === SH.g) || GS[0], per = SH.per, pi = PERS.indexOf(per), unit = unitOf(c);
+      const wild = SYM[c.S[c.W].k], sc = c.SC >= 0 ? SYM[c.S[c.SC].k] : null;
+      const row = (k, n, ico, name, sub, q) => {
+        const pr = vPrice(c, k, per, n), key = `v-${k}-${n}`;
+        const go = () => { if (!take(pr)) return; addVoucher(k, c.id, per, n, pr); bought(); setNote(key, `${name} für ${c.name} liegt bereit, am Automaten unter dem Drehknopf. <a href="#${c.id}">Zum Automaten</a>`); again(); };
+        return `<li class="sk-item" data-k="${key}"><i class="sk-ic">${ico}</i><div class="sk-it"><b>${name}</b><span>${sub}</span><em>Quote ${q}</em></div>${price(pr, go)}${noteHTML(key)}</li>`;
       };
-      const cards = [
-        c.buy ? vc('fs', 1, { rar: 'e', ico: sc, tag: `${c.feat.n} FS`, name: 'Freispiele', sub: `Sofort ${c.feat.n} Freispiele · Quote ${pct(c.buyQ)}`, badge: 'BELIEBT' })
-          : card({ rar: 'c', cls: 'off', ico: sc, name: 'Freispiele', sub: `${c.name} hat keine Freispiele.`, btn: '<button class="rb-buy" type="button" disabled>Gibt es hier nicht</button>' }),
-        vc('lk', 1, { rar: 'r', ico: wild, tag: '×10', name: 'Glücksdrehung', sub: `${c.bst.pw ? 'Sicher Multi oder wilde Walze' : 'Sicher ein Multi'} · Quote ${pct(c.lkQ)}` }),
-        vc('lk', 5, { rar: 'e', ico: wild, tag: '5×', name: '5 Glücksdrehungen', sub: `Fünfmal sicher ein Treffer · Quote ${pct(c.lkQ)}` }),
-        ...PACKS.map(([n, d], i) => vc('pk', n, { rar: ['c', 'r', 'l'][i], ico: top, tag: n + '×', name: `${n} Drehungen`, sub: `${Math.round(d * 100)} % Rabatt · Quote ca. ${pct(c.rtp / 100 / (1 - d))}`, badge: i === 2 ? 'BESTER WERT' : null, bc: 'best' }))
+      const rows = [
+        c.buy ? row('fs', 1, sc, c.buyN || 'Freispiele', c.feat.t === 'tier' ? `8 Freispiele ab Stufe 1, drei ${c.scatPl} kommen sicher` : `Sofort ${c.feat.n} Freispiele, drei ${c.scatPl} kommen sicher`, pct(c.buyQ)) : '',
+        row('lk', 1, wild, 'Glücksdrehung', c.bst.pw ? 'Sicher ein Multi oder eine wilde Walze' : 'Sicher ein Multi, ×2 bis ×10', pct(c.lkQ)),
+        row('lk', 5, wild, '5 Glücksdrehungen', 'Fünfmal sicher ein Treffer', pct(c.lkQ)),
+        ...PACKS.map(([n, d]) => row('pk', n, topSym(c), `${n} Drehungen`, `${Math.round(d * 100)} % Rabatt, laufen von selbst ab und lassen sich anhalten`, 'ca. ' + pct(c.rtp / 100 / (1 - d))))
       ].join('');
-      return `<div class="rb-slots" role="radiogroup" aria-label="Automat">${GS.map(x => `<button class="rb-slot${x.id === c.id ? ' on' : ''}" type="button" role="radio" aria-checked="${x.id === c.id}" style="${x.css}" ${A(() => { SH.g = x.id; again(); })}><i>${SYM[x.S[x.W].k]}</i><span>${x.name}</span></button>`).join('')}</div>
-        <div class="rb-step"><span class="rb-steplbl">Einsatz ${unit}</span>
-          <button class="rb-pm" type="button" aria-label="Weniger Einsatz" ${pi <= 0 ? 'disabled' : A(() => { SH.per = PERS[pi - 1]; again(); })}>−</button>
-          <b class="rb-stepv">${COIN}${fmt(per)}</b>
-          <button class="rb-pm" type="button" aria-label="Mehr Einsatz" ${pi >= PERS.length - 1 ? 'disabled' : A(() => { SH.per = PERS[pi + 1]; again(); })}>+</button>
-          <span class="rb-steptot">${fmt(rnd2(per * c.cost))} Taler je Drehung</span></div>
-        <div class="rb-grid">${cards}</div>
-        <p class="rb-note">Gutscheine löst du am Automaten ein, sie liegen dort unter dem Drehknopf. Freispiele: Die erste Drehung bringt sicher drei ${c.scatPl || 'Streusymbole'}. Glücksdrehung: sicher ein Multi (×2 bis ×10)${c.bst.pw ? ' oder eine wilde Walze (×2 bis ×5)' : ''}. Ein Drehpaket läuft von selbst ab und lässt sich anhalten.</p>`;
+      return `<div class="sk-slots" role="radiogroup" aria-label="Automat">${GS.map(x => `<button class="sk-slot${x.id === c.id ? ' on' : ''}" type="button" role="radio" aria-checked="${x.id === c.id}" style="${x.css}" ${A(() => { SH.g = x.id; again(); })}><i>${SYM[x.S[x.W].k]}</i>${x.name}</button>`).join('')}</div>
+        <section class="sk-list" style="${c.css}">
+          <header class="sk-lhead"><div class="sk-strip" aria-hidden="true">${c.art.map(s => `<i>${SYM[s]}</i>`).join('')}</div>
+            <div><h3>${c.name}</h3><p>${c.kind}</p></div>
+            <div class="sk-stake"><button class="sk-pm" type="button" aria-label="Weniger Einsatz" ${pi <= 0 ? 'disabled' : A(() => { SH.per = PERS[pi - 1]; again(); })}>−</button>
+              <b class="num" title="Einsatz ${unit}">${fmt(per)}</b>
+              <button class="sk-pm" type="button" aria-label="Mehr Einsatz" ${pi >= PERS.length - 1 ? 'disabled' : A(() => { SH.per = PERS[pi + 1]; again(); })}>+</button>
+              <small>Taler ${unit} · ${fmt(rnd2(per * c.cost))} je Drehung</small></div></header>
+          <ul class="sk-rows">${rows}</ul>
+          <p class="sk-fine">Gutscheine liegen danach am Automaten unter dem Drehknopf und in „Dein Besitz“. Der Wert zählt beim Einlösen als Einsatz.</p>
+        </section>`;
     },
-    boosts: () => `<div class="rb-grid">${['xp', 'lk'].map(id => itemCard(item(id))).join('')}</div><p class="rb-note">Boosts zählen bei jeder abgerechneten Runde eine Runde herunter, egal an welchem Spiel.</p>`,
-    paesse: () => `<div class="rb-grid">${['turbo', 'vip', 'gold'].map(id => itemCard(item(id))).join('')}</div><p class="rb-note">Gamepässe kaufst du einmal und behältst sie. Turbo und Goldrahmen kannst du jederzeit an- und ausschalten.</p>`,
-    kisten: () => `<div class="rb-grid">${itemCard(item('tuete'))}${dailyCard()}</div>
-        <h3 class="rb-h">Das steckt in der Wundertüte</h3>${drops(TUETE)}
-        <h3 class="rb-h">Das steckt in der Tageskiste</h3>${drops(DAILY)}`,
-    inventar() {
+    besitz() {
       const v = S.inv.map(e => {
-        const c = GS.find(x => x.id === e.g);
-        return card({ rar: e.k === 'fs' ? 'e' : e.k === 'lk' ? 'r' : 'c', ico: e.k === 'fs' ? SYM[c.S[c.SC].k] : e.k === 'lk' ? SYM[c.S[c.W].k] : topSym(c), tag: '×' + e.n, name: vName(e.k), sub: `${c.name} · ${fmt(e.per)} Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}`,
-          btn: `<button class="rb-buy go" type="button" ${A(() => { closeShop(); location.hash = e.g; })}>Einlösen</button>` });
+        const c = GS.find(x => x.id === e.g), ico = e.k === 'fs' ? SYM[c.S[c.SC].k] : e.k === 'lk' ? SYM[c.S[c.W].k] : topSym(c);
+        return `<li class="sk-item" style="${c.css}"><i class="sk-ic">${ico}</i><div class="sk-it"><b>${e.k === 'fs' ? c.buyN || 'Freispiele' : vName(e.k)} · ${c.name}</b><span>${fmt(e.per)} Taler ${unitOf(c)} · noch ${e.n}</span><em>Wert ${fmt(e.v)} Taler</em></div><a class="sk-buy ghost" href="#${e.g}">Einlösen</a></li>`;
       }).join('');
-      const mine = SHOP.filter(it => (it.once && S.own[it.id]) || (it.rounds && S.buff[it.id] > 0)).map(it => itemCard(it)).join('');
-      return v || mine ? `${v ? `<h3 class="rb-h">Gutscheine · Wert ${fmt(invOpen())} Taler</h3><div class="rb-grid">${v}</div>` : ''}${mine ? `<h3 class="rb-h">Gamepässe und Boosts</h3><div class="rb-grid">${mine}</div>` : ''}`
-        : `<p class="rb-empty">Dein Inventar ist noch leer. Schau bei den Angeboten vorbei!</p>`;
+      const mine = SHOP.filter(it => (it.once && S.own[it.id]) || (it.rounds && S.buff[it.id] > 0)).map(it => `<li class="sk-item"><i class="sk-ic plain">${SK_ART[it.id]}</i>
+        <div class="sk-it"><b>${it.n}</b><span>${it.once ? it.t : `Noch ${S.buff[it.id]} Runden`}</span>${it.rounds ? leftBar(it).replace(/<p.*<\/p>/, '') : ''}</div>
+        ${it.id === 'vip' ? '<span class="sk-own">Aktiv</span>' : it.once ? toggle(it.id, it.id === 'turbo' ? S.turbo : S.gold) : '<span class="sk-own">Aktiv</span>'}</li>`).join('');
+      if (!v && !mine) return `<div class="sk-empty"><div class="sk-art">${SK_ART.kiste}</div><p>Hier ist noch nichts. Gutscheine, Gamepässe und laufende Boosts landen hier.</p><button class="sk-buy" type="button" data-tab="vitrinen">Zu den Vitrinen</button></div>`;
+      return `${v ? `<h3 class="sk-h first">Gutscheine <span>offener Wert ${fmt(invOpen())} Taler</span></h3><ul class="sk-rows sk-box">${v}</ul>` : ''}
+        ${mine ? `<h3 class="sk-h${v ? '' : ' first'}">Gamepässe und Boosts</h3><ul class="sk-rows sk-box">${mine}</ul>` : ''}`;
     }
   };
-  const dots = { angebote: !deal().used || S.daily !== today() ? '!' : 0, kisten: S.daily !== today() ? '!' : 0, inventar: S.inv.length };
-  win.innerHTML = `<div class="rb-top"><h2 class="rb-title">Shop</h2><span class="rb-bal" title="Deine Börse">${COIN}<b>${fmt(S.bal)}</b></span>${inline ? '' : '<button class="rb-x" type="button" aria-label="Shop schließen">✕</button>'}</div>
-    <div class="rb-body">
-      <nav class="rb-tabs" aria-label="Bereiche im Shop">${RB_TABS.map(([id, n, s]) => `<button class="rb-tab t-${id}${SH.tab === id ? ' on' : ''}" type="button" aria-pressed="${SH.tab === id}" data-tab="${id}"><i>${SYM[s]}</i><span>${n}</span>${dots[id] ? `<b class="rb-dot">${dots[id]}</b>` : ''}</button>`).join('')}</nav>
-      <div class="rb-main">${tabs[SH.tab]()}</div>
-    </div>`;
+  const fresh = !deal().used || S.daily !== today();
+  win.innerHTML = `<header class="sk-top"><div class="sk-brand"><p class="sk-eyebrow">Shop</p><h2 class="sk-title">Schatzkammer</h2></div>
+      <div class="sk-purse" title="Deine Börse"><span class="lbl">Börse</span><b class="num">${fmt(S.bal)}</b><span class="unit">Taler</span></div>
+      ${inline ? '' : '<button class="sk-x" type="button" aria-label="Shop schließen">✕</button>'}</header>
+    <nav class="sk-tabs" aria-label="Bereiche im Shop">${SK_TABS.map(([id, n]) => `<button class="sk-tab${SH.tab === id ? ' on' : ''}" type="button" aria-pressed="${SH.tab === id}" data-tab="${id}">${n}${id === 'vitrinen' && fresh ? '<i class="sk-dot" title="Neu heute"></i>' : id === 'besitz' && S.inv.length ? `<b class="sk-n">${S.inv.length}</b>` : ''}</button>`).join('')}</nav>
+    <div class="sk-main" data-tab="${SH.tab}">${tabs[SH.tab]()}<p class="sk-foot">Nur Spielgeld. Keine Quote im Shop liegt über 100 %.</p></div>`;
+  const mm = $('.sk-main', win); if (mm) mm.scrollTop = keep; if (inline) scrollTo(0, y);
+  /* Zweistufiger Kauf auf demselben Knopf */
+  const disarm = b => { if (!b.classList.contains('armed')) return; clearTimeout(b._t); b.classList.remove('armed'); b.innerHTML = b._h; };
   win.onclick = e => {
-    const t = e.target.closest('[data-tab],[data-a],.rb-x');
-    if (!t || t.closest('.rb-layer')) return;
-    if (t.classList.contains('rb-x')) { closeShop(); return; }
-    if (t.dataset.tab) { SH.tab = t.dataset.tab; rbShop(win, inline); const nt = $(`[data-tab="${SH.tab}"]`, win); if (nt) nt.focus({ preventScroll: true }); return; }
-    const f = acts[+t.dataset.a]; if (f && !t.disabled) f();
+    const t = e.target.closest('[data-tab],[data-a],.sk-x');
+    if (!t) return;
+    if (t.classList.contains('sk-x')) { closeShop(); return; }
+    if (t.dataset.tab) { SH.tab = t.dataset.tab; again(); const nt = $(`.sk-tab[data-tab="${SH.tab}"]`, win); if (nt) nt.focus({ preventScroll: true }); return; }
+    if (t.disabled) return;
+    if (t.dataset.arm != null && !t.classList.contains('armed')) {
+      $$('.sk-buy.armed', win).forEach(disarm);
+      t._h = t.innerHTML; t.classList.add('armed'); t.innerHTML = `<span>Kaufen für ${t.dataset.arm} Taler?</span>`;
+      t._t = setTimeout(() => disarm(t), 4000); return;
+    }
+    clearTimeout(t._t);
+    const f = acts[+t.dataset.a]; if (f) f();
   };
   /* Nach dem Neuzeichnen bleibt der Fokus im Fenster, damit die Leertaste nicht den Automaten dahinter dreht */
   if (!inline && !win.contains(document.activeElement)) win.focus({ preventScroll: true });
   clearInterval(shopCd);
-  shopCd = setInterval(() => { if (!win.isConnected) { clearInterval(shopCd); return; } $$('.rb-cd', win).forEach(x => { x.textContent = untilMidnight(); }); }, 1000);
+  shopCd = setInterval(() => { if (!win.isConnected) { clearInterval(shopCd); return; } $$('.sk-cd', win).forEach(x => { x.textContent = untilMidnight(); }); }, 1000);
 }
-/* Kleine Fenster im Shop: Kaufabfrage, Erfolg, Abrollband */
-function rbLayer(win, html, label) {
-  const m = h(`<div class="rb-layer"><div class="rb-pbox" role="dialog" aria-modal="true" aria-label="${label}">${html}</div></div>`);
-  win.append(m); return m;
-}
-function rbAsk(win, o) {
-  return new Promise(res => {
-    const m = rbLayer(win, `<h3>Kaufen?</h3>
-      <div class="rb-pitem" style="${rv(o.rar)}"><div class="rb-ico">${o.ico}</div></div>
-      <p class="rb-ptext">Möchtest du <b>${o.name}</b> für <span class="rb-pp">${COIN}${fmt(o.price)}</span> kaufen?</p>
-      ${o.note ? `<p class="rb-psub">${o.note}</p>` : ''}
-      <div class="rb-pbtns"><button class="rb-buy" type="button" data-y>Kaufen</button><button class="rb-no" type="button" data-n>Abbrechen</button></div>`, 'Kauf bestätigen');
-    const end = v => { m.remove(); res(v); };
-    m.addEventListener('click', e => { if (e.target.closest('[data-y]')) end(true); else if (e.target.closest('[data-n]') || e.target === m) end(false); });
-    m.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); end(false); } });
-    $('[data-y]', m).focus();
-  });
-}
-function rbDone(win, o, text, slot) {
-  return new Promise(res => {
-    const m = rbLayer(win, `<h3>Gekauft!</h3>
-      <div class="rb-rays"><div class="rb-pitem yay" style="${rv(o.rar)}"><div class="rb-ico">${o.ico}</div></div></div>
-      <p class="rb-ptext">${text}</p>
-      <div class="rb-pbtns"><button class="rb-buy" type="button" data-y>Super!</button>${slot ? '<button class="rb-buy go" type="button" data-go>Zum Automaten</button>' : ''}</div>`, 'Kauf erfolgreich');
-    const end = () => { m.remove(); res(); };
-    m.addEventListener('click', e => { if (e.target.closest('[data-y]')) end(); else if (e.target.closest('[data-go]')) { end(); closeShop(); location.hash = slot; } });
-    m.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); end(); } });
-    $('[data-y]', m).focus();
-  });
-}
-/* Abrollband: Ein Band aus Preisen rollt durch, der gezogene Preis (steht schon fest) bleibt unter der Markierung stehen */
-function rbRoll(win, table, e, title, text) {
-  return new Promise(res => {
-    const N = 44, at = 37, tiles = Array.from({ length: N }, (_, i) => i === at ? e : roll(table));
-    const tile = x => { const [n, s, r] = prizeOf(x); return `<div class="rb-tile" style="${rv(r)}"><i>${SYM[s]}</i><span>${n}</span></div>`; };
-    const [, , r] = prizeOf(e);
-    const m = rbLayer(win, `<h3>${title}</h3><div class="rb-case"><div class="rb-strip">${tiles.map(tile).join('')}</div><i class="rb-mark" aria-hidden="true"></i></div>
-      <p class="rb-won" aria-live="polite"></p><div class="rb-pbtns"><button class="rb-buy" type="button" data-y disabled>Rollt …</button></div>`, title);
-    m.firstElementChild.classList.add('rb-rollbox');
-    const strip = $('.rb-strip', m), box = $('.rb-case', m), ok = $('[data-y]', m);
-    const x = at * 112 + 52 - box.clientWidth / 2 + int(61) - 30;
-    let fin = false;
-    const finish = () => {
-      if (fin) return; fin = true;
-      strip.style.transition = 'none'; strip.style.transform = `translateX(${-x}px)`;
-      $$('.rb-tile', strip)[at].classList.add('win');
-      $('.rb-won', m).innerHTML = `<b style="color:${RAR[r][1]}">${RAR[r][0]}!</b> ${text}`;
-      ok.disabled = false; ok.textContent = 'Super!'; ok.focus();
-    };
-    ok.onclick = () => { m.remove(); res(); };
-    box.addEventListener('click', finish);
-    m.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.stopPropagation(); if (fin) { m.remove(); res(); } else finish(); } });
-    m.tabIndex = -1; m.focus({ preventScroll: true });
-    if (calm) { finish(); return; }
-    strip.getBoundingClientRect();
-    strip.style.transition = 'transform 4.6s cubic-bezier(.06,.62,.1,1)';
-    strip.style.transform = `translateX(${-x}px)`;
-    setTimeout(finish, 4700);
-  });
+/* Abrollband in der Vitrine: Der Inhalt steht schon fest, das Band zeigt ihn nur */
+function skRoll(win, k, table, e) {
+  const st = $(`[data-k="${k}"] .sk-stage`, win); if (!st) return;
+  const N = 28, at = 24, tiles = Array.from({ length: N }, (_, i) => i === at ? e : roll(table));
+  const box = h(`<div class="sk-roll" aria-hidden="true"><div class="sk-rstrip">${tiles.map(x => { const [n, s, r] = prizeOf(x); return `<div class="sk-pt" style="--rc:${SK_RC[r]}"><i>${SYM[s]}</i><span>${n}</span></div>`; }).join('')}</div></div>`);
+  st.append(box);
+  const strip = box.firstElementChild;
+  const end = () => {
+    strip.style.transition = 'none'; strip.style.transform = `translateY(${-at * 100 / N}%)`;
+    strip.children[at].classList.add('won');
+    if (SH.note) SH.note.shown = true;
+    $$('.sk-note.wait', win).forEach(x => x.classList.remove('wait'));
+  };
+  if (calm) { end(); return; }
+  strip.getBoundingClientRect();
+  strip.style.transition = 'transform 1.9s cubic-bezier(.12,.7,.15,1)';
+  strip.style.transform = `translateY(${-at * 100 / N}%)`;
+  setTimeout(end, 1950);
 }
 function openShop(tab) {
   if (tab) SH.tab = tab;
   if (shopOv || location.hash === '#laden') return;
   const back = document.activeElement;
-  shopOv = h('<div class="rb-ov"><div class="rb-shop" role="dialog" aria-modal="true" aria-label="Shop" tabindex="-1"></div></div>');
+  shopOv = h('<div class="sk-ov"><div class="sk-shop" role="dialog" aria-modal="true" aria-label="Shop" tabindex="-1"></div></div>');
   shopOv._back = back;
-  document.body.append(shopOv); document.body.classList.add('rb-open');
+  document.body.append(shopOv); document.body.classList.add('sk-open');
   shopOv.addEventListener('click', e => { if (e.target === shopOv) closeShop(); });
   /* Tasten im Shop gehören dem Shop: Escape schließt, die Leertaste dreht keinen Automaten dahinter */
   ['keydown', 'keyup'].forEach(t => shopOv.addEventListener(t, e => {
     if (t === 'keydown' && e.key === 'Escape') closeShop();
     if (e.code === 'Space' || e.key === ' ') e.stopPropagation();
   }));
-  const win = $('.rb-shop', shopOv);
-  rbShop(win, false);
-  const x = $('.rb-x', win); if (x) x.focus();
+  const win = $('.sk-shop', shopOv);
+  skShop(win, false);
+  const x = $('.sk-x', win); if (x) x.focus();
 }
 function closeShop() {
   if (!shopOv) return;
   clearInterval(shopCd);
-  const b = shopOv._back; shopOv.remove(); shopOv = null; document.body.classList.remove('rb-open');
+  const b = shopOv._back; shopOv.remove(); shopOv = null; document.body.classList.remove('sk-open');
   if (b && b.isConnected && b.focus) b.focus();
 }
 $('#shopbtn').addEventListener('click', () => openShop());
@@ -5176,7 +5446,7 @@ function route() {
   else if (id === 'kassenbuch') ledger(root);
   else if (id === 'aktionen') promos(root);
   else if (id === 'fortschritt') progress(root);
-  else if (id === 'laden') { root.innerHTML = '<section><div class="rb-shop inline"></div></section>'; rbShop($('.rb-shop', root), true); }
+  else if (id === 'laden') { root.innerHTML = '<section><div class="sk-shop inline"></div></section>'; skShop($('.sk-shop', root), true); }
   else if (GROUPS[id]) hall(root, id);
   else {
     const g = GAMES[id];
