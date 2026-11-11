@@ -6,7 +6,7 @@ In den zehn neuesten Automaten gibt es Glücksdrehungen: Etwa jede 33. Drehung b
 
 Dazu ein Levelsystem: Jede Runde bringt Erfahrung, jedes Level bringt Token. Für Token gibt es Ausrüstung, die das Glück leicht hebt. Mit Talern wertest du sie bis Stufe 10 auf, und jede Stufe kostet doppelt so viel wie die vorige (alles voll: +5 % Glück). 32 Erfolge bringen weitere Token.
 
-Im Bonusladen gibt es Gutscheine für Freispiele, Glücksdrehungen und Drehpakete, außerdem einen Turbo-Hebel, Erfahrungstränke, Glückskekse und Wundertüten. Keine Quote im Laden liegt über 100 %.
+Im Shop (grünes + neben der Börse) gibt es Gutscheine für Freispiele, Glücksdrehungen und Drehpakete, Boosts wie Erfahrungstrank und Glückskeks, Gamepässe (Turbo-Hebel, VIP-Ausweis, Goldrahmen), eine Wundertüte mit Abrollband, jeden Tag ein Angebot und eine Gratis-Tageskiste. Keine Quote im Shop liegt über 100 %.
 
 Es gibt nur Spielgeld (Taler). Nichts davon ist echtes Geld, und man kann nichts kaufen oder auszahlen. Der Spielstand liegt im Browser (localStorage).
 

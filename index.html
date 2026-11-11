@@ -6,7 +6,7 @@
 <title>Zur Goldenen Elster</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Grenze+Gotisch:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fredoka:wght@500;600;700&family=Grenze+Gotisch:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: ein Salon bei Nacht. Klare Flächen in Tinte, Spieltische aus Petrol-Filz mit Messingrahmen,
    Messing nur für Geld und Handlung, das Schillern der Elsterfedern als kühler Akzent. Harte 1px-Kanten überall. */
@@ -623,19 +623,147 @@ a.fact:hover{background:rgba(230,183,82,.12)}
 .fact.turbofact{cursor:pointer}
 .fact.turbofact[hidden]{display:none}
 .fact.turbofact.on{background:linear-gradient(180deg,#bff5ea,#5fd3bb);color:#062019;border-color:#bff5ea;font-weight:600}
-.sh-conf{margin-top:14px}
-.sh-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.sh-pick .field label{margin-bottom:6px}
-.sh-pick select{width:100%;min-height:44px;padding:6px 10px;border-radius:8px;border:1px solid var(--line2);background:var(--ink)}
-.sh-offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.sh-inv{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
-.sh-v{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:10px 14px;border-radius:12px;background:var(--ink2);border:1px solid var(--line)}
-.sh-v b{color:var(--brass-hi)}
-.sh-v span{flex:1;min-width:160px;color:var(--mute);font-size:.92rem}
-.sh-v .btn{min-height:40px;padding:6px 14px}
-.sh-tip{margin-top:10px}
-#sh-msg:empty{display:none}
-#sh-msg{margin-top:12px}
+/* Shop im Stil eines bunten Spiele-Shops: dicke dunkle Konturen, Kanten-Schatten, kräftige Verläufe, runde Schrift */
+.shopplus{display:grid;place-items:center;width:32px;height:32px;padding:0;border-radius:10px;border:2px solid #0e3d17;background:linear-gradient(#6df07a,#24b03a);color:#fff;font:700 1.35rem/1 "Fredoka",var(--body);text-shadow:0 2px 0 rgba(0,0,0,.35);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 3px 0 #0e3d17;cursor:pointer}
+.shopplus:active{transform:translateY(2px);box-shadow:0 1px 0 #0e3d17}
+/* Auf dem Handy sitzt das + als kleines Abzeichen an der Ecke der Börse, damit die Kopfzeile einzeilig bleibt */
+@media (max-width:560px){.purse{position:relative}.shopplus{position:absolute;right:-12px;bottom:-9px;width:24px;height:24px;border-radius:8px;font-size:1.05rem;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 2px 0 #0e3d17}}
+.rb-ov{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(4,8,14,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:rbFade .18s ease-out}
+@keyframes rbFade{from{opacity:0}}
+body.rb-open{overflow:hidden}
+.rb-shop{--ol:#0f1520;position:relative;width:min(1000px,100%);max-height:calc(100vh - 32px);display:grid;grid-template-rows:auto minmax(0,1fr);border:4px solid var(--ol);border-radius:26px;background:linear-gradient(180deg,#304c7c,#1c2b4a);box-shadow:0 8px 0 var(--ol),0 24px 60px rgba(0,0,0,.55);overflow:hidden;font-family:"Fredoka",var(--body);color:#fff;animation:rbPop .32s cubic-bezier(.2,.9,.3,1.3)}
+.rb-shop:focus{outline:none}
+.rb-shop.inline{max-height:none;animation:none;margin-top:6px}
+@keyframes rbPop{from{transform:scale(.86) translateY(18px);opacity:0}}
+.rb-top{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 22px;background:linear-gradient(180deg,#5db8ff,#2f74ff);border-bottom:4px solid var(--ol)}
+.rb-title{margin:0;font:700 2.2rem/1 "Fredoka",var(--body);letter-spacing:.03em;text-transform:uppercase;color:#fff;text-shadow:3px 3px 0 var(--ol),-2px 2px 0 var(--ol),2px -2px 0 var(--ol),-2px -2px 0 var(--ol),0 5px 0 var(--ol)}
+.rb-bal{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:999px;background:#0f1a2c;border:3px solid var(--ol);font:700 1.15rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.08)}
+.rb-coin{display:inline-block;width:26px;height:26px;flex:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.4))}
+.rb-coin svg{width:100%;height:100%;display:block}
+.rb-x{width:44px;height:44px;flex:none;border-radius:12px;border:3px solid var(--ol);background:linear-gradient(#ff6b6b,#e0262f);color:#fff;font:700 1.3rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.rb-x:active,.rb-buy:active:not(:disabled),.rb-tab:active,.rb-pm:active:not(:disabled),.rb-slot:active,.rb-no:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ol)}
+.rb-body{display:grid;grid-template-columns:172px minmax(0,1fr);min-height:0}
+.rb-tabs{display:grid;align-content:start;gap:12px;padding:18px 12px;background:rgba(0,0,0,.2);border-right:4px solid var(--ol);overflow:auto}
+.rb-tab{position:relative;display:flex;align-items:center;gap:8px;min-height:50px;padding:6px 10px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,var(--t1),var(--t2));color:#fff;font:700 1rem/1.1 "Fredoka",var(--body);text-align:left;box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.rb-tab i{width:30px;height:30px;flex:none;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
+.rb-tab i svg{width:100%;height:100%;display:block}
+.rb-tab.on{outline:3px solid #fff;outline-offset:-8px;filter:brightness(1.12)}
+.rb-tab:not(.on){filter:saturate(.8)}
+.t-angebote{--t1:#ffcf3d;--t2:#f08a00}.t-automaten{--t1:#ff7aa8;--t2:#d6336c}.t-boosts{--t1:#c98bff;--t2:#7b3fe0}.t-paesse{--t1:#5fe0a0;--t2:#16a36a}.t-kisten{--t1:#ffa65c;--t2:#e0601b}.t-inventar{--t1:#6fc3ff;--t2:#2a77e0}
+.rb-dot{position:absolute;top:-9px;right:-8px;min-width:24px;height:24px;padding:0 6px;display:grid;place-items:center;border-radius:999px;background:#ff3b4f;border:3px solid var(--ol);font:700 .78rem/1 "Fredoka",var(--body);animation:rbBounce 1.4s ease-in-out infinite}
+@keyframes rbBounce{50%{transform:translateY(-3px)}}
+.rb-main{position:relative;padding:20px;overflow:auto;min-height:0}
+.rb-shop.inline .rb-main{overflow:visible}
+.rb-h{margin:24px 0 12px;font:700 1.3rem/1.1 "Fredoka",var(--body);color:#fff;text-shadow:2px 2px 0 var(--ol),-1px 1px 0 var(--ol),1px -1px 0 var(--ol),-1px -1px 0 var(--ol)}
+.rb-h:first-child{margin-top:0}
+.rb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:18px 16px;padding-top:8px}
+.rb-card{position:relative;display:grid;justify-items:center;align-content:start;gap:6px;padding:14px 12px 12px;border-radius:18px;border:3px solid var(--ol);background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.38),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));box-shadow:inset 0 3px 0 rgba(255,255,255,.25),0 5px 0 var(--ol);text-align:center;transition:transform .15s}
+.rb-card:hover{transform:translateY(-3px) rotate(-.5deg)}
+.rb-card.off{filter:grayscale(.85) brightness(.75)}
+.rb-rar{font:700 .64rem/1 "Fredoka",var(--body);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.3)}
+.rb-ico{position:relative;width:84px;height:84px;display:grid;place-items:center;animation:rbFloat 2.6s ease-in-out infinite}
+.rb-ico svg{width:100%;height:100%;filter:drop-shadow(0 4px 0 rgba(0,0,0,.35)) drop-shadow(0 0 12px rgba(255,255,255,.35))}
+.rb-ico.big{width:120px;height:120px}
+@keyframes rbFloat{50%{transform:translateY(-5px)}}
+.rb-tag{position:absolute;right:-16px;bottom:-4px;padding:2px 8px;border-radius:10px;background:#fff;color:var(--ol);border:3px solid var(--ol);font:700 .85rem/1.1 "Fredoka",var(--body);white-space:nowrap;transform:rotate(6deg)}
+.rb-name{margin:2px 0 0;font:700 1.12rem/1.1 "Fredoka",var(--body);color:#fff;hyphens:auto;overflow-wrap:break-word;max-width:100%;text-shadow:2px 2px 0 var(--ol),-1px 1px 0 var(--ol),1px -1px 0 var(--ol),-1px -1px 0 var(--ol),0 3px 0 var(--ol)}
+.rb-sub{margin:0;min-height:2.5em;font:500 .8rem/1.25 "Fredoka",var(--body);color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.55)}
+.rb-badge{position:absolute;top:-13px;left:-10px;z-index:2;padding:4px 10px;border-radius:10px;border:3px solid var(--ol);background:#ff3b5c;color:#fff;font:700 .76rem/1 "Fredoka",var(--body);letter-spacing:.04em;white-space:nowrap;transform:rotate(-8deg);box-shadow:0 3px 0 var(--ol);text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.rb-badge.best{background:#ffd84d;color:var(--ol);text-shadow:none}
+.rb-badge.pass,.rb-badge.free{background:#16a36a}
+.rb-badge.own{background:#2a77e0}
+.rb-badge.mys{background:#7b3fe0}
+.rb-badge.hot{font-size:1.15rem;padding:6px 12px;animation:rbWig 1.8s ease-in-out infinite}
+@keyframes rbWig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(-3deg) scale(1.07)}}
+.rb-buy{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:46px;padding:6px 12px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,#6df07a,#24b03a);color:#fff;font:700 1.15rem/1 "Fredoka",var(--body);text-shadow:0 2px 0 rgba(0,0,0,.35);box-shadow:inset 0 3px 0 rgba(255,255,255,.35),0 4px 0 var(--ol);cursor:pointer}
+.rb-buy:hover:not(:disabled){filter:brightness(1.08)}
+.rb-buy:disabled{background:linear-gradient(180deg,#8d98a5,#5d6874);cursor:default}
+.rb-buy s{opacity:.75;font-size:.82em;margin-right:2px}
+.rb-buy .rb-coin{width:22px;height:22px}
+.rb-buy.owned,.rb-buy.go{background:linear-gradient(180deg,#6fc3ff,#2a77e0)}
+.rb-buy.off{background:linear-gradient(180deg,#8d98a5,#5d6874)}
+.rb-buy.free{background:linear-gradient(180deg,#ffd84d,#f08c00)}
+.rb-buy:disabled.owned{background:linear-gradient(180deg,#6fc3ff,#2a77e0)}
+.rb-left{position:relative;width:100%;height:22px;border-radius:999px;background:rgba(0,0,0,.4);border:2px solid var(--ol);overflow:hidden}
+.rb-left i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#6df07a,#24b03a)}
+.rb-left span{position:relative;display:block;font:700 .72rem/18px "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.rb-hero{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) 220px;align-items:center;gap:20px;padding:22px 24px;border-radius:22px;border:3px solid var(--ol);background:radial-gradient(90% 120% at 12% 20%,rgba(255,255,255,.4),transparent 55%),linear-gradient(135deg,var(--r1),var(--r2));box-shadow:inset 0 3px 0 rgba(255,255,255,.3),0 6px 0 var(--ol)}
+.rb-hero .rb-name{font-size:1.7rem}
+.rb-hero .rb-sub{min-height:0;font-size:.95rem}
+.rb-kicker{display:inline-block;margin-bottom:6px;padding:4px 10px;border-radius:999px;background:var(--ol);font:700 .75rem/1.2 "Fredoka",var(--body);letter-spacing:.08em;text-transform:uppercase;color:#ffd84d}
+.rb-timer{margin:10px 0 0;font:600 .95rem/1 "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.rb-cd{font-variant-numeric:tabular-nums}
+.rb-slots{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:thin}
+.rb-slot{flex:0 0 auto;display:grid;justify-items:center;gap:4px;width:94px;padding:8px 6px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,var(--g1,#3a4a66),var(--g2,#1d2a40));color:#fff;font:600 .76rem/1.1 "Fredoka",var(--body);box-shadow:0 4px 0 var(--ol);cursor:pointer;text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.rb-slot i{width:44px;height:44px}
+.rb-slot i svg{width:100%;height:100%;display:block}
+.rb-slot.on{outline:3px solid #ffd84d;outline-offset:2px}
+.rb-step{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 14px;padding:10px 14px;border-radius:16px;background:rgba(0,0,0,.25);border:3px solid var(--ol)}
+.rb-steplbl{font:600 .95rem "Fredoka",var(--body)}
+.rb-pm{width:42px;height:42px;border-radius:12px;border:3px solid var(--ol);background:linear-gradient(180deg,#ffd84d,#f08c00);color:var(--ol);font:700 1.5rem/1 "Fredoka",var(--body);box-shadow:inset 0 2px 0 rgba(255,255,255,.4),0 4px 0 var(--ol);cursor:pointer}
+.rb-pm:disabled{filter:grayscale(1) brightness(.7);cursor:default}
+.rb-stepv{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:100px;font:700 1.25rem/1 "Fredoka",var(--body)}
+.rb-steptot{margin-left:auto;font:500 .88rem "Fredoka",var(--body);opacity:.85}
+.rb-note{margin:18px 0 0;font:500 .84rem/1.4 "Fredoka",var(--body);color:rgba(255,255,255,.82)}
+.rb-drops{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.rb-tile{position:relative;flex:0 0 104px;display:grid;justify-items:center;align-content:center;gap:4px;height:118px;padding:8px 6px;border-radius:14px;border:3px solid var(--ol);background:radial-gradient(100% 70% at 50% 0%,rgba(255,255,255,.38),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));text-align:center;font:600 .74rem/1.1 "Fredoka",var(--body);text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.rb-tile i{width:48px;height:48px}
+.rb-tile i svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
+.rb-tile b{position:absolute;top:4px;right:6px;font:700 .72rem "Fredoka",var(--body)}
+.rb-tile.win{box-shadow:0 0 0 4px #fff,0 0 30px 6px var(--r1);transform:scale(1.06);z-index:1}
+.rb-empty{padding:34px 10px;text-align:center;font:600 1.05rem "Fredoka",var(--body);opacity:.85}
+.rb-layer{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:16px;background:rgba(6,10,18,.68);animation:rbFade .15s}
+.rb-layer:focus{outline:none}
+.rb-shop.inline .rb-layer{position:fixed;z-index:40}
+.rb-pbox{width:min(420px,100%);display:grid;justify-items:center;gap:12px;padding:20px;border-radius:22px;border:4px solid var(--ol);background:linear-gradient(180deg,#36548a,#1e2e4f);box-shadow:0 6px 0 var(--ol);text-align:center;animation:rbPop .28s cubic-bezier(.2,.9,.3,1.3)}
+.rb-pbox h3{margin:0;font:700 1.7rem/1 "Fredoka",var(--body);text-shadow:2px 2px 0 var(--ol),-2px 2px 0 var(--ol),2px -2px 0 var(--ol),-2px -2px 0 var(--ol),0 4px 0 var(--ol)}
+.rb-pitem{display:grid;place-items:center;width:130px;height:130px;border-radius:20px;border:3px solid var(--ol);background:radial-gradient(100% 70% at 50% 0%,rgba(255,255,255,.4),transparent 60%),linear-gradient(180deg,var(--r1),var(--r2));box-shadow:0 5px 0 var(--ol)}
+.rb-pitem.yay{animation:rbYay .6s cubic-bezier(.2,.9,.3,1.5)}
+@keyframes rbYay{from{transform:scale(.4) rotate(-20deg)}}
+.rb-ptext{margin:0;font:500 1.05rem/1.4 "Fredoka",var(--body)}
+.rb-pp{display:inline-flex;align-items:center;gap:4px;font-weight:700;vertical-align:-6px}
+.rb-psub{margin:0;font:500 .84rem/1.3 "Fredoka",var(--body);opacity:.85}
+.rb-pbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;width:100%}
+.rb-no{min-height:46px;border-radius:14px;border:3px solid var(--ol);background:linear-gradient(180deg,#8d98a5,#5d6874);color:#fff;font:700 1.1rem/1 "Fredoka",var(--body);box-shadow:inset 0 3px 0 rgba(255,255,255,.25),0 4px 0 var(--ol);cursor:pointer;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.rb-rollbox{width:min(560px,100%)}
+.rb-case{position:relative;width:100%;overflow:hidden;padding:10px 0;border-radius:16px;border:3px solid var(--ol);background:#0f1a2c;cursor:pointer}
+.rb-strip{display:flex;gap:8px;width:max-content;will-change:transform}
+.rb-mark{position:absolute;top:0;bottom:0;left:50%;width:4px;margin-left:-2px;background:#ffd84d;box-shadow:0 0 12px #ffd84d}
+.rb-mark::before,.rb-mark::after{content:"";position:absolute;left:50%;transform:translateX(-50%);border:9px solid transparent}
+.rb-mark::before{top:0;border-top-color:#ffd84d}
+.rb-mark::after{bottom:0;border-bottom-color:#ffd84d}
+.rb-won{margin:0;min-height:1.4em;font:600 1.05rem/1.4 "Fredoka",var(--body)}
+.rb-rays{position:relative;isolation:isolate}
+.rb-rays::before{content:"";position:absolute;inset:-46px;z-index:-1;border-radius:50%;background:repeating-conic-gradient(rgba(255,216,77,.4) 0 12deg,transparent 12deg 24deg);-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);animation:rbSpin 6s linear infinite}
+@keyframes rbSpin{to{transform:rotate(360deg)}}
+.lvchip.vip::before{content:"VIP";position:absolute;top:-8px;right:-6px;padding:1px 5px;border-radius:6px;border:1px solid #0f1520;background:linear-gradient(#ff7b9c,#d7194c);color:#fff;font:700 .58rem/1.2 "Fredoka",var(--body);letter-spacing:.04em}
+body.goldcab .cab,body.goldcab .cab-gen{box-shadow:inset 0 0 0 5px rgba(0,0,0,.18),inset 0 0 0 7px #f7d98f,0 0 0 3px #c8962f,0 0 30px rgba(247,217,143,.5),0 12px 32px rgba(0,0,0,.38)}
+body.goldcab .reels{border-color:#f0c14e}
+@media (max-width:700px){
+  .rb-ov{padding:8px}
+  .rb-shop{max-height:calc(100vh - 16px);border-radius:20px}
+  .rb-top{padding:10px 10px 10px 16px}
+  .rb-title{font-size:1.7rem}
+  .rb-bal{font-size:1rem}
+  .rb-body{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  .rb-tabs{display:flex;gap:8px;padding:14px 10px 12px;border-right:0;border-bottom:4px solid var(--ol);overflow-x:auto;overflow-y:hidden}
+  .rb-tab{flex:0 0 auto;min-height:44px;font-size:.9rem}
+  .rb-tab i{width:24px;height:24px}
+  .rb-dot{top:-11px;right:-6px}
+  .rb-main{padding:14px}
+  .rb-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+  .rb-card{padding:12px 8px 10px}
+  .rb-ico{width:62px;height:62px}
+  .rb-name{font-size:1rem}
+  .rb-sub{font-size:.74rem}
+  .rb-buy{font-size:1rem;min-height:42px;padding:6px 8px}
+  .rb-tag{right:-12px;font-size:.75rem}
+  .rb-hero{grid-template-columns:auto minmax(0,1fr);gap:12px;padding:18px 14px 14px}
+  .rb-hero .rb-buy{grid-column:1/-1}
+  .rb-hero .rb-name{font-size:1.3rem}
+  .rb-ico.big{width:80px;height:80px}
+  .rb-steptot{margin-left:0;width:100%}
+}
 .msg a{color:var(--brass-hi);font-weight:600}
 @media (max-width:560px){.gs-multi{top:-24px;right:-6px;padding:4px 10px 3px;border-radius:12px}.gs-multi b{font-size:1.35rem}.gs-multi small{font-size:.55rem}.xpand.wm .wmx{font-size:.95rem;padding:2px 7px;bottom:6px}}
 @keyframes gsmx{from{transform:translateX(-50%) scale(.2);opacity:0}}
@@ -798,6 +926,7 @@ a.fact:hover{background:rgba(230,183,82,.12)}
       <a id="lvchip" class="lvchip" href="#fortschritt" title="Fortschritt"><span class="lw">Level</span><b id="lvn">1</b><span class="tk" id="tokn">0</span></a>
       <button id="luckbtn" class="luckpill" type="button" hidden aria-expanded="false" aria-controls="luckpop" title="Glücksregler"><span class="lw">Glück</span><b id="luckv">×1</b></button>
       <span class="chipbal"><span class="lbl">Börse</span><span id="bal">1.000</span><span class="unit">Taler</span></span>
+      <button id="shopbtn" class="shopplus" type="button" aria-label="Shop öffnen" title="Shop">+</button>
       <button id="refill" type="button" hidden>1.000 nachfüllen</button>
     </div>
     <div class="luckpop" id="luckpop" role="dialog" aria-labelledby="lp-t" hidden></div>
@@ -844,9 +973,9 @@ const KEY = 'goldene-elster-v1';
 /* codes: eingelöste Aktionscodes, bonus: Summe daraus, promo: offene Gratis-Freispiele,
    table: Stapel am Pokertisch (kommt beim nächsten Laden zurück in die Börse), luck: Stand des Glücksreglers,
    prog: Level, Token, Ausrüstung und Erfolge */
-/* inv: Gutscheine aus dem Bonusladen, own: dort Gekauftes für immer (Turbo), buff: Runden mit Trank oder Glückskeks,
-   shop: Taler, die netto in Turbo, Tränke, Glückskekse und Wundertüten flossen (Gutscheine zählen beim Einlösen als Einsatz) */
-const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1, spent: 0, prog: progBlank(), inv: [], own: {}, buff: {}, shop: 0, turbo: false });
+/* inv: Gutscheine aus dem Shop, own: Gamepässe (Turbo, VIP, Goldrahmen), turbo/gold: Pass an oder aus, buff: Runden mit Trank oder Glückskeks,
+   shop: Taler, die netto in Gamepässe, Boosts und Wundertüten flossen (Gutscheine zählen beim Einlösen als Einsatz), dealDay/daily: Tagesangebot und Tageskiste genutzt */
+const blank = () => ({ bal: 1000, topups: 0, games: {}, codes: [], bonus: 0, promo: {}, table: null, luck: 1, spent: 0, prog: progBlank(), inv: [], own: {}, buff: {}, shop: 0, turbo: false, gold: false });
 let S = blank(), lastBal = null;
 function load(data) {
   let had = false;
@@ -865,7 +994,7 @@ function load(data) {
   if (!Array.isArray(S.inv)) S.inv = [];
   S.inv = S.inv.filter(e => e && GS.some(c => c.id === e.g) && e.n > 0);
   ['own', 'buff'].forEach(k => { if (!S[k] || typeof S[k] !== 'object') S[k] = {}; });
-  S.shop = +S.shop || 0; S.turbo = !!S.turbo;
+  S.shop = +S.shop || 0; S.turbo = !!S.turbo; S.gold = !!S.gold;
   /* Ausrüstung aus der ersten Fassung (Bronze/Silber/Gold für Token): Die Token gibt es zurück, gekauft wird neu */
   const back = Object.values(S.prog.gear).reduce((a, k) => a + ([0, 2, 5, 10][k] || 0), 0);
   if (Object.keys(S.prog.gear).length) { S.prog.tok += back; S.prog.gear = {}; if (back) setTimeout(() => toast('Ausrüstung neu geordnet', `${back} Token zurück`, 'gear'), 600); }
@@ -881,7 +1010,7 @@ function paint() {
   lastBal = S.bal;
   $('#refill').hidden = S.bal >= 1;
   const nb = $('#nbadge'); if (nb) { const n = openPromos(); nb.textContent = n; nb.hidden = !n; }
-  paintProg(); paintLuck();
+  paintProg(); paintLuck(); applyLook();
 }
 function take(a) { if (a > S.bal + 1e-9) return false; S.bal = rnd2(S.bal - a); paint(); return true; }
 function record(game, stake, ret) {
@@ -971,8 +1100,8 @@ const ACH = [
   { id: 'st5', n: 'Feinschliff', t: 'Werte ein Stück auf Stufe 5 auf.', tok: 2, goal: 5, v: topLv },
   { id: 'st10', n: 'Meisterstück', t: 'Werte ein Stück auf Stufe 10 auf.', tok: 3, goal: 10, v: topLv },
   { id: 'voll', n: 'Glückspilz', t: 'Werte alle fünf Stücke auf Stufe 10 auf.', tok: 0, goal: () => GEAR.length, v: p => GEAR.filter(g => p.eq[g.id] === EQ_MAX).length },
-  { id: 'laden', n: 'Kundschaft', t: 'Kauf etwas im Bonusladen.', tok: 1, goal: 1, v: p => Math.min(1, p.buys || 0) },
-  { id: 'laden25', n: 'Bester Kunde', t: 'Kauf 25-mal im Bonusladen.', tok: 2, goal: 25, v: p => p.buys || 0 }
+  { id: 'laden', n: 'Kundschaft', t: 'Kauf etwas im Shop.', tok: 1, goal: 1, v: p => Math.min(1, p.buys || 0) },
+  { id: 'laden25', n: 'Bester Kunde', t: 'Kauf 25-mal im Shop.', tok: 2, goal: 25, v: p => p.buys || 0 }
 ];
 let toastBox = null;
 function toast(title, sub, cls = '') {
@@ -1005,9 +1134,9 @@ function progRound(game, stake, ret) {
   else if (ret < stake - 1e-9) { p.sW = 0; p.sL++; p.maxL = Math.max(p.maxL, p.sL); }
   if (clean && stake > 0) { p.best = Math.max(p.best, ret / stake); p.bestNet = Math.max(p.bestNet, rnd2(ret - stake)); }
   if (clean && game === 'holdem' && ret > stake) p.flags.poker = 1;
-  /* Erfahrungstrank: doppelte XP. Trank und Glückskeks zählen ihre Runden hier herunter. */
+  /* Erfahrungstrank: doppelte XP, VIP-Ausweis: +25 %. Trank und Glückskeks zählen ihre Runden hier herunter. */
   const b = S.buff || {};
-  const before = lvOf(p.xp).n; p.xp += xpFor(stake) * (b.xp > 0 ? 2 : 1);
+  const before = lvOf(p.xp).n; p.xp += Math.round(xpFor(stake) * (b.xp > 0 ? 2 : 1) * (S.own && S.own.vip ? 1.25 : 1));
   if (b.xp > 0 && !--b.xp) toast('Erfahrungstrank leer', 'XP wieder normal');
   if (b.lk > 0 && !--b.lk) toast('Glückskeks aufgegessen', 'Glück wieder wie vorher');
   const after = lvOf(p.xp).n;
@@ -1940,7 +2069,7 @@ const GS_LOW = [['A', 'Ass'], ['K', 'König'], ['D', 'Dame'], ['B', 'Bube']];
 /* Glücksdrehungen, nur in bezahlten Drehungen (nicht in Freispielen oder Nachdrehungen). Wahrscheinlichkeiten je 1000 Drehungen.
    Multi: alle Gewinne der Drehung ×m. Wilde Walze: Walze 2 oder 3 wird komplett Joker, alle Liniengewinne ×m.
    Jede Gewinnlinie läuft über Walze 2 und 3 (bei Gewinnen von beiden Seiten nur sicher über Walze 3), darum trifft der Faktor immer alle Liniengewinne. */
-/* Preise im Bonusladen und am Automaten, in Gesamteinsätzen, mit der tatsächlichen Quote: [Preis, Quote].
+/* Preise im Shop und am Automaten, in Gesamteinsätzen, mit der tatsächlichen Quote: [Preis, Quote].
    fs: Freispiele kaufen, lk: Glücksdrehung. Je 300.000 simulierte Runden mit der Engine unten, Preis = Erwartung / 0,96 auf 0,1 gerundet. */
 const GS_PRICE = {
   bienenstock: { lk: [7.6, 0.962] },
@@ -2360,7 +2489,7 @@ function reelSet(box, grid, cell, lines = null) {
   function spin(next, pick, base = 1100, stag = 420, o = {}) {
     clearFx();
     /* Ab der ersten Spannungswalze drehen alle folgenden einzeln nach, auch wenn das dritte Symbol schon liegt */
-    /* Turbo-Hebel aus dem Bonusladen: Die Walzen laufen gut doppelt so schnell */
+    /* Turbo-Hebel aus dem Shop: Die Walzen laufen gut doppelt so schnell */
     const tb = turbo();
     if (tb) { base = Math.round(base * .45); stag = Math.round(stag * .45); }
     const t0 = calm || !o.tease || !o.tease.length ? -1 : o.tease[0];
@@ -3494,13 +3623,13 @@ function mountGS(c) {
     const wildKeys = g => { const k = []; g.forEach((col, i) => col.forEach((s, r) => { if (s === W) k.push(i + ':' + r); })); return k; };
     let R = null, timer = 0;
     const wait = (ms, fn) => { timer = setTimeout(fn, calm ? Math.min(ms, 40) : turbo() ? Math.round(ms * .5) : ms); };
-    /* Gutscheine aus dem Bonusladen. Ein Drehpaket läuft nach dem Start von selbst weiter, bis es leer ist oder angehalten wird. */
+    /* Gutscheine aus dem Shop. Ein Drehpaket läuft nach dem Start von selbst weiter, bis es leer ist oder angehalten wird. */
     const vb = q('#gs-vouch'); let pack = null, packT = 0;
     const perTxt = per => `${fmt(per)} Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}`;
     function paintV() {
       const mine = S.inv.filter(e => e.g === c.id);
       vb.hidden = !mine.length;
-      vb.innerHTML = '<p class="flabel">Gutscheine aus dem Bonusladen</p>' + mine.map(e => `<button class="btn${pack === e ? ' on' : ''}" type="button" data-v="${S.inv.indexOf(e)}"${R && pack !== e ? ' disabled' : ''}>
+      vb.innerHTML = '<p class="flabel">Gutscheine aus dem Shop</p>' + mine.map(e => `<button class="btn${pack === e ? ' on' : ''}" type="button" data-v="${S.inv.indexOf(e)}"${R && pack !== e ? ' disabled' : ''}>
         <b>${e.k === 'fs' ? 'Freispiele einlösen' : e.k === 'lk' ? 'Glücksdrehung einlösen' : pack === e ? 'Paket anhalten' : 'Drehpaket abspielen'}</b><small>${perTxt(e.per)} · noch ${e.n}</small></button>`).join('');
     }
     vb.addEventListener('click', ev => {
@@ -3509,6 +3638,8 @@ function mountGS(c) {
       spin(e.k, e);
     });
     paintV();
+    /* Im Shop-Fenster über dem Automaten gekauft: Gutscheine sofort zeigen */
+    const onInv = () => paintV(); document.addEventListener('elster-inv', onInv);
     const ctl = spinKeys(q('#gs-auto'), btn, () => spin(), () => !!R);
     function label(i) {
       const s = R.spins[i];
@@ -3614,7 +3745,7 @@ function mountGS(c) {
       return true;
     }
     btn.onclick = () => spin();
-    return () => { pack = null; clearTimeout(timer); clearTimeout(packT); buys.forEach(b => b.destroy()); ctl.destroy(); ro.disconnect(); done(); };
+    return () => { pack = null; document.removeEventListener('elster-inv', onInv); clearTimeout(timer); clearTimeout(packT); buys.forEach(b => b.destroy()); ctl.destroy(); ro.disconnect(); done(); };
   };
 }
 
@@ -4537,7 +4668,7 @@ const GROUPS = {
 };
 const groupOf = k => Object.keys(GROUPS).find(g => GROUPS[g].list.includes(k));
 
-$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['fortschritt', 'Fortschritt'], ['laden', 'Bonusladen'], ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
+$('#nav').innerHTML = [['lobby', 'Empfang'], ...Object.keys(GROUPS).map(g => [g, GROUPS[g].nav]), ['fortschritt', 'Fortschritt'], ['laden', 'Shop'], ['aktionen', 'Aktionen'], ['kassenbuch', 'Kassenbuch']]
   .map(([k, n]) => `<a href="#${k}" data-r="${k}">${n}${k === 'aktionen' ? ' <span class="nbadge" id="nbadge" hidden></span>' : k === 'fortschritt' ? ' <span class="nbadge" id="fbadge" hidden></span>' : ''}</a>`).join('');
 
 function tileHTML(k, feature) {
@@ -4610,10 +4741,10 @@ function lobby(root) {
   const open = openPromos(), fs = S.promo.alchemie || 0;
   const gearStrip = canBuy() ? `<a class="promo-strip gear-strip" href="#fortschritt"><b>Ausrüstung</b><span>Du hast ${P().tok} Token. Das reicht für ein neues Stück Ausrüstung, das dein Glück hebt.</span><span class="go">Ansehen →</span></a>` : '';
   const nv = S.inv.reduce((a, e) => a + e.n, 0);
-  const shopStrip = nv ? `<a class="promo-strip" href="#laden"><b>Gutscheine</b><span>${nv === 1 ? 'Ein Gutschein' : nv + ' Gutscheine'} aus dem Bonusladen ${nv === 1 ? 'wartet' : 'warten'} noch auf dich.</span><span class="go">Ansehen →</span></a>` : '';
+  const shopStrip = nv ? `<a class="promo-strip" href="#laden"><b>Gutscheine</b><span>${nv === 1 ? 'Ein Gutschein' : nv + ' Gutscheine'} aus dem Shop ${nv === 1 ? 'wartet' : 'warten'} noch auf dich.</span><span class="go">Ansehen →</span></a>` : '';
   const strip = open || fs ? `<a class="promo-strip" href="#${open ? 'aktionen' : 'alchemie'}"><b>Aktionen</b><span>${open ? (open === 1 ? 'Ein Aktionscode wartet noch auf dich.' : `${open} Aktionscodes warten auf dich: Extra-Taler und Freispiele.`) : ''}${fs ? ` ${fs} Gratis-Freispiele im Alchemistenbuch sind noch offen.` : ''}</span><span class="go">${open ? 'Einlösen' : 'Spielen'} →</span></a>` : '';
   root.innerHTML = `<section class="felt hero"><div><h1>Zur Goldenen Elster</h1><p>${n} Spiele, tausend Taler zum Start und nirgends echtes Geld.</p>
-    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><a class="fact" href="#fortschritt">Level ${lvOf(P().xp).n}</a><a class="fact" href="#laden">Bonusladen</a><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
+    <div class="facts"><span class="fact">${SLOTS.length} Automaten</span><span class="fact">${n - SLOTS.length} Tische</span><a class="fact" href="#fortschritt">Level ${lvOf(P().xp).n}</a><a class="fact" href="#laden">Shop</a><span class="fact">Nur Spielgeld</span><a class="fact" href="#kassenbuch">Kassenbuch ansehen</a></div></div>
     <div class="mag"><button class="magpie" id="magpie" type="button" aria-label="Die Elster anstupsen">${MAGPIE}</button><p class="bubble" id="bubble" role="status" hidden></p></div></section>
   ${strip}${gearStrip}${shopStrip}
   ${Object.keys(GROUPS).map(g => `<section><div class="sect-row"><h2 class="sect"><a href="#${g}" style="text-decoration:none">${GROUPS[g].name}</a></h2><span>${GROUPS[g].aside}</span></div><div class="tiles ${GROUPS[g].cls}">${groupTiles(g)}</div></section>`).join('')}`;
@@ -4641,7 +4772,7 @@ function ledger(root) {
     ${lucky_n ? `<p class="note">★ zählt die Runden, die mit dem Glücksregler über ×1 liefen, insgesamt ${fmt(lucky_n)}. Für diese Runden gilt die Theorie-Spalte nicht, deine Quote ist deshalb höher.</p>` : ''}
     ${gearLuck() ? `<p class="note">Deine Ausrüstung gibt dir Glück +${luckPct(gearLuck())}. Deine Quote liegt deshalb etwas über der Theorie.</p>` : ''}
     ${S.spent ? `<p class="note">Für Ausrüstung ausgegeben: <span class="num">${fmt(S.spent)}</span> Taler. Das zählt nicht als Einsatz.</p>` : ''}
-    ${S.shop || S.inv.length ? `<p class="note">Bonusladen: ${S.shop >= 0 ? `<span class="num">${fmt(S.shop)}</span> Taler gingen netto in Turbo, Tränke, Glückskekse und Wundertüten.` : `Die Wundertüten brachten netto <span class="num">${fmt(-S.shop)}</span> Taler mehr, als der Laden gekostet hat.`}${S.inv.length ? ` Offene Gutscheine: <span class="num">${fmt(invOpen())}</span> Taler.` : ''} Eingelöste Gutscheine stehen mit ihrem Preis als Einsatz beim Automaten.</p>` : ''}</div></section>`;
+    ${S.shop || S.inv.length ? `<p class="note">Shop: ${S.shop >= 0 ? `<span class="num">${fmt(S.shop)}</span> Taler gingen netto in Gamepässe, Boosts und Wundertüten.` : `Die Wundertüten brachten netto <span class="num">${fmt(-S.shop)}</span> Taler mehr, als der Shop gekostet hat.`}${S.inv.length ? ` Offene Gutscheine: <span class="num">${fmt(invOpen())}</span> Taler.` : ''} Eingelöste Gutscheine stehen mit ihrem Preis als Einsatz beim Automaten.</p>` : ''}</div></section>`;
   let armed = false;
   $('#reset', root).onclick = e => {
     if (!armed) { armed = true; e.target.textContent = 'Wirklich alles löschen?'; return; }
@@ -4724,20 +4855,36 @@ function progress(root, note) {
 }
 let pgArm = 0;
 
-/* ---------- Bonusladen ----------
-   Gutscheine für die zehn neuen Automaten: Freispiele und Glücksdrehungen zu Preisen aus der Simulation (Quote knapp unter 96 %),
-   Drehpakete mit kleinem Mengenrabatt (Quote bleibt unter 100 %). Dazu Turbo-Hebel, Erfahrungstrank, Glückskeks und Wundertüte.
-   Ein Gutschein: { k: 'fs' | 'lk' | 'pk', g: Automat, per: Einsatz je Linie, n: übrig, v: bezahlter Restwert }. Beim Einlösen zählt der anteilige Wert als Einsatz. */
+/* ---------- Shop ----------
+   Aufgebaut wie ein bunter Spiele-Shop: ein Fenster mit Reitern, dicke Karten nach Seltenheit, Kaufabfrage als eigenes Fenster,
+   Wundertüte und Tageskiste mit Abrollband. Läuft als Seite (#laden) und als Fenster über jedem Spiel (grünes + neben der Börse).
+   Gutscheine für die zehn neuen Automaten: Freispiele und Glücksdrehungen zu Preisen aus der Simulation (Quote um 96 %),
+   Drehpakete mit kleinem Mengenrabatt (Quote bleibt unter 100 %).
+   Ein Gutschein: { k: 'fs' | 'lk' | 'pk', g: Automat, per: Einsatz je Linie, n: übrig, v: bezahlter Restwert }. Beim Einlösen zählt der anteilige Wert als Einsatz.
+   S.shop zählt, was netto in Gamepässe, Boosts und Wundertüten floss. Was die Tageskiste schenkt, zählt wie Aktionen (S.bonus). */
 const PACKS = [[10, .01], [25, .02], [50, .03]];
 const PERS = [.1, .2, .5, 1, 2, 5, 10, 25, 50, 100];
+const RAR = { c: ['Gewöhnlich', '#b8c4cf', '#5f6e7c'], r: ['Selten', '#5cc2ff', '#1f6fe0'], e: ['Episch', '#d08bff', '#7a2ed6'], l: ['Legendär', '#ffd84d', '#f08c00'], m: ['Mythisch', '#ff7b9c', '#d7194c'] };
 const SHOP = [
-  { id: 'turbo', n: 'Turbo-Hebel', s: 'blitz', col: '#9ff0e0', price: 2500, once: true, t: 'Ein Hebel für alle Automaten: Die Walzen laufen gut doppelt so schnell. Einmal kaufen, dann oben am Automaten an- und ausschalten.', sub: 'Für immer, jederzeit abschaltbar' },
-  { id: 'xp', n: 'Erfahrungstrank', s: 'phiole', col: '#b48cff', price: 1500, rounds: 100, t: 'Doppelte Erfahrung für die nächsten 100 Runden. Weitere Tränke hängen sich hinten an.', sub: 'Doppelte XP für 100 Runden' },
-  { id: 'lk', n: 'Glückskeks', s: 'blatt', col: '#7ff0b4', price: 3000, rounds: 50, t: 'Glück +1 % für die nächsten 50 Runden, zusätzlich zur Ausrüstung. Ein zweiter Keks verlängert.', sub: 'Glück +1 % für 50 Runden' },
-  { id: 'tuete', n: 'Wundertüte', s: 'truhe', col: '#f0c14e', price: 1000, t: 'Taler, Gutscheine für Freispiele oder Glücksdrehungen, ein Trank, ein Glückskeks oder mit viel Glück ein Token. Was drin ist, weiß nur die Elster.', sub: 'Inhalt zufällig' }
+  { id: 'turbo', n: 'Turbo-Hebel', s: 'blitz', rar: 'l', price: 2500, once: true, t: 'Die Walzen laufen gut doppelt so schnell. Am Automaten an- und ausschaltbar.' },
+  { id: 'vip', n: 'VIP-Ausweis', s: 'krone', rar: 'm', price: 10000, once: true, t: 'Für immer +25 % Erfahrung und ein VIP-Abzeichen an deinem Level.' },
+  { id: 'gold', n: 'Goldrahmen', s: 'gold', rar: 'e', price: 5000, once: true, t: 'Alle Automaten glänzen in Gold. Nur zum Angeben, an- und ausschaltbar.' },
+  { id: 'xp', n: 'Erfahrungstrank', s: 'phiole', rar: 'e', price: 1500, rounds: 100, t: 'Doppelte XP für 100 Runden. Weitere Tränke hängen sich hinten an.' },
+  { id: 'lk', n: 'Glückskeks', s: 'blatt', rar: 'r', price: 3000, rounds: 50, t: 'Glück +1 % für 50 Runden, zusätzlich zur Ausrüstung.' },
+  { id: 'tuete', n: 'Wundertüte', s: 'truhe', rar: 'l', price: 1000, t: 'Taler, Gutscheine, Tränke, ein Glückskeks oder mit viel Glück ein Token.' }
 ];
-/* Wundertüte, Chancen in Prozent. Im Mittel kommt etwa 80 % des Preises zurück (Gutscheine und Tränke zum Ladenpreis gerechnet). */
+const item = id => SHOP.find(x => x.id === id);
+/* Inhalt von Wundertüte und Tageskiste: [Chance in %, Art, Menge].
+   Die Wundertüte gibt im Mittel etwa 80 % ihres Preises zurück (Gutscheine und Tränke zum Ladenpreis gerechnet). */
 const TUETE = [[34, 'taler', 300], [22, 'taler', 600], [8, 'taler', 1500], [1, 'taler', 10000], [12, 'fs'], [10, 'lk5'], [8, 'xp'], [4, 'keks'], [1, 'tok']];
+const DAILY = [[40, 'taler', 100], [30, 'taler', 250], [15, 'taler', 500], [10, 'lk3'], [5, 'xp50']];
+const PRIZE = {
+  taler: a => [fmt(a) + ' Taler', 'muenze', a >= 10000 ? 'm' : a >= 1500 ? 'l' : a >= 500 ? 'r' : 'c'],
+  fs: () => ['Freispiele', 'stern', 'e'], lk5: () => ['5 Glücksdrehungen', 'sieben', 'r'], lk3: () => ['3 Glücksdrehungen', 'sieben', 'r'],
+  xp: () => ['Erfahrungstrank', 'phiole', 'e'], xp50: () => ['Trank, 50 Runden', 'phiole', 'e'], keks: () => ['Glückskeks', 'blatt', 'r'], tok: () => ['Token', 'diamant', 'm']
+};
+const prizeOf = e => PRIZE[e[1]](e[2]);
+const roll = tab => { let r = int(100); for (const x of tab) { if (r < x[0]) return x; r -= x[0]; } return tab[0]; };
 function turbo() { return !!(S.own && S.own.turbo && S.turbo); }
 function charm() { return S.buff && S.buff.lk > 0 ? .01 : 0; }
 function extraLuck() { return gearLuck() + charm(); }
@@ -4759,108 +4906,265 @@ function useVoucher(e) {
   save(); return share;
 }
 const invOpen = () => rnd2(S.inv.reduce((a, e) => a + e.v, 0));
-function bought() { const p = P(); p.buys = (p.buys || 0) + 1; checkAch(); save(); paint(); }
+const invChanged = () => document.dispatchEvent(new Event('elster-inv'));
+const today = () => { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
+const untilMidnight = () => { const d = new Date(), m = new Date(d); m.setHours(24, 0, 0, 0); const s = Math.max(0, Math.floor((m - d) / 1000)); return [s / 3600, s / 60 % 60, s % 60].map(x => String(Math.floor(x)).padStart(2, '0')).join(':'); };
+/* Tagesangebot: jeden Tag ein anderer Boost oder die Wundertüte, 25 % günstiger, einmal pro Tag */
+function deal() {
+  const d = today(); let x = 0; for (const ch of d) x = (x * 31 + ch.charCodeAt(0)) >>> 0;
+  const it = item(['xp', 'lk', 'tuete'][x % 3]);
+  return { it, price: Math.round(it.price * .75), used: S.dealDay === d };
+}
+function bought() { const p = P(); p.buys = (p.buys || 0) + 1; checkAch(); save(); paint(); invChanged(); }
 function paintTurbo() {
   $$('.turbofact').forEach(b => { b.hidden = !(S.own && S.own.turbo); b.textContent = `Turbo: ${S.turbo ? 'an' : 'aus'}`; b.setAttribute('aria-pressed', String(!!S.turbo)); b.classList.toggle('on', !!S.turbo); });
 }
 document.addEventListener('click', e => { if (!e.target.closest('.turbofact')) return; S.turbo = !S.turbo; save(); paintTurbo(); });
-function openTuete() {
-  let r = int(100), e = TUETE[0];
-  for (const x of TUETE) { if (r < x[0]) { e = x; break; } r -= x[0]; }
+/* Goldrahmen an den Automaten, VIP-Abzeichen am Level */
+function applyLook() {
+  document.body.classList.toggle('goldcab', !!(S.own && S.own.gold && S.gold));
+  const ch = $('#lvchip'); if (ch) ch.classList.toggle('vip', !!(S.own && S.own.vip));
+}
+/* Inhalt aus Wundertüte oder Tageskiste gutschreiben. gift: aus der Tageskiste, zählt dann als Geschenk (S.bonus), sonst gegen S.shop */
+function givePrize(e, gift) {
   const [, k, a] = e;
-  if (k === 'taler') { S.bal = rnd2(S.bal + a); S.shop = rnd2(S.shop - a); return `In der Wundertüte: ${fmt(a)} Taler!`; }
-  if (k === 'fs' || k === 'lk5') {
-    const pool = GS.filter(x => k === 'lk5' || x.buy), c = pool[int(pool.length)], kk = k === 'fs' ? 'fs' : 'lk', n = kk === 'fs' ? 1 : 5, v = vPrice(c, kk, 1, n);
-    addVoucher(kk, c.id, 1, n, v); S.shop = rnd2(S.shop - v);
-    return `In der Wundertüte: ${kk === 'fs' ? 'Freispiele' : '5 Glücksdrehungen'} für ${c.name} mit 1 Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}, Wert ${fmt(v)} Taler.`;
+  if (k === 'taler') { S.bal = rnd2(S.bal + a); if (gift) S.bonus = rnd2((S.bonus || 0) + a); else S.shop = rnd2(S.shop - a); return `${fmt(a)} Taler!`; }
+  if (k === 'fs' || k === 'lk5' || k === 'lk3') {
+    const pool = GS.filter(x => k !== 'fs' || x.buy), c = pool[int(pool.length)], kk = k === 'fs' ? 'fs' : 'lk', n = k === 'fs' ? 1 : k === 'lk5' ? 5 : 3, v = vPrice(c, kk, 1, n);
+    addVoucher(kk, c.id, 1, n, v);
+    if (gift) S.bonus = rnd2((S.bonus || 0) + v); else S.shop = rnd2(S.shop - v);
+    return `${kk === 'fs' ? 'Freispiele' : n + ' Glücksdrehungen'} für ${c.name}, 1 Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'} (Wert ${fmt(v)} Taler). Liegt im Inventar.`;
   }
-  if (k === 'xp') { S.buff.xp = (S.buff.xp || 0) + 100; return 'In der Wundertüte: ein Erfahrungstrank. Doppelte XP für die nächsten 100 Runden.'; }
-  if (k === 'keks') { S.buff.lk = (S.buff.lk || 0) + 50; return 'In der Wundertüte: ein Glückskeks. Glück +1 % für die nächsten 50 Runden.'; }
-  P().tok++; return 'In der Wundertüte: ein Token! Den gibt es sonst nur für Level und Erfolge.';
+  if (k === 'xp' || k === 'xp50') { const r = k === 'xp' ? 100 : 50; S.buff.xp = (S.buff.xp || 0) + r; return `Erfahrungstrank: doppelte XP für ${r} Runden.`; }
+  if (k === 'keks') { S.buff.lk = (S.buff.lk || 0) + 50; return 'Glückskeks: Glück +1 % für 50 Runden.'; }
+  P().tok++; return 'Ein Token! Den gibt es sonst nur für Level und Erfolge.';
 }
-function buyItem(id) {
-  const it = SHOP.find(x => x.id === id);
-  if (!it || (it.once && S.own[id]) || !take(it.price)) return null;
-  S.shop = rnd2(S.shop + it.price);
-  let text;
-  if (id === 'turbo') { S.own.turbo = 1; S.turbo = true; text = 'Der Turbo-Hebel gehört dir und ist an. Am Automaten schaltest du ihn oben neben der Quote an und aus.'; }
-  else if (id === 'xp') { S.buff.xp = (S.buff.xp || 0) + it.rounds; text = `Erfahrungstrank getrunken: doppelte XP für ${S.buff.xp} Runden.`; }
-  else if (id === 'lk') { S.buff.lk = (S.buff.lk || 0) + it.rounds; text = `Glückskeks gegessen: Glück +1 % für ${S.buff.lk} Runden.`; }
-  else text = openTuete();
+/* Kauf eines Shop-Artikels zum Preis price. Liefert { text } oder bei der Wundertüte { text, e } mit dem gezogenen Inhalt. */
+function buyItem(id, price) {
+  const it = item(id);
+  if (!it || (it.once && S.own[id]) || !take(price)) return null;
+  S.shop = rnd2(S.shop + price);
+  const r = {};
+  if (it.once) {
+    S.own[id] = 1; if (id === 'turbo') S.turbo = true; if (id === 'gold') S.gold = true;
+    r.text = { turbo: 'Der Turbo-Hebel gehört dir und ist an. Am Automaten schaltest du ihn oben neben der Quote an und aus.', vip: 'Du bist jetzt VIP: +25 % Erfahrung, für immer.', gold: 'Deine Automaten glänzen jetzt in Gold.' }[id];
+  } else if (id === 'xp' || id === 'lk') {
+    S.buff[id] = (S.buff[id] || 0) + it.rounds;
+    r.text = id === 'xp' ? `Doppelte XP für ${S.buff.xp} Runden.` : `Glück +1 % für ${S.buff.lk} Runden.`;
+  } else { r.e = roll(TUETE); r.text = givePrize(r.e, false); }
   bought(); paintTurbo();
-  return text;
+  return r;
 }
-const SH = { g: 'sternwarte', per: 1 };
-function shop(root, note) {
-  const c = GS.find(x => x.id === SH.g) || GS[0], per = SH.per, T = rnd2(per * c.cost), unit = c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie';
-  const offer = (k, n, main, sub) => {
-    const pr = vPrice(c, k, per, n), poor = pr > S.bal;
-    return `<button class="btn buy" type="button" data-k="${k}" data-n="${n}" data-p="${pr}"${poor ? ' disabled' : ''}><b>${main} · ${fmt(pr)} Taler</b><small>${poor ? 'So viel ist nicht in der Börse' : sub}</small></button>`;
+function claimDaily() {
+  if (S.daily === today()) return null;
+  S.daily = today(); const e = roll(DAILY), text = givePrize(e, true);
+  save(); paint(); invChanged();
+  return { e, text };
+}
+
+const COIN = `<i class="rb-coin" aria-hidden="true">${SYM.muenze}</i>`;
+const RB_TABS = [['angebote', 'Angebote', 'stern'], ['automaten', 'Automaten', 'sieben'], ['boosts', 'Boosts', 'phiole'], ['paesse', 'Gamepässe', 'krone'], ['kisten', 'Kisten', 'truhe'], ['inventar', 'Inventar', 'schluessel']];
+const SH = { tab: 'angebote', g: 'sternwarte', per: 1 };
+let shopOv = null, shopCd = 0;
+const rv = r => `--r1:${RAR[r][1]};--r2:${RAR[r][2]}`;
+const topSym = c => SYM[c.S.filter(s => s.p).sort((a, b) => b.p[2] - a.p[2])[0].k];
+/* Ein Shop-Fenster in win zeichnen. inline: als eigene Seite (ohne Schließen-Knopf) */
+function rbShop(win, inline) {
+  const acts = [], A = fn => { acts.push(fn); return `data-a="${acts.length - 1}"`; };
+  const again = () => { const mm = $('.rb-main', win), sc = mm ? mm.scrollTop : 0, y = scrollY; rbShop(win, inline); const m2 = $('.rb-main', win); if (m2) m2.scrollTop = sc; if (inline) scrollTo(0, y); };
+  const card = o => `<article class="rb-card${o.cls ? ' ' + o.cls : ''}" style="${rv(o.rar)}">
+      ${o.badge ? `<span class="rb-badge ${o.bc || ''}">${o.badge}</span>` : ''}<span class="rb-rar">${RAR[o.rar][0]}</span>
+      <div class="rb-ico">${o.ico}${o.tag ? `<b class="rb-tag">${o.tag}</b>` : ''}</div>
+      <h3 class="rb-name">${o.name}</h3><p class="rb-sub">${o.sub}</p>${o.extra || ''}${o.btn}</article>`;
+  const priceBtn = (p, a, old) => `<button class="rb-buy" type="button" ${a}${p > S.bal ? ' disabled title="So viel ist nicht in der Börse"' : ''}>${COIN}<span>${old ? `<s>${fmt(old)}</s> ` : ''}${fmt(p)}</span></button>`;
+  /* Kaufen: Abfrage, dann bezahlen, dann Erfolg oder Abrollband */
+  async function buyFlow(o) {
+    if (!(await rbAsk(win, o))) return;
+    const r = o.go(); if (!r) return;
+    const b = $('.rb-bal b', win); if (b) b.textContent = fmt(S.bal);
+    if (r.e) await rbRoll(win, TUETE, r.e, o.name, r.text);
+    else await rbDone(win, o, r.text, r.slot);
+    again();
+  }
+  const itemCard = (it, price = it.price, extra = {}) => {
+    const own = it.once && S.own[it.id], left = it.rounds ? S.buff[it.id] || 0 : 0;
+    let btn;
+    if (own && it.id === 'vip') btn = '<button class="rb-buy owned" type="button" disabled>Aktiv</button>';
+    else if (own) {
+      const on = it.id === 'turbo' ? S.turbo : S.gold;
+      btn = `<button class="rb-buy ${on ? 'owned' : 'off'}" type="button" aria-pressed="${!!on}" ${A(() => { if (it.id === 'turbo') S.turbo = !S.turbo; else S.gold = !S.gold; save(); paint(); paintTurbo(); again(); })}>${on ? 'An' : 'Aus'}</button>`;
+    } else btn = priceBtn(price, A(() => buyFlow({ ico: SYM[it.s], name: it.n, rar: it.rar, price, note: it.t, go: extra.go || (() => buyItem(it.id, price)) })), extra.old);
+    return card({
+      rar: it.rar, ico: SYM[it.s], name: it.n, sub: it.t, btn,
+      badge: own ? 'GEKAUFT' : it.once ? 'GAMEPASS' : it.id === 'tuete' ? '???' : left ? 'AKTIV' : null, bc: own ? 'own' : it.once ? 'pass' : it.id === 'tuete' ? 'mys' : 'pass',
+      tag: it.id === 'xp' ? '2× XP' : it.id === 'lk' ? '+1 %' : null,
+      extra: left ? `<div class="rb-left"><i style="width:${Math.min(100, left / it.rounds * 100).toFixed(0)}%"></i><span>Noch ${left} Runden</span></div>` : ''
+    });
   };
-  const offers = [
-    c.buy ? offer('fs', 1, 'Freispiele', `${num1(c.buy)}-facher Gesamteinsatz · Quote ${pct(c.buyQ)}`) : `<button class="btn buy" type="button" disabled><b>Freispiele</b><small>${c.name} hat keine Freispiele</small></button>`,
-    offer('lk', 1, 'Glücksdrehung', `${num1(c.lk)}-fach · Quote ${pct(c.lkQ)}`),
-    offer('lk', 5, '5 Glücksdrehungen', `${num1(c.lk)}-fach je Drehung · Quote ${pct(c.lkQ)}`),
-    ...PACKS.map(([n, d]) => offer('pk', n, `${n} Drehungen`, `${Math.round(d * 100)} % Rabatt · Quote ca. ${pct(c.rtp / 100 / (1 - d))}`))
-  ].join('');
-  const item = it => {
-    const own = it.once && S.own[it.id], left = it.id === 'xp' ? S.buff.xp || 0 : it.id === 'lk' ? S.buff.lk || 0 : 0, poor = it.price > S.bal;
-    const act = own
-      ? `<button class="btn${S.turbo ? ' go' : ''}" type="button" data-turbo>Turbo ist ${S.turbo ? 'an' : 'aus'}<small>Klick schaltet ihn ${S.turbo ? 'aus' : 'an'}</small></button>`
-      : `<button class="btn buy" type="button" data-item="${it.id}" data-p="${it.price}"${poor ? ' disabled' : ''}><b>${it.id === 'tuete' ? 'Öffnen' : left ? 'Verlängern' : 'Kaufen'} · ${fmt(it.price)} Taler</b><small>${poor ? 'So viel ist nicht in der Börse' : it.sub}</small></button>`;
-    return `<article class="gcard${own || left ? ' t3' : ''}" style="--tc:${it.col}"><div class="gicon">${SYM[it.s]}</div>
-      <div class="gbody"><h3>${it.n}</h3><p>${it.t}</p>${own ? '<div class="gpips"><span>Gehört dir</span></div>' : left ? `<div class="gpips"><span>Aktiv: noch ${left} Runden</span></div>` : ''}</div>${act}</article>`;
-  };
-  const inv = S.inv.map(e => `<li class="sh-v"><b>${e.k === 'pk' ? `Drehpaket` : vName(e.k)}</b><span>${GAMES[e.g].name} · ${fmt(e.per)} Taler ${GS.find(x => x.id === e.g).mode === 'ways' ? 'Grundeinsatz' : 'je Linie'} · noch ${e.n}${e.k === 'pk' ? ' Drehungen' : ''}</span><a class="btn" href="#${e.g}">Einlösen →</a></li>`).join('');
-  root.innerHTML = `<section><header class="ghead"><h1>Bonusladen</h1><p>Hier gibst du Taler für Extras aus: Gutscheine für die Automaten, einen Turbo-Hebel, Tränke und Glücksbringer. Alles bleibt Spielgeld, und keine Quote im Laden liegt über 100 %.</p></header>
-    <p class="msg" id="sh-msg" aria-live="polite"></p>
-    <div class="sect-row"><h2 class="sect">Für die Automaten</h2><span>Gutscheine, eingelöst am Automaten</span></div>
-    <div class="side sh-conf">
-      <div class="sh-pick">
-        <div class="field"><label for="sh-g">Automat</label><select id="sh-g">${GS.map(x => `<option value="${x.id}"${x.id === c.id ? ' selected' : ''}>${x.name}</option>`).join('')}</select></div>
-        <div class="field"><label for="sh-per">Einsatz ${unit}</label><select id="sh-per">${PERS.map(v => `<option value="${v}"${v === per ? ' selected' : ''}>${fmt(v)} Taler</option>`).join('')}</select></div>
-      </div>
-      <div class="kv"><span>Gesamteinsatz je Drehung</span><span class="num">${fmt(T)} Taler</span></div>
-      <div class="sh-offers">${offers}</div>
-      <p class="note">Freispiele: Die erste Drehung bringt sicher drei ${c.scatPl || 'Streusymbole'}. Glücksdrehung: sicher ein Multi (×2 bis ×10)${c.bst.pw ? ' oder eine wilde Walze (×2 bis ×5)' : ''}. Ein Drehpaket startest du am Automaten, dann läuft es von selbst und lässt sich anhalten.</p>
-    </div>
-    <div class="sect-row"><h2 class="sect">Deine Gutscheine</h2><span>${S.inv.length ? `Wert ${fmt(invOpen())} Taler` : 'noch keine'}</span></div>
-    ${S.inv.length ? `<ul class="sh-inv">${inv}</ul>` : '<p class="note sh-tip">Gekaufte Gutscheine erscheinen hier und direkt am Automaten.</p>'}
-    <div class="sect-row"><h2 class="sect">Tränke, Glücksbringer und mehr</h2><span>${SHOP.length} Dinge</span></div>
-    <div class="gear">${SHOP.map(item).join('')}</div></section>`;
-  const m = $('#sh-msg', root);
-  if (note) { say(m, note.text, note.cls); if (note.go) m.append(' ', h(`<a href="#${note.go}">Jetzt einlösen →</a>`)); }
-  const again = n => { const y = scrollY; shop(root, n); scrollTo(0, y); };
-  $('#sh-g', root).addEventListener('change', e => { SH.g = e.target.value; again(); });
-  $('#sh-per', root).addEventListener('change', e => { SH.per = +e.target.value; again(); });
-  /* Erster Klick nennt den Preis, der zweite zahlt. Nach 4 Sekunden verfällt der erste Klick. */
-  const arm = (b, go) => {
-    const lab = $('b', b);
-    if (!b.classList.contains('armed')) {
-      $$('.btn.buy.armed', root).forEach(x => { x.classList.remove('armed'); $('b', x).textContent = x.dataset.lab; });
-      b.dataset.lab = lab.textContent; b.classList.add('armed'); lab.textContent = `Wirklich? ${fmt(+b.dataset.p)} Taler zahlen`;
-      clearTimeout(pgArm); pgArm = setTimeout(() => { if (b.isConnected) { b.classList.remove('armed'); lab.textContent = b.dataset.lab; } }, 4000);
-      return;
+  const dailyCard = () => card({
+    rar: 'l', badge: 'GRATIS', bc: 'free', ico: SYM.truhe, name: 'Tageskiste', sub: 'Jeden Tag gratis: Taler, Glücksdrehungen oder ein Trank.',
+    btn: S.daily === today() ? `<button class="rb-buy" type="button" disabled>Neu in <span class="rb-cd">${untilMidnight()}</span></button>`
+      : `<button class="rb-buy free" type="button" ${A(async () => { const r = claimDaily(); if (!r) return; const b = $('.rb-bal b', win); if (b) b.textContent = fmt(S.bal); await rbRoll(win, DAILY, r.e, 'Tageskiste', r.text); again(); })}>Öffnen</button>`
+  });
+  const drops = tab => `<div class="rb-drops">${tab.map(e => { const [n, s, r] = prizeOf(e); return `<div class="rb-tile" style="${rv(r)}"><b>${e[0]} %</b><i>${SYM[s]}</i><span>${n}</span></div>`; }).join('')}</div>`;
+  const tabs = {
+    angebote() {
+      const d = deal(), it = d.it;
+      return `<div class="rb-hero" style="${rv(it.rar)}"><span class="rb-badge hot">−25 %</span>
+          <div class="rb-ico big">${SYM[it.s]}</div>
+          <div><span class="rb-kicker">Tagesangebot</span><h3 class="rb-name">${it.n}</h3><p class="rb-sub">${it.t}</p><p class="rb-timer">Endet in <b class="rb-cd">${untilMidnight()}</b></p></div>
+          ${d.used ? '<button class="rb-buy" type="button" disabled>Heute gekauft</button>' : priceBtn(d.price, A(() => buyFlow({ ico: SYM[it.s], name: it.n, rar: it.rar, price: d.price, note: 'Tagesangebot, nur heute und nur einmal.', go: () => { const prev = S.dealDay; S.dealDay = today(); const r = buyItem(it.id, d.price); if (!r) S.dealDay = prev; return r; } })), it.price)}
+        </div>
+        <h3 class="rb-h">Gratis</h3><div class="rb-grid">${dailyCard()}</div>
+        <h3 class="rb-h">Beliebt</h3><div class="rb-grid">${['tuete', 'turbo', 'vip', 'xp'].map(id => itemCard(item(id))).join('')}</div>`;
+    },
+    automaten() {
+      const c = GS.find(x => x.id === SH.g) || GS[0], per = SH.per, pi = PERS.indexOf(per), unit = c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie';
+      const wild = SYM[c.S[c.W].k], sc = c.SC >= 0 ? SYM[c.S[c.SC].k] : SYM.stern, top = topSym(c);
+      const vc = (k, n, o) => {
+        const pr = vPrice(c, k, per, n);
+        return card({ ...o, btn: priceBtn(pr, A(() => buyFlow({ ico: o.ico, name: `${o.name}: ${c.name}`, rar: o.rar, price: pr, note: `${fmt(per)} Taler ${unit}. Der Gutschein liegt danach am Automaten bereit.`,
+          go: () => { if (!take(pr)) return null; addVoucher(k, c.id, per, n, pr); bought(); return { text: `${o.name} für ${c.name} liegt im Inventar und direkt am Automaten.`, slot: c.id }; } }))) });
+      };
+      const cards = [
+        c.buy ? vc('fs', 1, { rar: 'e', ico: sc, tag: `${c.feat.n} FS`, name: 'Freispiele', sub: `Sofort ${c.feat.n} Freispiele · Quote ${pct(c.buyQ)}`, badge: 'BELIEBT' })
+          : card({ rar: 'c', cls: 'off', ico: sc, name: 'Freispiele', sub: `${c.name} hat keine Freispiele.`, btn: '<button class="rb-buy" type="button" disabled>Gibt es hier nicht</button>' }),
+        vc('lk', 1, { rar: 'r', ico: wild, tag: '×10', name: 'Glücksdrehung', sub: `${c.bst.pw ? 'Sicher Multi oder wilde Walze' : 'Sicher ein Multi'} · Quote ${pct(c.lkQ)}` }),
+        vc('lk', 5, { rar: 'e', ico: wild, tag: '5×', name: '5 Glücksdrehungen', sub: `Fünfmal sicher ein Treffer · Quote ${pct(c.lkQ)}` }),
+        ...PACKS.map(([n, d], i) => vc('pk', n, { rar: ['c', 'r', 'l'][i], ico: top, tag: n + '×', name: `${n} Drehungen`, sub: `${Math.round(d * 100)} % Rabatt · Quote ca. ${pct(c.rtp / 100 / (1 - d))}`, badge: i === 2 ? 'BESTER WERT' : null, bc: 'best' }))
+      ].join('');
+      return `<div class="rb-slots" role="radiogroup" aria-label="Automat">${GS.map(x => `<button class="rb-slot${x.id === c.id ? ' on' : ''}" type="button" role="radio" aria-checked="${x.id === c.id}" style="${x.css}" ${A(() => { SH.g = x.id; again(); })}><i>${SYM[x.S[x.W].k]}</i><span>${x.name}</span></button>`).join('')}</div>
+        <div class="rb-step"><span class="rb-steplbl">Einsatz ${unit}</span>
+          <button class="rb-pm" type="button" aria-label="Weniger Einsatz" ${pi <= 0 ? 'disabled' : A(() => { SH.per = PERS[pi - 1]; again(); })}>−</button>
+          <b class="rb-stepv">${COIN}${fmt(per)}</b>
+          <button class="rb-pm" type="button" aria-label="Mehr Einsatz" ${pi >= PERS.length - 1 ? 'disabled' : A(() => { SH.per = PERS[pi + 1]; again(); })}>+</button>
+          <span class="rb-steptot">${fmt(rnd2(per * c.cost))} Taler je Drehung</span></div>
+        <div class="rb-grid">${cards}</div>
+        <p class="rb-note">Gutscheine löst du am Automaten ein, sie liegen dort unter dem Drehknopf. Freispiele: Die erste Drehung bringt sicher drei ${c.scatPl || 'Streusymbole'}. Glücksdrehung: sicher ein Multi (×2 bis ×10)${c.bst.pw ? ' oder eine wilde Walze (×2 bis ×5)' : ''}. Ein Drehpaket läuft von selbst ab und lässt sich anhalten.</p>`;
+    },
+    boosts: () => `<div class="rb-grid">${['xp', 'lk'].map(id => itemCard(item(id))).join('')}</div><p class="rb-note">Boosts zählen bei jeder abgerechneten Runde eine Runde herunter, egal an welchem Spiel.</p>`,
+    paesse: () => `<div class="rb-grid">${['turbo', 'vip', 'gold'].map(id => itemCard(item(id))).join('')}</div><p class="rb-note">Gamepässe kaufst du einmal und behältst sie. Turbo und Goldrahmen kannst du jederzeit an- und ausschalten.</p>`,
+    kisten: () => `<div class="rb-grid">${itemCard(item('tuete'))}${dailyCard()}</div>
+        <h3 class="rb-h">Das steckt in der Wundertüte</h3>${drops(TUETE)}
+        <h3 class="rb-h">Das steckt in der Tageskiste</h3>${drops(DAILY)}`,
+    inventar() {
+      const v = S.inv.map(e => {
+        const c = GS.find(x => x.id === e.g);
+        return card({ rar: e.k === 'fs' ? 'e' : e.k === 'lk' ? 'r' : 'c', ico: e.k === 'fs' ? SYM[c.S[c.SC].k] : e.k === 'lk' ? SYM[c.S[c.W].k] : topSym(c), tag: '×' + e.n, name: vName(e.k), sub: `${c.name} · ${fmt(e.per)} Taler ${c.mode === 'ways' ? 'Grundeinsatz' : 'je Linie'}`,
+          btn: `<button class="rb-buy go" type="button" ${A(() => { closeShop(); location.hash = e.g; })}>Einlösen</button>` });
+      }).join('');
+      const mine = SHOP.filter(it => (it.once && S.own[it.id]) || (it.rounds && S.buff[it.id] > 0)).map(it => itemCard(it)).join('');
+      return v || mine ? `${v ? `<h3 class="rb-h">Gutscheine · Wert ${fmt(invOpen())} Taler</h3><div class="rb-grid">${v}</div>` : ''}${mine ? `<h3 class="rb-h">Gamepässe und Boosts</h3><div class="rb-grid">${mine}</div>` : ''}`
+        : `<p class="rb-empty">Dein Inventar ist noch leer. Schau bei den Angeboten vorbei!</p>`;
     }
-    clearTimeout(pgArm); go();
   };
-  $$('[data-k]', root).forEach(b => b.addEventListener('click', () => arm(b, () => {
-    const k = b.dataset.k, n = +b.dataset.n, pr = vPrice(c, k, per, n);
-    if (!take(pr)) return;
-    addVoucher(k, c.id, per, n, pr); bought();
-    again({ text: `Gekauft: ${k === 'pk' ? n + ' Drehungen' : k === 'lk' && n > 1 ? n + ' Glücksdrehungen' : vName(k)} für ${c.name} mit ${fmt(per)} Taler ${unit}.`, cls: 'good', go: c.id });
-  })));
-  $$('[data-item]', root).forEach(b => b.addEventListener('click', () => arm(b, () => {
-    const text = buyItem(b.dataset.item);
-    if (text) again({ text, cls: 'good' });
-  })));
-  $$('[data-turbo]', root).forEach(b => b.addEventListener('click', () => { S.turbo = !S.turbo; save(); again({ text: `Turbo ist jetzt ${S.turbo ? 'an' : 'aus'}.` }); }));
+  const dots = { angebote: !deal().used || S.daily !== today() ? '!' : 0, kisten: S.daily !== today() ? '!' : 0, inventar: S.inv.length };
+  win.innerHTML = `<div class="rb-top"><h2 class="rb-title">Shop</h2><span class="rb-bal" title="Deine Börse">${COIN}<b>${fmt(S.bal)}</b></span>${inline ? '' : '<button class="rb-x" type="button" aria-label="Shop schließen">✕</button>'}</div>
+    <div class="rb-body">
+      <nav class="rb-tabs" aria-label="Bereiche im Shop">${RB_TABS.map(([id, n, s]) => `<button class="rb-tab t-${id}${SH.tab === id ? ' on' : ''}" type="button" aria-pressed="${SH.tab === id}" data-tab="${id}"><i>${SYM[s]}</i><span>${n}</span>${dots[id] ? `<b class="rb-dot">${dots[id]}</b>` : ''}</button>`).join('')}</nav>
+      <div class="rb-main">${tabs[SH.tab]()}</div>
+    </div>`;
+  win.onclick = e => {
+    const t = e.target.closest('[data-tab],[data-a],.rb-x');
+    if (!t || t.closest('.rb-layer')) return;
+    if (t.classList.contains('rb-x')) { closeShop(); return; }
+    if (t.dataset.tab) { SH.tab = t.dataset.tab; rbShop(win, inline); const nt = $(`[data-tab="${SH.tab}"]`, win); if (nt) nt.focus({ preventScroll: true }); return; }
+    const f = acts[+t.dataset.a]; if (f && !t.disabled) f();
+  };
+  /* Nach dem Neuzeichnen bleibt der Fokus im Fenster, damit die Leertaste nicht den Automaten dahinter dreht */
+  if (!inline && !win.contains(document.activeElement)) win.focus({ preventScroll: true });
+  clearInterval(shopCd);
+  shopCd = setInterval(() => { if (!win.isConnected) { clearInterval(shopCd); return; } $$('.rb-cd', win).forEach(x => { x.textContent = untilMidnight(); }); }, 1000);
 }
+/* Kleine Fenster im Shop: Kaufabfrage, Erfolg, Abrollband */
+function rbLayer(win, html, label) {
+  const m = h(`<div class="rb-layer"><div class="rb-pbox" role="dialog" aria-modal="true" aria-label="${label}">${html}</div></div>`);
+  win.append(m); return m;
+}
+function rbAsk(win, o) {
+  return new Promise(res => {
+    const m = rbLayer(win, `<h3>Kaufen?</h3>
+      <div class="rb-pitem" style="${rv(o.rar)}"><div class="rb-ico">${o.ico}</div></div>
+      <p class="rb-ptext">Möchtest du <b>${o.name}</b> für <span class="rb-pp">${COIN}${fmt(o.price)}</span> kaufen?</p>
+      ${o.note ? `<p class="rb-psub">${o.note}</p>` : ''}
+      <div class="rb-pbtns"><button class="rb-buy" type="button" data-y>Kaufen</button><button class="rb-no" type="button" data-n>Abbrechen</button></div>`, 'Kauf bestätigen');
+    const end = v => { m.remove(); res(v); };
+    m.addEventListener('click', e => { if (e.target.closest('[data-y]')) end(true); else if (e.target.closest('[data-n]') || e.target === m) end(false); });
+    m.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); end(false); } });
+    $('[data-y]', m).focus();
+  });
+}
+function rbDone(win, o, text, slot) {
+  return new Promise(res => {
+    const m = rbLayer(win, `<h3>Gekauft!</h3>
+      <div class="rb-rays"><div class="rb-pitem yay" style="${rv(o.rar)}"><div class="rb-ico">${o.ico}</div></div></div>
+      <p class="rb-ptext">${text}</p>
+      <div class="rb-pbtns"><button class="rb-buy" type="button" data-y>Super!</button>${slot ? '<button class="rb-buy go" type="button" data-go>Zum Automaten</button>' : ''}</div>`, 'Kauf erfolgreich');
+    const end = () => { m.remove(); res(); };
+    m.addEventListener('click', e => { if (e.target.closest('[data-y]')) end(); else if (e.target.closest('[data-go]')) { end(); closeShop(); location.hash = slot; } });
+    m.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); end(); } });
+    $('[data-y]', m).focus();
+  });
+}
+/* Abrollband: Ein Band aus Preisen rollt durch, der gezogene Preis (steht schon fest) bleibt unter der Markierung stehen */
+function rbRoll(win, table, e, title, text) {
+  return new Promise(res => {
+    const N = 44, at = 37, tiles = Array.from({ length: N }, (_, i) => i === at ? e : roll(table));
+    const tile = x => { const [n, s, r] = prizeOf(x); return `<div class="rb-tile" style="${rv(r)}"><i>${SYM[s]}</i><span>${n}</span></div>`; };
+    const [, , r] = prizeOf(e);
+    const m = rbLayer(win, `<h3>${title}</h3><div class="rb-case"><div class="rb-strip">${tiles.map(tile).join('')}</div><i class="rb-mark" aria-hidden="true"></i></div>
+      <p class="rb-won" aria-live="polite"></p><div class="rb-pbtns"><button class="rb-buy" type="button" data-y disabled>Rollt …</button></div>`, title);
+    m.firstElementChild.classList.add('rb-rollbox');
+    const strip = $('.rb-strip', m), box = $('.rb-case', m), ok = $('[data-y]', m);
+    const x = at * 112 + 52 - box.clientWidth / 2 + int(61) - 30;
+    let fin = false;
+    const finish = () => {
+      if (fin) return; fin = true;
+      strip.style.transition = 'none'; strip.style.transform = `translateX(${-x}px)`;
+      $$('.rb-tile', strip)[at].classList.add('win');
+      $('.rb-won', m).innerHTML = `<b style="color:${RAR[r][1]}">${RAR[r][0]}!</b> ${text}`;
+      ok.disabled = false; ok.textContent = 'Super!'; ok.focus();
+    };
+    ok.onclick = () => { m.remove(); res(); };
+    box.addEventListener('click', finish);
+    m.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.stopPropagation(); if (fin) { m.remove(); res(); } else finish(); } });
+    m.tabIndex = -1; m.focus({ preventScroll: true });
+    if (calm) { finish(); return; }
+    strip.getBoundingClientRect();
+    strip.style.transition = 'transform 4.6s cubic-bezier(.06,.62,.1,1)';
+    strip.style.transform = `translateX(${-x}px)`;
+    setTimeout(finish, 4700);
+  });
+}
+function openShop(tab) {
+  if (tab) SH.tab = tab;
+  if (shopOv || location.hash === '#laden') return;
+  const back = document.activeElement;
+  shopOv = h('<div class="rb-ov"><div class="rb-shop" role="dialog" aria-modal="true" aria-label="Shop" tabindex="-1"></div></div>');
+  shopOv._back = back;
+  document.body.append(shopOv); document.body.classList.add('rb-open');
+  shopOv.addEventListener('click', e => { if (e.target === shopOv) closeShop(); });
+  /* Tasten im Shop gehören dem Shop: Escape schließt, die Leertaste dreht keinen Automaten dahinter */
+  ['keydown', 'keyup'].forEach(t => shopOv.addEventListener(t, e => {
+    if (t === 'keydown' && e.key === 'Escape') closeShop();
+    if (e.code === 'Space' || e.key === ' ') e.stopPropagation();
+  }));
+  const win = $('.rb-shop', shopOv);
+  rbShop(win, false);
+  const x = $('.rb-x', win); if (x) x.focus();
+}
+function closeShop() {
+  if (!shopOv) return;
+  clearInterval(shopCd);
+  const b = shopOv._back; shopOv.remove(); shopOv = null; document.body.classList.remove('rb-open');
+  if (b && b.isConnected && b.focus) b.focus();
+}
+$('#shopbtn').addEventListener('click', () => openShop());
 
 /* ---------- Wege ---------- */
 let cleanup = null;
 function route() {
-  flush();
+  flush(); closeShop();
   if (cleanup) { cleanup(); cleanup = null; }
   let id = location.hash.slice(1) || 'lobby';
   if (id !== 'kassenbuch' && id !== 'aktionen' && id !== 'fortschritt' && id !== 'laden' && !GROUPS[id] && !GAMES[id]) id = 'lobby';
@@ -4872,7 +5176,7 @@ function route() {
   else if (id === 'kassenbuch') ledger(root);
   else if (id === 'aktionen') promos(root);
   else if (id === 'fortschritt') progress(root);
-  else if (id === 'laden') shop(root);
+  else if (id === 'laden') { root.innerHTML = '<section><div class="rb-shop inline"></div></section>'; rbShop($('.rb-shop', root), true); }
   else if (GROUPS[id]) hall(root, id);
   else {
     const g = GAMES[id];
