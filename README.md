@@ -16,8 +16,6 @@ Der Shop heißt Schatzkammer (goldenes + neben der Börse). Er hat drei Bereiche
 
 Gekauft wird ohne Zusatzfenster: Der erste Klick auf den Preis fragt nach, der zweite kauft. Keine Quote im Shop liegt über 100 %.
 
-Alle Bilder sind echte Fotos von Wikimedia Commons unter freien Lizenzen (gemeinfrei, CC0, CC BY, CC BY-SA): die Walzensymbole, die Spielkacheln und die Elster im Empfang. Urheber, Lizenz und Link zu jedem Foto stehen auf der Seite „Bildnachweis“ (Link in der Fußzeile).
-
 Es gibt nur Spielgeld (Taler). Nichts davon ist echtes Geld, und man kann nichts kaufen oder auszahlen. Der Spielstand liegt im Browser (localStorage).
 
 Spielen: https://julius-bki.github.io/casino/
