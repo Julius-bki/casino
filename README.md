@@ -12,7 +12,7 @@ Neu dabei:
 
 Alle Spiele haben eigene Namen, eigene Regeln im Detail und ein eigenes Aussehen.
 
-Die Symbole sind glänzende 3D-Bilder aus Fluent Emoji von Microsoft (MIT-Lizenz), mit Animationen für Gewinne und Kacheln. Der Bildnachweis steht auf der Seite unter „Bildnachweis“.
+Die Symbole sehen aus wie an einem klassischen Spielautomaten: kräftige Farben, dunkle Kontur und Glanzlicht. Die Kacheln haben einen Goldrahmen mit Lauflicht aus Glühbirnen. Die Umrisse stammen von game-icons.net (CC BY 3.0, gezeichnet von Lorc, Delapouite und anderen). Der Bildnachweis mit allen Zeichnern steht auf der Seite unter „Bildnachweis“.
 
 In den zehn neuesten Automaten gibt es Glücksdrehungen: Etwa jede 33. Drehung bekommt einen Multi (×2 bis ×10), etwa jede 50. eine wilde Walze (×2 bis ×5).
 
